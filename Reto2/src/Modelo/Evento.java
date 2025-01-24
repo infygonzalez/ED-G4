@@ -4,8 +4,12 @@ public class Evento {
  private String Id;
  private String tipo;
  
- 	public Evento(String id, String tipo) {
-	Id = id;
+ 	public Evento() {
+ 		
+ 	}
+ 
+ 	public Evento(String Id, String tipo) {
+	this.Id = Id;
 	this.tipo = tipo;
  	}
 
