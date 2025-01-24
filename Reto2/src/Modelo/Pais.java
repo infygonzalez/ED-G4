@@ -8,6 +8,10 @@ public class Pais {
 	private String descripcion;
 	private ArrayList<Viaje> viajes;
 	
+	public Pais() {
+		
+	}
+	
 	public Pais (String CodPais, String descripcion, ArrayList<Viaje> viajes){
 		this.CodPais=CodPais;
 		this.descripcion=descripcion;

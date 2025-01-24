@@ -1,34 +1,35 @@
 package Modelo;
 
 public class Evento {
+ private String Id;
+ private String tipo;
+ 
+ 	public Evento(String id, String tipo) {
+	Id = id;
+	this.tipo = tipo;
+ 	}
 
-	private String EventoId;
-	private String EventoTipo;
-	private Viaje viaje;
-	
-	public String getEventoId() {
-		return EventoId;
+	public String getId() {
+		return Id;
 	}
-	public void setEventoId(String eventoId) {
-		EventoId = eventoId;
+
+	public void setId(String id) {
+		Id = id;
 	}
-	public String getEventoTipo() {
-		return EventoTipo;
+
+	public String getTipo() {
+		return tipo;
 	}
-	public void setEventoTipo(String eventoTipo) {
-		EventoTipo = eventoTipo;
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
-	public Viaje getViaje() {
-		return viaje;
-	}
-	public void setViaje(Viaje viaje) {
-		this.viaje = viaje;
-	}
+
 	@Override
 	public String toString() {
-		return "Evento [EventoId=" + EventoId + ", EventoTipo=" + EventoTipo + ", viaje=" + viaje + "]";
+		return "Evento [Id=" + Id + ", tipo=" + tipo + "]";
 	}
-	
-	
-	
+ 	
+ 	
+ 
 }

@@ -11,6 +11,10 @@ public class Agencias {
 	private String agenciaTipo;
 	private ArrayList<Viaje> viajes;
 	
+	public Agencias() {
+		
+	}
+	
 	public Agencias (String agenciaId, String agenciaNombre, String agenciaLogo, String agenciaColorMarca, String agenciaNumEmple, String agenciaTipo, ArrayList<Viaje> viajes){
 		this.agenciaId=agenciaId;
 		this.agenciaNombre=agenciaNombre;

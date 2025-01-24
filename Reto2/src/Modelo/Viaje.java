@@ -15,6 +15,11 @@ public class Viaje {
 	private Pais pais;
 	private ArrayList<Evento> eventos;
 	
+	
+	public Viaje() {
+	
+	}
+
 	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechas, String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais, ArrayList<Evento> eventos){
 		this.viajesId=viajesId;
 		this.viajesNombre=viajesNombre;
