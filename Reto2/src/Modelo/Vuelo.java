@@ -1,6 +1,6 @@
 package Modelo;
 
-public class VueloIda {
+public class Vuelo {
 
 	private String CodVuelo;
 	private String fecSal;
@@ -13,13 +13,14 @@ public class VueloIda {
 	private Aeropuerto aeropuertoOrigen;
 	private Aeropuerto aeropuertoDestino;
 	private Aerolinea aerolinea;
+	private Vuelo vueloVuelta;
 	
-	public VueloIda() {
+	public Vuelo() {
 
 	}
 
-	public VueloIda(String codVuelo, String fecSal, String horaSal, String durViaje, String eventoId,
-			Viaje viaje, String nombre, String precio, Aeropuerto aeropuertoOrigen,Aeropuerto aeropuertoDestino, Aerolinea aerolinea) {
+	public Vuelo(String codVuelo, String fecSal, String horaSal, String durViaje, String eventoId,
+			Viaje viaje, String nombre, String precio, Aeropuerto aeropuertoOrigen,Aeropuerto aeropuertoDestino, Aerolinea aerolinea, Vuelo vueloVuelta) {
 		this.CodVuelo = codVuelo;
 		this.fecSal = fecSal;
 		this.horaSal = horaSal;
@@ -31,6 +32,7 @@ public class VueloIda {
 		this.aeropuertoOrigen=aeropuertoOrigen;
 		this.aeropuertoDestino=aeropuertoDestino;
 		this.aerolinea=aerolinea;
+		this.vueloVuelta=vueloVuelta;
 	}
 
 	public String getCodVuelo() {
@@ -121,14 +123,23 @@ public class VueloIda {
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
-	@Override
-	public String toString() {
-		return "VueloIda [CodVuelo=" + CodVuelo + ", fecSal=" + fecSal + ", horaSal=" + horaSal + ", durViaje="
-				+ durViaje + ", eventoId=" + eventoId + ", viaje=" + viaje + ", nombre=" + nombre + ", precio=" + precio
-				+ ", aeropuertoOrigen=" + aeropuertoOrigen + ", aeropuertoDestino=" + aeropuertoDestino + ", aerolinea="
-				+ aerolinea + "]";
+	public Vuelo getVueloVuelta() {
+		return vueloVuelta;
 	}
 
+	public void setVueloVuelta(Vuelo vueloVuelta) {
+		this.vueloVuelta = vueloVuelta;
+	}
+
+	@Override
+	public String toString() {
+		return "Vuelo [CodVuelo=" + CodVuelo + ", fecSal=" + fecSal + ", horaSal=" + horaSal + ", durViaje=" + durViaje
+				+ ", eventoId=" + eventoId + ", viaje=" + viaje + ", nombre=" + nombre + ", precio=" + precio
+				+ ", aeropuertoOrigen=" + aeropuertoOrigen + ", aeropuertoDestino=" + aeropuertoDestino + ", aerolinea="
+				+ aerolinea + ", vueloVuelta=" + vueloVuelta + "]";
+	}
+
+	
 	
 
 

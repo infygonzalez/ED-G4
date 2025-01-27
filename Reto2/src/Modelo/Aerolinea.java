@@ -6,16 +6,16 @@ public class Aerolinea {
 
 	private String codAeroli;
 	private String lugarAeroli;
-	private ArrayList<VueloIda> vueloIda;
+	private ArrayList<Vuelo> vuelo;
 	
 	public Aerolinea() {
 		
 	}
 
-	public Aerolinea(String codAeroli, String lugarAeroli, ArrayList<VueloIda> vueloIda) {
+	public Aerolinea(String codAeroli, String lugarAeroli, ArrayList<Vuelo> vuelo) {
 		this.codAeroli = codAeroli;
 		this.lugarAeroli = lugarAeroli;
-		this.vueloIda = vueloIda;
+		this.vuelo = vuelo;
 	}
 
 	public String getCodAeroli() {
@@ -34,17 +34,17 @@ public class Aerolinea {
 		this.lugarAeroli = lugarAeroli;
 	}
 
-	public ArrayList<VueloIda> getVueloIda() {
-		return vueloIda;
+	public ArrayList<Vuelo> getVueloIda() {
+		return vuelo;
 	}
 
-	public void setVueloIda(ArrayList<VueloIda> vueloIda) {
-		this.vueloIda = vueloIda;
+	public void setVueloIda(ArrayList<Vuelo> vueloIda) {
+		this.vuelo = vueloIda;
 	}
 
 	@Override
 	public String toString() {
-		return "Aerolinea [codAeroli=" + codAeroli + ", lugarAeroli=" + lugarAeroli + ", vueloIda=" + vueloIda + "]";
+		return "Aerolinea [codAeroli=" + codAeroli + ", lugarAeroli=" + lugarAeroli + ", vuelo=" + vuelo + "]";
 	}
 	
 	

@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public class Aeropuerto{
 	private String CodAero;
 	private String LugarAero;
-	private ArrayList<VueloIda> vueloIda;
+	private ArrayList<Vuelo> vuelo;
 	
 	public Aeropuerto() {
 		
 	}
 	
-	public Aeropuerto(String CodAero, String LugarAero, ArrayList<VueloIda> vueloIda) {
+	public Aeropuerto(String CodAero, String LugarAero, ArrayList<Vuelo> vuelo) {
 		this.CodAero=CodAero;
 		this.LugarAero=LugarAero;
-		this.vueloIda=vueloIda;
+		this.vuelo=vuelo;
 	}
 
 	public String getCodAero() {
@@ -33,17 +33,17 @@ public class Aeropuerto{
 		LugarAero = lugarAero;
 	}
 
-	public ArrayList<VueloIda> getVueloIda() {
-		return vueloIda;
+	public ArrayList<Vuelo> getVueloIda() {
+		return vuelo;
 	}
 
-	public void setVueloIda(ArrayList<VueloIda> vueloIda) {
-		this.vueloIda = vueloIda;
+	public void setVueloIda(ArrayList<Vuelo> vueloIda) {
+		this.vuelo = vueloIda;
 	}
 
 	@Override
 	public String toString() {
-		return "Aeropuerto [CodAero=" + CodAero + ", LugarAero=" + LugarAero + ", vueloIda=" + vueloIda + "]";
+		return "Aeropuerto [CodAero=" + CodAero + ", LugarAero=" + LugarAero + ", vuelo=" + vuelo + "]";
 	}
 	
 
