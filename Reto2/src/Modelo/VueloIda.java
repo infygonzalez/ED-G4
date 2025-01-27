@@ -10,7 +10,8 @@ public class VueloIda {
 	private Viaje viaje;
 	private String nombre;
 	private String precio;
-	private Aeropuerto aeropuerto;
+	private Aeropuerto aeropuertoOrigen;
+	private Aeropuerto aeropuertoDestino;
 	private Aerolinea aerolinea;
 	
 	public VueloIda() {
@@ -18,7 +19,7 @@ public class VueloIda {
 	}
 
 	public VueloIda(String codVuelo, String fecSal, String horaSal, String durViaje, String eventoId,
-			Viaje viaje, String nombre, String precio, Aeropuerto aeropuerto, Aerolinea aerolinea) {
+			Viaje viaje, String nombre, String precio, Aeropuerto aeropuertoOrigen,Aeropuerto aeropuertoDestino, Aerolinea aerolinea) {
 		this.CodVuelo = codVuelo;
 		this.fecSal = fecSal;
 		this.horaSal = horaSal;
@@ -27,7 +28,8 @@ public class VueloIda {
 		this.viaje = viaje;
 		this.nombre = nombre;
 		this.precio = precio;
-		this.aeropuerto=aeropuerto;
+		this.aeropuertoOrigen=aeropuertoOrigen;
+		this.aeropuertoDestino=aeropuertoDestino;
 		this.aerolinea=aerolinea;
 	}
 
@@ -95,14 +97,6 @@ public class VueloIda {
 		this.precio = precio;
 	}
 
-	public Aeropuerto getAeropuerto() {
-		return aeropuerto;
-	}
-
-	public void setAeropuerto(Aeropuerto aeropuerto) {
-		this.aeropuerto = aeropuerto;
-	}
-
 	public Aerolinea getAerolinea() {
 		return aerolinea;
 	}
@@ -111,12 +105,31 @@ public class VueloIda {
 		this.aerolinea = aerolinea;
 	}
 
+	public Aeropuerto getAeropuertoOrigen() {
+		return aeropuertoOrigen;
+	}
+
+	public void setAeropuertoOrigen(Aeropuerto aeropuertoOrigen) {
+		this.aeropuertoOrigen = aeropuertoOrigen;
+	}
+
+	public Aeropuerto getAeropuertoDestino() {
+		return aeropuertoDestino;
+	}
+
+	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
+		this.aeropuertoDestino = aeropuertoDestino;
+	}
+
 	@Override
 	public String toString() {
 		return "VueloIda [CodVuelo=" + CodVuelo + ", fecSal=" + fecSal + ", horaSal=" + horaSal + ", durViaje="
-				+ durViaje + ", eventoId=" + eventoId + ", viaje=" + viaje + ", nombre="
-				+ nombre + ", precio=" + precio + ", aeropuerto=" + aeropuerto + ", aerolinea=" + aerolinea + "]";
+				+ durViaje + ", eventoId=" + eventoId + ", viaje=" + viaje + ", nombre=" + nombre + ", precio=" + precio
+				+ ", aeropuertoOrigen=" + aeropuertoOrigen + ", aeropuertoDestino=" + aeropuertoDestino + ", aerolinea="
+				+ aerolinea + "]";
 	}
+
+	
 
 
 	
