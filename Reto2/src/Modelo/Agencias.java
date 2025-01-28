@@ -9,19 +9,22 @@ public class Agencias {
 	private String agenciaColorMarca;
 	private String agenciaNumEmple;
 	private String agenciaTipo;
+	private String contraseña;
 	private ArrayList<Viaje> viajes;
 	
 	public Agencias() {
 		
 	}
 	
-	public Agencias (String agenciaId, String agenciaNombre, String agenciaLogo, String agenciaColorMarca, String agenciaNumEmple, String agenciaTipo, ArrayList<Viaje> viajes){
+	public Agencias (String agenciaId, String agenciaNombre, String agenciaLogo, String agenciaColorMarca, 
+			String agenciaNumEmple, String agenciaTipo,String contraseña, ArrayList<Viaje> viajes){
 		this.agenciaId=agenciaId;
 		this.agenciaNombre=agenciaNombre;
 		this.agenciaLogo=agenciaLogo;
 		this.agenciaColorMarca=agenciaColorMarca;
 		this.agenciaNumEmple=agenciaNumEmple;
 		this.agenciaTipo=agenciaTipo;
+		this.contraseña=contraseña;
 		this.viajes=viajes;
 
 		
@@ -70,12 +73,22 @@ public class Agencias {
 	public void setAgenciaTipo(String agenciaTipo) {
 		this.agenciaTipo = agenciaTipo;
 	}
+	
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
 	@Override
 	public String toString() {
 		return "Agencias [agenciaId=" + agenciaId + ", agenciaNombre=" + agenciaNombre + ", agenciaLogo=" + agenciaLogo
 				+ ", agenciaColorMarca=" + agenciaColorMarca + ", agenciaNumEmple=" + agenciaNumEmple + ", agenciaTipo="
-				+ agenciaTipo + ", viajes=" + viajes + "]";
+				+ agenciaTipo + ", contraseña=" + contraseña + ", viajes=" + viajes + "]";
 	}
+
 	
 	
 
