@@ -43,7 +43,7 @@ public class Ventana extends JFrame {
 	 */
 	public Ventana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1920, 1080);
+		setBounds(100, 100, 400, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -59,8 +59,8 @@ public class Ventana extends JFrame {
                 repaint();   
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\in1dm3-a\\Downloads\\1634194794236.jpg"));
-		btnNewButton.setBounds(-76, 0, 2072, 1041);
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\in1dm3-a\\Downloads\\nuevo fondo.png"));
+		btnNewButton.setBounds(0, 0, 384, 261);
 		contentPane.add(btnNewButton);
 		
 		lblinicio = new JLabel("Bienvenido/a \r\nClick para comenzar");
