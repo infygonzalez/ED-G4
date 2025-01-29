@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import Vista.*;
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 
 
 
@@ -23,6 +24,7 @@ public class login extends JPanel {
 	private JLabel lblContraseña;
 	private JLabel lblUsuario;
 	private JFrame frame;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
@@ -35,10 +37,13 @@ public class login extends JPanel {
 		setLayout(null);
 		
 		lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setBackground(new Color(255, 0, 0));
 		lblUsuario.setBounds(105, 111, 66, 14);
 		add(lblUsuario);
 		
 		lblContraseña = new JLabel("Contraseña:");
+		lblContraseña.setBackground(Color.GREEN);
+		lblContraseña.setForeground(Color.BLACK);
 		lblContraseña.setBounds(105, 136, 80, 14);
 		add(lblContraseña);
 		
@@ -68,6 +73,16 @@ public class login extends JPanel {
 		btnNuevaAgencia = new JButton("Nueva agencia");
 		btnNuevaAgencia.setBounds(219, 181, 133, 23);
 		add(btnNuevaAgencia);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(153, 204, 255));
+		panel.setBounds(0, 83, 455, 148);
+		add(panel);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Anaitz\\Downloads\\pruebass.png"));
+		lblNewLabel.setBounds(0, 0, 455, 309);
+		add(lblNewLabel);
 
 	}
 }
