@@ -6,6 +6,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import Vista.*;
 
 public class login extends JPanel {
 
@@ -38,6 +41,11 @@ public class login extends JPanel {
 		add(passwordField);
 		
 		JButton btnInicioSesion = new JButton("Iniciar sesion");
+		btnInicioSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				  
+			}
+		});
 		btnInicioSesion.setBounds(59, 181, 126, 23);
 		add(btnInicioSesion);
 		
