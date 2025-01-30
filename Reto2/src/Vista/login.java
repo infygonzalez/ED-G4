@@ -43,23 +43,48 @@ public class login extends JPanel {
 		setBackground(new Color(153, 204, 255));
 		setLayout(null);
 		
-		lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBackground(new Color(255, 0, 0));
-		lblUsuario.setBounds(105, 111, 66, 14);
-		add(lblUsuario);
+		panel = new JPanel();
+		panel.setBackground(new Color(153, 204, 255));
+		panel.setBounds(0, 242, 1280, 195);
+		add(panel);
+		panel.setLayout(null);
 		
-		lblContraseña = new JLabel("Contraseña:");
-		lblContraseña.setBackground(Color.GREEN);
-		lblContraseña.setForeground(Color.BLACK);
-		lblContraseña.setBounds(105, 136, 80, 14);
-		add(lblContraseña);
+		textContraseña = new JTextField();
+		textContraseña.setBounds(600, 75, 86, 20);
+		panel.add(textContraseña);
+		textContraseña.setColumns(10);
+		
+		lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setBounds(509, 49, 66, 14);
+		panel.add(lblUsuario);
+		lblUsuario.setBackground(new Color(255, 0, 0));
 		
 		textUsuario = new JTextField();
-		textUsuario.setBounds(195, 108, 86, 20);
-		add(textUsuario);
+		textUsuario.setBounds(599, 46, 86, 20);
+		panel.add(textUsuario);
 		textUsuario.setColumns(10);
 		
+		lblContraseña = new JLabel("Contraseña:");
+		lblContraseña.setBounds(509, 74, 80, 14);
+		panel.add(lblContraseña);
+		lblContraseña.setBackground(Color.GREEN);
+		lblContraseña.setForeground(Color.BLACK);
+		
 		btnInicioSesion = new JButton("Iniciar sesion");
+		btnInicioSesion.setBounds(463, 119, 126, 23);
+		panel.add(btnInicioSesion);
+		
+		btnNuevaAgencia = new JButton("Nueva agencia");
+		btnNuevaAgencia.setBounds(623, 119, 133, 23);
+		panel.add(btnNuevaAgencia);
+		btnNuevaAgencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevoPerfil nuevoPerfil = new NuevoPerfil(frame);
+				frame.setContentPane(nuevoPerfil);
+                frame.revalidate(); 
+                frame.repaint();   
+			}
+		});
 		btnInicioSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Agencias agencia= new Agencias();
@@ -72,39 +97,14 @@ public class login extends JPanel {
 			}
 
 		});
-		btnInicioSesion.setBounds(59, 181, 126, 23);
-		add(btnInicioSesion);
-		
-		btnNuevaAgencia = new JButton("Nueva agencia");
-		btnNuevaAgencia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				NuevoPerfil nuevoPerfil = new NuevoPerfil(frame);
-				frame.setContentPane(nuevoPerfil);
-                frame.revalidate(); 
-                frame.repaint();   
-			}
-		});
-		btnNuevaAgencia.setBounds(219, 181, 133, 23);
-		add(btnNuevaAgencia);
-		
-		panel = new JPanel();
-		panel.setBackground(new Color(153, 204, 255));
-		panel.setBounds(0, 83, 455, 148);
-		add(panel);
-		panel.setLayout(null);
-		
-		textContraseña = new JTextField();
-		textContraseña.setBounds(195, 51, 86, 20);
-		panel.add(textContraseña);
-		textContraseña.setColumns(10);
 		
 		lblMensaje = new JLabel("");
 		lblMensaje.setBounds(59, 242, 293, 28);
 		add(lblMensaje);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("img/pruebass.png"));
-		lblNewLabel.setBounds(0, 0, 455, 309);
+		lblNewLabel.setIcon(new ImageIcon("img/fondoInicio.png"));
+		lblNewLabel.setBounds(0, 0, 1280, 720);
 		add(lblNewLabel);
 
 	}

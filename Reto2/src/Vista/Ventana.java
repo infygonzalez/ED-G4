@@ -15,6 +15,7 @@ import Vista.login;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import java.awt.Dimension;
 
 public class Ventana extends JFrame {
 
@@ -59,8 +60,8 @@ public class Ventana extends JFrame {
                 repaint();   
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon("img/pruebass.png"));
-		btnNewButton.setBounds(0, 0, 384, 261);
+		btnNewButton.setIcon(new ImageIcon("img/fondoInicio.png"));
+		btnNewButton.setBounds(0, 0, 1280, 720);
 		contentPane.add(btnNewButton);
 	}
 }

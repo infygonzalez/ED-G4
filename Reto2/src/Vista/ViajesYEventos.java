@@ -27,23 +27,23 @@ public class ViajesYEventos extends JPanel {
 		setLayout(null);
 		
 		table = new JTable();
-		table.setBounds(34, 52, 450, 110);
+		table.setBounds(484, 145, 450, 110);
 		add(table);
 		
 		table_1 = new JTable();
-		table_1.setBounds(34, 253, 450, 110);
+		table_1.setBounds(484, 346, 450, 110);
 		add(table_1);
 		
 		JButton btnNuevoViaje = new JButton("Nuevo viaje");
-		btnNuevoViaje.setBounds(544, 48, 104, 23);
+		btnNuevoViaje.setBounds(994, 141, 104, 23);
 		add(btnNuevoViaje);
 		
 		JButton btnNuevoEvento = new JButton("Nuevo evento");
-		btnNuevoEvento.setBounds(544, 249, 104, 23);
+		btnNuevoEvento.setBounds(994, 342, 104, 23);
 		add(btnNuevoEvento);
 		
 		JButton btnGenerarOferta = new JButton("Generar oferta cliente");
-		btnGenerarOferta.setBounds(186, 374, 139, 23);
+		btnGenerarOferta.setBounds(636, 467, 139, 23);
 		add(btnGenerarOferta);
 		
 		JButton btnDesconectar = new JButton("Desconectar");
@@ -51,15 +51,15 @@ public class ViajesYEventos extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnDesconectar.setBounds(531, 398, 104, 23);
+		btnDesconectar.setBounds(981, 491, 104, 23);
 		add(btnDesconectar);
 		
 		JButton btnEliminar1 = new JButton("");
-		btnEliminar1.setBounds(491, 48, 30, 23);
+		btnEliminar1.setBounds(941, 141, 30, 23);
 		add(btnEliminar1);
 		
 		JButton btnEliminar2 = new JButton("");
-		btnEliminar2.setBounds(494, 249, 30, 23);
+		btnEliminar2.setBounds(944, 342, 30, 23);
 		add(btnEliminar2);
 
 	}
