@@ -3,6 +3,11 @@ package Vista;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Controlador.controlador;
+import Modelo.Agencias;
+import Modelo.Gestor;
+
 import javax.swing.JPasswordField;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -17,14 +22,16 @@ import javax.swing.ImageIcon;
 public class login extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField textUsuario;
 	private JButton btnInicioSesion;
 	private JButton btnNuevaAgencia;
 	private JLabel lblContraseña;
 	private JLabel lblUsuario;
 	private JFrame frame;
 	private JLabel lblNewLabel;
+	private JTextField textContraseña;
+	private JPanel panel;
+	private JLabel lblMensaje;
 
 	/**
 	 * Create the panel.
@@ -47,22 +54,20 @@ public class login extends JPanel {
 		lblContraseña.setBounds(105, 136, 80, 14);
 		add(lblContraseña);
 		
-		textField = new JTextField();
-		textField.setBounds(195, 108, 86, 20);
-		add(textField);
-		textField.setColumns(10);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(195, 134, 86, 20);
-		add(passwordField);
+		textUsuario = new JTextField();
+		textUsuario.setBounds(195, 108, 86, 20);
+		add(textUsuario);
+		textUsuario.setColumns(10);
 		
 		btnInicioSesion = new JButton("Iniciar sesion");
 		btnInicioSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViajesYEventos prueba = new ViajesYEventos();
-				frame.setContentPane(prueba);
-                frame.revalidate(); 
-                frame.repaint();   
+				Agencias agencia= new Agencias();
+				Gestor gestor = new Gestor();
+				
+				comprobarAgencia(textUsuario.getText(), textContraseña.getText(), agencia, gestor);
+				
+				
 			 
 			}
 
@@ -71,18 +76,60 @@ public class login extends JPanel {
 		add(btnInicioSesion);
 		
 		btnNuevaAgencia = new JButton("Nueva agencia");
+		btnNuevaAgencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevoPerfil nuevoPerfil = new NuevoPerfil(frame);
+				frame.setContentPane(nuevoPerfil);
+                frame.revalidate(); 
+                frame.repaint();   
+			}
+		});
 		btnNuevaAgencia.setBounds(219, 181, 133, 23);
 		add(btnNuevaAgencia);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(new Color(153, 204, 255));
 		panel.setBounds(0, 83, 455, 148);
 		add(panel);
+		panel.setLayout(null);
+		
+		textContraseña = new JTextField();
+		textContraseña.setBounds(195, 51, 86, 20);
+		panel.add(textContraseña);
+		textContraseña.setColumns(10);
+		
+		lblMensaje = new JLabel("");
+		lblMensaje.setBounds(59, 242, 293, 28);
+		add(lblMensaje);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Anaitz\\Downloads\\pruebass.png"));
+		lblNewLabel.setIcon(new ImageIcon("img/pruebass.png"));
 		lblNewLabel.setBounds(0, 0, 455, 309);
 		add(lblNewLabel);
 
+	}
+	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor) {
+		
+		agencia.setAgenciaNombre(textUsuario);
+		agencia.setContraseña(textContraseña);
+			if (gestor.comprobarAgencia(agencia)==true) {
+				
+				
+				lblMensaje.setText("Inicio de sesion correcto");
+
+				ViajesYEventos frame2 = new ViajesYEventos(frame);
+
+				frame.setContentPane(new ViajesYEventos(frame));
+				frame.revalidate();
+				frame.repaint();
+
+			} else {
+
+				lblMensaje.setText("Error, Usuario o contraseña incorrectos");
+			}
+
+			
+			
+		
 	}
 }

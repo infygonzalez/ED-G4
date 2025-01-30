@@ -3,6 +3,8 @@ package Vista;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -13,11 +15,15 @@ public class ViajesYEventos extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTable table_1;
+	private JFrame frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public ViajesYEventos() {
+	public ViajesYEventos(JFrame frame) {
+		
+		this.frame=frame;
+		
 		setLayout(null);
 		
 		table = new JTable();

@@ -14,13 +14,14 @@ public class Vuelo {
 	private Aeropuerto aeropuertoDestino;
 	private Aerolinea aerolinea;
 	private Vuelo vueloVuelta;
+	private String tipo;
 	
 	public Vuelo() {
 
 	}
 
 	public Vuelo(String codVuelo, String fecSal, String horaSal, String durViaje, String eventoId,
-			Viaje viaje, String nombre, String precio, Aeropuerto aeropuertoOrigen,Aeropuerto aeropuertoDestino, Aerolinea aerolinea, Vuelo vueloVuelta) {
+			Viaje viaje, String nombre, String precio, Aeropuerto aeropuertoOrigen,Aeropuerto aeropuertoDestino, Aerolinea aerolinea, Vuelo vueloVuelta, String tipo) {
 		this.CodVuelo = codVuelo;
 		this.fecSal = fecSal;
 		this.horaSal = horaSal;
@@ -33,6 +34,7 @@ public class Vuelo {
 		this.aeropuertoDestino=aeropuertoDestino;
 		this.aerolinea=aerolinea;
 		this.vueloVuelta=vueloVuelta;
+		this.tipo=tipo;
 	}
 
 	public String getCodVuelo() {
@@ -131,12 +133,22 @@ public class Vuelo {
 		this.vueloVuelta = vueloVuelta;
 	}
 
+	
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	@Override
 	public String toString() {
 		return "Vuelo [CodVuelo=" + CodVuelo + ", fecSal=" + fecSal + ", horaSal=" + horaSal + ", durViaje=" + durViaje
 				+ ", eventoId=" + eventoId + ", viaje=" + viaje + ", nombre=" + nombre + ", precio=" + precio
 				+ ", aeropuertoOrigen=" + aeropuertoOrigen + ", aeropuertoDestino=" + aeropuertoDestino + ", aerolinea="
-				+ aerolinea + ", vueloVuelta=" + vueloVuelta + "]";
+				+ aerolinea + ", vueloVuelta=" + vueloVuelta + ", tipo=" + tipo + "]";
 	}
 
 	

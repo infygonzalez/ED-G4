@@ -13,14 +13,13 @@ public class Viaje {
 	private String viajesDuracion;
 	private Agencias agencia;
 	private Pais pais;
-	private ArrayList<Evento> eventos;
 	
 	
 	public Viaje() {
 	
 	}
 
-	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechas, String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais, ArrayList<Evento> eventos){
+	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechas, String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais){
 		this.viajesId=viajesId;
 		this.viajesNombre=viajesNombre;
 		this.viajesDescripcion=viajesDescripcion;
@@ -30,7 +29,6 @@ public class Viaje {
 		this.viajesDuracion=viajesDuracion;
 		this.agencia=agencia;
 		this.pais=pais;
-		this.eventos=eventos;
 
 		
 	}
@@ -89,18 +87,13 @@ public class Viaje {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
-	public ArrayList<Evento> getEventos() {
-		return eventos;
-	}
-	public void setEventos(ArrayList<Evento> eventos) {
-		this.eventos = eventos;
-	}
+
 	@Override
 	public String toString() {
 		return "Viaje [viajesId=" + viajesId + ", viajesNombre=" + viajesNombre + ", viajesDescripcion="
 				+ viajesDescripcion + ", viajesFechas=" + viajesFechas + ", viajesTipo=" + viajesTipo
 				+ ", viajesDescServNo=" + viajesDescServNo + ", viajesDuracion=" + viajesDuracion + ", agencia="
-				+ agencia + ", pais=" + pais + ", eventos=" + eventos + "]";
+				+ agencia + ", pais=" + pais + "]";
 	}
 	
 

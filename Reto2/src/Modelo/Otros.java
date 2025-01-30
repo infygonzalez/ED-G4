@@ -3,7 +3,6 @@ package Modelo;
 public class Otros {
     
     
-    private String otrosNombre;
     private String fecha;
     private String descripcion;
     private String eventoId;
@@ -15,9 +14,8 @@ public class Otros {
         
     }
 
-    public Otros(String otrosNombre, String fecha, String descripcion, String eventoId,
+    public Otros(String fecha, String descripcion, String eventoId,
             Viaje viaje, String precio, String nombre) {
-        this.otrosNombre = otrosNombre;
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.eventoId = eventoId;
@@ -26,13 +24,6 @@ public class Otros {
         this.nombre = nombre;
     }
 
-    public String getOtrosNombre() {
-        return otrosNombre;
-    }
-
-    public void setOtrosNombre(String otrosNombre) {
-        this.otrosNombre = otrosNombre;
-    }
 
     public String getFecha() {
         return fecha;
@@ -81,12 +72,13 @@ public class Otros {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Otros [otrosNombre=" + otrosNombre + ", fecha=" + fecha + ", descripcion=" + descripcion
-                + ", eventoId=" + eventoId + ", viaje=" + viaje + ", precio="
-                + precio + ", nombre=" + nombre + "]";
-    }
+	@Override
+	public String toString() {
+		return "Otros [fecha=" + fecha + ", descripcion=" + descripcion + ", eventoId=" + eventoId + ", viaje=" + viaje
+				+ ", precio=" + precio + ", nombre=" + nombre + "]";
+	}
+
+   
     
 
 }

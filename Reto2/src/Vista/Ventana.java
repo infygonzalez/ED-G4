@@ -20,7 +20,6 @@ public class Ventana extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JLabel lblinicio;
 
 	/**
 	 * Launch the application.
@@ -43,7 +42,7 @@ public class Ventana extends JFrame {
 	 */
 	public Ventana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 300);
+		setBounds(100, 100, 1280, 720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -53,6 +52,7 @@ public class Ventana extends JFrame {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				login login = new login(Ventana.this);
 				setContentPane(login);
                 revalidate(); 
@@ -62,11 +62,5 @@ public class Ventana extends JFrame {
 		btnNewButton.setIcon(new ImageIcon("img/pruebass.png"));
 		btnNewButton.setBounds(0, 0, 384, 261);
 		contentPane.add(btnNewButton);
-		
-		lblinicio = new JLabel("Bienvenido/a \r\nClick para comenzar");
-		lblinicio.setHorizontalAlignment(SwingConstants.CENTER);
-		lblinicio.setForeground(Color.BLACK);
-		lblinicio.setBounds(612, 425, 449, 231);
-		contentPane.add(lblinicio);
 	}
 }
