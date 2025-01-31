@@ -102,6 +102,14 @@ public class NuevoPerfil extends JPanel {
 		add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				login login = new login(frame);
+				frame.setContentPane(login);
+                frame.revalidate(); 
+                repaint();
+			}
+		});
 		btnCancelar.setBounds(684, 423, 89, 23);
 		add(btnCancelar);
 		

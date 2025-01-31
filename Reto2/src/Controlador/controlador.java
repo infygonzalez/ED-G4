@@ -1,7 +1,8 @@
 package Controlador;
 
-import Modelo.Agencias;
-import Modelo.Gestor;
+import java.util.ArrayList;
+
+import Modelo.*;
 
 public class controlador {
 
@@ -12,5 +13,17 @@ public class controlador {
 	public void comprobarAgencia(Agencias agencia) {
 		Gestor gestor = new Gestor();
 		gestor.insertarAgencia(agencia);
+	}
+	public ArrayList <Viaje> buscarTodosViajes(ArrayList<Pais> paises){
+		ArrayList<Viaje> viaje = null;
+		Gestor gestor= new Gestor();
+		viaje = gestor.buscarTodosViajes(paises);
+		return viaje;
+	}
+	public ArrayList <Pais> buscarTodosPaises(){
+		ArrayList<Pais> pais = null;
+		Gestor gestor= new Gestor();
+		pais = gestor.buscarTodosPaises();
+		return pais;
 	}
 }

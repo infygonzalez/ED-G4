@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Modelo.Agencias;
+import Modelo.*;
+
 
 
 public class Gestor {
@@ -76,4 +77,99 @@ public class Gestor {
 			}
 		
 	}
+		
+		public ArrayList<Pais> buscarTodosPaises(){
+				Connection conexion =null;
+				PreparedStatement sentencia=null;
+				ResultSet resultset = null;
+				ArrayList<Pais> paises = null;				
+				try {
+					Class.forName(DButils.DRIVER);
+					conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+					String sql = SQLQuerys.SELECT_TODOS_PAISES;
+					sentencia=conexion.prepareStatement(sql);
+					resultset = sentencia.executeQuery();
+					paises = new ArrayList<Pais>();
+					while (resultset.next()) {
+						Pais pais =new Pais();
+						pais.setCodPais(resultset.getString("PaisID"));
+						pais.setDescripcion(resultset.getString("Nombre"));
+						paises.add(pais);
+					}
+					
+					
+				
+				}catch (SQLException sqle) {
+					System.out.println("error con la base de datos " + sqle.getMessage());
+				}catch(Exception e) {
+					System.out.println("Error generico "+ e.getMessage());
+				}try {
+					resultset.close();
+				}catch (SQLException e) {
+					System.out.println("Error al cerrar resulset ");
+				}try {
+					sentencia.close();
+				}catch (SQLException e) {
+					System.out.println("Error al cerrar sentencia ");
+				}try {
+					conexion.close();
+				}catch (SQLException e) {
+					System.out.println("Error al cerrar conexion ");
+				}
+				
+				return paises;
+				
+			}
+		
+		public ArrayList<Viaje> buscarTodosViajes(ArrayList<Pais> paises){
+			Connection conexion =null;
+			PreparedStatement sentencia=null;
+			ResultSet resultset = null;
+			ArrayList<Viaje> viajes = null;				
+			try {
+				Class.forName(DButils.DRIVER);
+				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+				String sql = SQLQuerys.SELECT_TODOS_VIAJES;
+				sentencia=conexion.prepareStatement(sql);
+				resultset = sentencia.executeQuery();
+				viajes = new ArrayList<Viaje>();
+				while (resultset.next()) {
+					Viaje viaje =new Viaje();
+					viaje.setViajesNombre(resultset.getString("Nombre"));
+					viaje.setViajesTipo(resultset.getString("TipoViaje"));
+					viaje.setViajesDuracion(resultset.getString("DuracionDias"));
+					viaje.setViajesFechaInicio(resultset.getString("fechaInicio"));
+					viaje.setViajesFechaFin(resultset.getString("fechaFin"));
+					for(Pais pais:paises) {
+						if(pais.getCodPais().equals(resultset.getString("PaisID"))) {
+							viaje.setPais(pais);
+
+						}
+					}
+					viajes.add(viaje);
+				}
+				
+				
+			
+			}catch (SQLException sqle) {
+				System.out.println("error con la base de datos " + sqle.getMessage());
+			}catch(Exception e) {
+				System.out.println("Error generico "+ e.getMessage());
+			}try {
+				resultset.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar resulset ");
+			}try {
+				sentencia.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar sentencia ");
+			}try {
+				conexion.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar conexion ");
+			}
+			
+			return viajes;
+			
+		}
 }

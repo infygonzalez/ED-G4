@@ -7,7 +7,8 @@ public class Viaje {
 	private String viajesId;
 	private String viajesNombre;
 	private String viajesDescripcion;
-	private String viajesFechas;
+	private String viajesFechaInicio;
+	private String viajesFechaFin;
 	private String viajesTipo;
 	private String viajesDescServNo;
 	private String viajesDuracion;
@@ -19,11 +20,12 @@ public class Viaje {
 	
 	}
 
-	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechas, String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais){
+	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechaInicio,String viajesFechaFin, String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais){
 		this.viajesId=viajesId;
 		this.viajesNombre=viajesNombre;
 		this.viajesDescripcion=viajesDescripcion;
-		this.viajesFechas=viajesFechas;
+		this.viajesFechaInicio=viajesFechaInicio;
+		this.viajesFechaFin=viajesFechaFin;
 		this.viajesTipo=viajesTipo;
 		this.viajesDescServNo=viajesDescServNo;
 		this.viajesDuracion=viajesDuracion;
@@ -51,12 +53,7 @@ public class Viaje {
 	public void setViajesDescripcion(String viajesDescripcion) {
 		this.viajesDescripcion = viajesDescripcion;
 	}
-	public String getViajesFechas() {
-		return viajesFechas;
-	}
-	public void setViajesFechas(String viajesFechas) {
-		this.viajesFechas = viajesFechas;
-	}
+	
 	public String getViajesTipo() {
 		return viajesTipo;
 	}
@@ -88,13 +85,31 @@ public class Viaje {
 		this.pais = pais;
 	}
 
+	public String getViajesFechaInicio() {
+		return viajesFechaInicio;
+	}
+
+	public void setViajesFechaInicio(String viajesFechaInicio) {
+		this.viajesFechaInicio = viajesFechaInicio;
+	}
+
+	public String getViajesFechaFin() {
+		return viajesFechaFin;
+	}
+
+	public void setViajesFechaFin(String viajesFechaFin) {
+		this.viajesFechaFin = viajesFechaFin;
+	}
+
 	@Override
 	public String toString() {
 		return "Viaje [viajesId=" + viajesId + ", viajesNombre=" + viajesNombre + ", viajesDescripcion="
-				+ viajesDescripcion + ", viajesFechas=" + viajesFechas + ", viajesTipo=" + viajesTipo
-				+ ", viajesDescServNo=" + viajesDescServNo + ", viajesDuracion=" + viajesDuracion + ", agencia="
-				+ agencia + ", pais=" + pais + "]";
+				+ viajesDescripcion + ", viajesFechaInicio=" + viajesFechaInicio + ", viajesFechaFin=" + viajesFechaFin
+				+ ", viajesTipo=" + viajesTipo + ", viajesDescServNo=" + viajesDescServNo + ", viajesDuracion="
+				+ viajesDuracion + ", agencia=" + agencia + ", pais=" + pais + "]";
 	}
+
+	
 	
 
 	
