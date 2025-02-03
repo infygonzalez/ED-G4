@@ -26,4 +26,24 @@ public class controlador {
 		pais = gestor.buscarTodosPaises();
 		return pais;
 	}
+	
+	public ArrayList <Alojamiento> buscarTodosAlojamientos(){
+		ArrayList<Alojamiento> alojamiento = null;
+		Gestor gestor= new Gestor();
+		alojamiento = gestor.buscarTodosAlojamientos();
+		return alojamiento;
+	}
+	public ArrayList <Otros> buscarTodosOtros(){
+		ArrayList<Otros> otro = null;
+		Gestor gestor= new Gestor();
+		otro = gestor.buscarTodosOtros();
+		return otro;
+	}
+	public ArrayList <Vuelo> buscarTodosVuelos(){
+		ArrayList<Vuelo> vuelo = null;
+		Gestor gestor= new Gestor();
+		vuelo = gestor.buscarTodosVuelos();
+		return vuelo;
+	}
 }
+

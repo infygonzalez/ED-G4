@@ -10,11 +10,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-import Vista.*;
-import Modelo.*;
-import Controlador.*;
+
 import javax.swing.JScrollPane;
 import javax.swing.table.TableModel;
+
+import Controlador.controlador;
+import Modelo.Pais;
+import Modelo.Viaje;
+import Modelo.Alojamiento;
+import Modelo.Otros;
+import Modelo.Vuelo;
 
 
 public class ViajesYEventos extends JPanel {
@@ -23,6 +28,7 @@ public class ViajesYEventos extends JPanel {
 	private JTable table_1;
 	private JFrame frame;
 	private DefaultTableModel model;
+	private DefaultTableModel model1;
 	private controlador Controlador = new controlador();
 	private JTable table;
 	/**
@@ -42,12 +48,12 @@ public class ViajesYEventos extends JPanel {
 		model.addColumn("fecha fin");
 		model.addColumn("pais");
 		
+		model1 = new DefaultTableModel();
+		model1.addColumn("nombre");
+		model1.addColumn("tipo");
+		model1.addColumn("fecha");
+		model1.addColumn("precio");
 
-		
-		table_1 = new JTable();
-		table_1.setBounds(414, 346, 450, 110);
-		add(table_1);
-		
 		
 		JButton btnNuevoViaje = new JButton("Nuevo viaje");
 		btnNuevoViaje.setBounds(914, 141, 104, 23);
@@ -84,8 +90,18 @@ public class ViajesYEventos extends JPanel {
 		
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(414, 346, 450, 110);
+		add(scrollPane_1);
+		
+
+		
+		table_1 = new JTable(model1);
+		scrollPane_1.setViewportView(table_1);
 		table.setDefaultEditor(Object.class,null);
 		rellenarTablaViajes();
+		rellenarTablaEventos();
 
 	}
 	
@@ -106,4 +122,34 @@ public class ViajesYEventos extends JPanel {
 	            model.addRow(fila);
 	        }
 	    }
+	 private void rellenarTablaEventos() {
+	        model1.setRowCount(0);
+	        ArrayList<Alojamiento> alojamientos = Controlador.buscarTodosAlojamientos();
+	        for (Alojamiento alojamiento:alojamientos) {
+	            String[] fila = new String[100];
+	            fila[0] = alojamiento.getNombre();
+	            fila[1] = "Alojamiento";
+	            fila[2] = alojamiento.getFecEntrada();
+	            fila[3] = alojamiento.getPrecio();
+	            model1.addRow(fila);
+	        }
+	        ArrayList<Otros> otros = Controlador.buscarTodosOtros();
+	        for (Otros otro:otros) {
+	            String[] fila = new String[100];
+	            fila[0] = otro.getNombre();
+	            fila[1] = "Actividades";
+	            fila[2] = otro.getFecha();
+	            fila[3] = otro.getPrecio();
+	            model1.addRow(fila);
+	    }
+	        ArrayList<Vuelo> vuelos = Controlador.buscarTodosVuelos();
+	        for (Vuelo vuelo:vuelos) {
+	            String[] fila = new String[100];
+	            fila[0] = vuelo.getNombre();
+	            fila[1] = "Alojamiento";
+	            fila[2] = vuelo.getFecSal();
+	            fila[3] = vuelo.getPrecio();
+	            model1.addRow(fila);
+	        }
+	 }
 }
