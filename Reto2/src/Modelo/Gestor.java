@@ -302,4 +302,49 @@ public class Gestor {
 			return vuelos;
 			
 		}
+		public Viaje buscarViajePorNombre(String nombreViaje) {
+		    Connection conexion = null;
+		    PreparedStatement sentencia = null;
+		    ResultSet resultset = null;
+		    Viaje viaje = null;
+
+		    try {
+		        Class.forName(DButils.DRIVER);
+		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
+		        String sql = "SELECT * FROM Viajes WHERE Nombre = ?"; // Asegúrate de tener la consulta correcta
+		        sentencia = conexion.prepareStatement(sql);
+		        sentencia.setString(1, nombreViaje);
+		        resultset = sentencia.executeQuery();
+
+		        if (resultset.next()) {
+		            viaje = new Viaje();
+		            viaje.setViajesNombre(resultset.getString("Nombre"));
+		            viaje.setViajesTipo(resultset.getString("TipoViaje"));
+		            viaje.setViajesDuracion(resultset.getString("DuracionDias"));
+		            viaje.setViajesFechaInicio(resultset.getString("fechaInicio"));
+		            viaje.setViajesFechaFin(resultset.getString("fechaFin"));
+		            
+		            // Aquí asignamos el Pais relacionado (si tienes la lógica para ello)
+		            Pais pais = new Pais();
+		            pais.setCodPais(resultset.getString("PaisID"));
+		            pais.setDescripcion(resultset.getString("PaisDescripcion"));
+		            viaje.setPais(pais);
+		        }
+
+		    } catch (SQLException sqle) {
+		        System.out.println("Error con la base de datos: " + sqle.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("Error generico: " + e.getMessage());
+		    } finally {
+		        try {
+		            if (resultset != null) resultset.close();
+		            if (sentencia != null) sentencia.close();
+		            if (conexion != null) conexion.close();
+		        } catch (SQLException e) {
+		            System.out.println("Error al cerrar recursos: " + e.getMessage());
+		        }
+		    }
+
+		    return viaje; // Si no se encuentra, devuelve null
+		}
 }
