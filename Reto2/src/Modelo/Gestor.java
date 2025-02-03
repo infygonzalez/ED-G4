@@ -39,7 +39,7 @@ public class Gestor {
 				e.printStackTrace();
 				return false;
 			}		
-			}
+		}
 
 		public void insertarAgencia (Agencias agencia) {
 			Connection conexion =null;
@@ -216,6 +216,7 @@ public class Gestor {
 			return alojamientos;
 			
 		}
+		
 		public ArrayList<Otros> buscarTodosOtros(){
 			Connection conexion =null;
 			PreparedStatement sentencia=null;
@@ -259,6 +260,7 @@ public class Gestor {
 			return otros;
 			
 		}
+		
 		public ArrayList<Vuelo> buscarTodosVuelos(){
 			Connection conexion =null;
 			PreparedStatement sentencia=null;
@@ -302,49 +304,119 @@ public class Gestor {
 			return vuelos;
 			
 		}
-		public Viaje buscarViajePorNombre(String nombreViaje) {
-		    Connection conexion = null;
-		    PreparedStatement sentencia = null;
-		    ResultSet resultset = null;
-		    Viaje viaje = null;
+		public static int autentificarAgencia(String usuario, String contraseña) {
+			int idAgencia = -1; // Valor por defecto si la autenticación falla
 
-		    try {
-		        Class.forName(DButils.DRIVER);
-		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
-		        String sql = "SELECT * FROM Viajes WHERE Nombre = ?"; // Asegúrate de tener la consulta correcta
-		        sentencia = conexion.prepareStatement(sql);
-		        sentencia.setString(1, nombreViaje);
-		        resultset = sentencia.executeQuery();
+		    String sql = "SELECT AgenciaID FROM Agencias WHERE Nombre = ? AND contraseña = ?";
 
-		        if (resultset.next()) {
-		            viaje = new Viaje();
-		            viaje.setViajesNombre(resultset.getString("Nombre"));
-		            viaje.setViajesTipo(resultset.getString("TipoViaje"));
-		            viaje.setViajesDuracion(resultset.getString("DuracionDias"));
-		            viaje.setViajesFechaInicio(resultset.getString("fechaInicio"));
-		            viaje.setViajesFechaFin(resultset.getString("fechaFin"));
-		            
-		            // Aquí asignamos el Pais relacionado (si tienes la lógica para ello)
-		            Pais pais = new Pais();
-		            pais.setCodPais(resultset.getString("PaisID"));
-		            pais.setDescripcion(resultset.getString("PaisDescripcion"));
-		            viaje.setPais(pais);
+		    
+
+		    try (Connection conn = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+
+		         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+		        
+
+		        stmt.setString(1, usuario);
+
+		        stmt.setString(2, contraseña);
+
+		        
+
+		        ResultSet rs = stmt.executeQuery();
+
+		        
+
+		        if (rs.next()) {
+
+		            idAgencia = rs.getInt("AgenciaID"); // Obtiene el ID de la agencia
+
 		        }
 
-		    } catch (SQLException sqle) {
-		        System.out.println("Error con la base de datos: " + sqle.getMessage());
-		    } catch (Exception e) {
-		        System.out.println("Error generico: " + e.getMessage());
-		    } finally {
-		        try {
-		            if (resultset != null) resultset.close();
-		            if (sentencia != null) sentencia.close();
-		            if (conexion != null) conexion.close();
-		        } catch (SQLException e) {
-		            System.out.println("Error al cerrar recursos: " + e.getMessage());
-		        }
+		        
+
+		    } catch (SQLException e) {
+
+		        e.printStackTrace();
+
 		    }
 
-		    return viaje; // Si no se encuentra, devuelve null
+		    
+
+		    return idAgencia;
+
+		}
+		public String nombreAgencia(int id) {
+
+		    Connection conexion = null;
+
+		    PreparedStatement stmt = null;
+
+		    ResultSet rs = null;
+
+		    String nombre = null; // Variable para almacenar el resultado
+
+
+
+		    try {
+
+		        // Establecer la conexión
+
+		        Class.forName(DButils.DRIVER);
+
+		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
+
+
+
+		        // Preparar la consulta
+
+		        stmt = conexion.prepareStatement(SQLQuerys.SELECT_NOMBRE_AGENCIA);
+
+		        stmt.setInt(1, id);
+
+
+
+		        // Ejecutar la consulta
+
+		        rs = stmt.executeQuery();
+
+
+
+		        // Obtener el resultado
+
+		        if (rs.next()) {
+
+		            nombre = rs.getString(1); // recoge el String de la segunda columna de la BD, es decir, el nombre
+
+		        }
+
+		    } catch (Exception e) {
+
+		        e.printStackTrace(); // Manejo básico de errores
+
+		    } finally {
+
+		        // Cerrar los recursos
+
+		        try {
+
+		            if (rs != null) rs.close();
+
+		            if (stmt != null) stmt.close();
+
+		            if (conexion != null) conexion.close();
+
+		        } catch (Exception ex) {
+
+		            ex.printStackTrace();
+
+		        }
+
+		    }
+
+
+
+		    return nombre; // Devuelve el nombre de la agencia o null si no se encontró
+
 		}
 }

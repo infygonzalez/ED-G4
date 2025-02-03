@@ -31,12 +31,17 @@ public class ViajesYEventos extends JPanel {
 	private DefaultTableModel model1;
 	private controlador Controlador = new controlador();
 	private JTable table;
+	private int idAgencia;
+	private String nombreID;
 	/**
 	 * Create the panel.
 	 */
-	public ViajesYEventos(JFrame frame) {
+
+	        
+	public ViajesYEventos(int idAgencia, String nombreID) {
+		this.idAgencia = idAgencia;
+	        this.nombreID = nombreID;
 		
-		this.frame=frame;
 		
 		setLayout(null);
 		
@@ -123,7 +128,7 @@ public class ViajesYEventos extends JPanel {
 	        }
 	    }
 	 
-	 private void rellenarTablaEventos(Viaje viajeSeleccionado) {
+	 private void rellenarTablaEventos() {
 	        model1.setRowCount(0);
 	        ArrayList<Alojamiento> alojamientos = Controlador.buscarTodosAlojamientos();
 	        for (Alojamiento alojamiento:alojamientos) {
@@ -153,23 +158,5 @@ public class ViajesYEventos extends JPanel {
 	            model1.addRow(fila);
 	        }
 	 }
-	 private void agregarListenerSeleccionViaje() {
-	        table.getSelectionModel().addListSelectionListener(e -> {
-	            if (!e.getValueIsAdjusting()) { // Asegúrate de que no estamos ajustando la selección
-	                int selectedRow = table.getSelectedRow();
-	                if (selectedRow != -1) {
-	                    // Obtener el nombre del viaje desde la primera columna
-	                    String viajeNombre = (String) table.getValueAt(selectedRow, 0);
-	                    // Obtener el viaje desde el controlador
-	                    Viaje viajeSeleccionado = Controlador.buscarViajePorNombre(viajeNombre);
-	                    if (viajeSeleccionado != null) {
-	                        rellenarTablaEventos(viajeSeleccionado);
-	                    } else {
-	                        System.out.println("No se encontró el viaje: " + viajeNombre);
-	                    }
-	                }
-	            }
-	        });
-	    }
-	 
+	
 }

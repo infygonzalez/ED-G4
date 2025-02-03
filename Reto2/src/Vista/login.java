@@ -2,11 +2,13 @@ package Vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Controlador.controlador;
 import Modelo.Agencias;
 import Modelo.Gestor;
+import Modelo.Sesion;
 
 import javax.swing.JPasswordField;
 import java.awt.Color;
@@ -109,27 +111,31 @@ public class login extends JPanel {
 
 	}
 	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor) {
-		
-		agencia.setAgenciaNombre(textUsuario);
-		agencia.setContraseña(textContraseña);
-			if (gestor.comprobarAgencia(agencia)==true) {
-				
-				
-				lblMensaje.setText("Inicio de sesion correcto");
+	    agencia.setAgenciaNombre(textUsuario);
+	    agencia.setContraseña(textContraseña);
+	    
+	    if (gestor.comprobarAgencia(agencia)) {  // No es necesario comparar con 'true'
+	        int id = gestor.autentificarAgencia(textUsuario, textContraseña);  // Uso correcto de 'gestor'
+	        if (id != -1) {
+	            Sesion.setIdAgencia(id);
+	            System.out.println("Sesion iniciada con ID: " + Sesion.getIdAgencia());
 
-				ViajesYEventos frame2 = new ViajesYEventos(frame);
+	            int idAgencia = Sesion.getIdAgencia();
+	            String nombreID = gestor.nombreAgencia(id);
 
-				frame.setContentPane(new ViajesYEventos(frame));
-				frame.revalidate();
-				frame.repaint();
+	            // Asegúrate de que el constructor de 'ViajesYEventos' sea correcto
+	            ViajesYEventos frame2 = new ViajesYEventos(idAgencia, nombreID);
 
-			} else {
+	            // Establecer el contenido del panel correctamente
+	            frame.setContentPane(frame2);
+	            frame.revalidate();
+	            frame.repaint();
 
-				lblMensaje.setText("Error, Usuario o contraseña incorrectos");
-			}
-
-			
-			
-		
+	        } else {
+	            System.out.println("Credenciales incorrectas");
+	        }
+	    } else {
+	        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
+	    }
 	}
 }

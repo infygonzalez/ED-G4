@@ -46,17 +46,6 @@ public class controlador {
 		vuelo = gestor.buscarTodosVuelos();
 		return vuelo;
 	}
-	public Viaje buscarViajePorNombre(String nombre) {
-        // Aquí creas una instancia de Gestor y obtienes todos los viajes
-        ArrayList<Viaje> viajes = Gestor.buscarTodosViajes(); // Obtengo todos los viajes
-        for (Viaje viaje : viajes) {
-            if (viaje.getViajesNombre().equalsIgnoreCase(nombre)) {
-                return viaje; // Devuelvo el viaje si el nombre coincide
-            }
-        }
-        return null; // Si no se encuentra el viaje, devuelvo null
-    }
-
 	
 }
 
