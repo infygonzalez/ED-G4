@@ -62,8 +62,8 @@ public class controlador {
 	    
 	    
 	    
-	    public void eliminarEventoVuelo(Viaje viaje) {
-		    boolean eliminado = eliminarVuelo(viaje);
+	    public void eliminarEventoVuelo(Vuelo vuelo) {
+		    boolean eliminado = eliminarVuelo(vuelo);
 
 		    if (eliminado) {
 		       System.out.println("El vuelo ha sido eliminado exitosamente.");
@@ -71,15 +71,15 @@ public class controlador {
 		          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
 		        }
 		    }
-		    private boolean eliminarVuelo(Viaje viaje) {
-		        return new Gestor().eliminarVuelo(viaje);
+		    private boolean eliminarVuelo(Vuelo vuelo) {
+		        return new Gestor().eliminarVuelo(vuelo);
 		    }
 	    
 	    
 		    
 		    
-		  public void eliminarEventoAlojamiento(Viaje viaje) {
-			    boolean eliminado = eliminarAlojamiento(viaje);
+		  public void eliminarEventoAlojamiento(Alojamiento alojamiento) {
+			    boolean eliminado = eliminarAlojamiento(alojamiento);
 
 			    if (eliminado) {
 			       System.out.println("El vuelo ha sido eliminado exitosamente.");
@@ -87,14 +87,14 @@ public class controlador {
 			          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
 			        }
 			    }
-			    private boolean eliminarAlojamiento(Viaje viaje) {
-			        return new Gestor().eliminarAlojamiento(viaje);
+			    private boolean eliminarAlojamiento(Alojamiento alojamiento) {
+			        return new Gestor().eliminarAlojamiento(alojamiento);
 			    }
 		    
 	    
 			    
-		  public void eliminarEventoOtros(Viaje viaje) {
-				    boolean eliminado = eliminarOtros(viaje);
+		  public void eliminarEventoOtros(Otros otros) {
+				    boolean eliminado = eliminarOtros(otros);
 
 				    if (eliminado) {
 				       System.out.println("El vuelo ha sido eliminado exitosamente.");
@@ -102,8 +102,8 @@ public class controlador {
 				          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
 				        }
 				    }
-				    private boolean eliminarOtros(Viaje viaje) {
-				        return new Gestor().eliminarOtros(viaje);
+				    private boolean eliminarOtros(Otros otros) {
+				        return new Gestor().eliminarOtros(otros);
 				    }
 			    
 	    

@@ -349,7 +349,7 @@ public class Gestor {
 		    
 		    return eliminado;
 		}
-		public boolean eliminarVuelo(Viaje viaje) {
+		public boolean eliminarVuelo(Vuelo vuelo) {
 		    Connection conexion = null;
 		    PreparedStatement sentencia = null;
 		    boolean eliminado = false; 
@@ -360,7 +360,7 @@ public class Gestor {
 		        
 		        String sql = SQLQuerys.DELETE_ELIMINAR_VUELO;
 		        sentencia = conexion.prepareStatement(sql);
-		        sentencia.setString(1, viaje.getViajesId());
+		        sentencia.setString(1, vuelo.getEventoId());
 		        int filasAfectadas = sentencia.executeUpdate();
 		        if (filasAfectadas > -1) {
 		        	eliminado = true;
@@ -385,7 +385,7 @@ public class Gestor {
 		    
 		    return eliminado;
 		}
-		public boolean eliminarAlojamiento(Viaje viaje) {
+		public boolean eliminarAlojamiento(Alojamiento alojamiento) {
 		    Connection conexion = null;
 		    PreparedStatement sentencia = null;
 		    boolean eliminado = false; 
@@ -396,7 +396,7 @@ public class Gestor {
 		        
 		        String sql = SQLQuerys.DELETE_ELIMINAR_ALOJAMIENTO;
 		        sentencia = conexion.prepareStatement(sql);
-		        sentencia.setString(1, viaje.getViajesId());
+		        sentencia.setString(1, alojamiento.getEventoId());
 		        int filasAfectadas = sentencia.executeUpdate();
 		        if (filasAfectadas > -1) {
 		        	eliminado = true;
@@ -421,7 +421,7 @@ public class Gestor {
 		    
 		    return eliminado;
 		}
-		public boolean eliminarOtros(Viaje viaje) {
+		public boolean eliminarOtros(Otros otros) {
 		    Connection conexion = null;
 		    PreparedStatement sentencia = null;
 		    boolean eliminado = false; 
@@ -432,7 +432,7 @@ public class Gestor {
 		        
 		        String sql = SQLQuerys.DELETE_ELIMINAR_OTROS;
 		        sentencia = conexion.prepareStatement(sql);
-		        sentencia.setString(1, viaje.getViajesId());
+		        sentencia.setString(1, otros.getEventoId());
 		        int filasAfectadas = sentencia.executeUpdate();
 		        if (filasAfectadas > -1) {
 		        	eliminado = true;

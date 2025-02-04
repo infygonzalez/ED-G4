@@ -35,17 +35,13 @@ public class ViajesYEventos extends JPanel {
 	private DefaultTableModel model1;
 	private controlador Controlador = new controlador();
 	private JTable table;
-	private int idAgencia;
-	private String nombreID;
 	/**
 	 * Create the panel.
 	 */
 
 	        
 	  public ViajesYEventos(Agencias agencia) {
-	        this.idAgencia = idAgencia;
-	        this.nombreID = nombreID;
-
+	        
 	        setLayout(null);
 
 	        model = new DefaultTableModel();
@@ -83,9 +79,10 @@ public class ViajesYEventos extends JPanel {
 	        	public void actionPerformed(ActionEvent e) {
 
 	        		Viaje viajeSeleccionado = viajeSeleccionado(agencia);
-	                if (viajeSeleccionado != null) {
+	        		int rowIndex = table.getSelectedRow();
+	                if (viajeSeleccionado != null && rowIndex != -1) {
 	        		    Controlador.eliminarViajeDeAgencia(viajeSeleccionado);
-	        		    //model.removeRow(rowIndex);
+	        		    model.removeRow(rowIndex);
 	        		}
 	        	}
 	        });
@@ -95,11 +92,26 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnEliminar2 = new JButton("");
 	        btnEliminar2.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		if (table_1.getSelectedRow() != -1) {
-	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(), 0).toString();
-	                    String TipoEventoSeleccionado = table_1.getValueAt(table_1.getSelectedRow(), 2).toString();
+	        		int SelectedRow = table_1.getSelectedRow();
+	        		if (SelectedRow != -1 ) {
+	        			
+	                    String EventoIDSeleccionado = table_1.getValueAt(SelectedRow,0).toString();
+	                    String TipoEventoSeleccionado = table_1.getValueAt(SelectedRow,3).toString();
+	                    
+		           
+	                    
+	                    if (EventoIDSeleccionado != null && TipoEventoSeleccionado.equals("Vuelo")) {
+	                        System.out.println("ya tu chabe");
+	                    } else if (EventoIDSeleccionado != null && TipoEventoSeleccionado.equals("Alojamiento")) {
+	                        System.out.println("ya tu chabe2");
+	                    } else if (EventoIDSeleccionado != null && TipoEventoSeleccionado.equals("Actividades")) {
+	                        System.out.println("ya tu chabe3");
+	                    }
+
 	                    
 	                   
+	        		}else {
+	        			System.out.println("errorrrrr");
 	        		}
 	        	}
 	        });
@@ -136,6 +148,8 @@ public class ViajesYEventos extends JPanel {
 
 	        rellenarTablaViajes(agencia);
 	    }
+	  
+	  
 	 
 	     public Viaje viajeSeleccionado(Agencias agencia) {
 	            if (table.getSelectedRow() != -1) {
@@ -176,17 +190,17 @@ public class ViajesYEventos extends JPanel {
 
 	        ArrayList<Alojamiento> alojamientos = viaje.getAlojamiento();
 	        for (Alojamiento alojamiento : alojamientos) {
-	            model1.addRow(new Object[]{alojamiento.getNombre(), "Alojamiento", alojamiento.getFecEntrada(), alojamiento.getPrecio()});
+	            model1.addRow(new Object[]{alojamiento.getEventoId(),alojamiento.getNombre(), "Alojamiento", alojamiento.getFecEntrada(), alojamiento.getPrecio()});
 	        }
 
 	        ArrayList<Otros> otros = Controlador.buscarTodosOtros(viaje);
 	        for (Otros otro : otros) {
-	            model1.addRow(new Object[]{otro.getNombre(), "Actividades", otro.getFecha(), otro.getPrecio()});
+	            model1.addRow(new Object[]{otro.getEventoId(),otro.getNombre(), "Actividades", otro.getFecha(), otro.getPrecio()});
 	        }
 
 	        ArrayList<Vuelo> vuelos = Controlador.buscarTodosVuelos(viaje);
 	        for (Vuelo vuelo : vuelos) {
-	            model1.addRow(new Object[]{vuelo.getNombre(), "Vuelo", vuelo.getFecSal(), vuelo.getPrecio()});
+	            model1.addRow(new Object[]{vuelo.getEventoId(),vuelo.getNombre(), "Vuelo", vuelo.getFecSal(), vuelo.getPrecio()});
 	        }
 	 }
 	 
