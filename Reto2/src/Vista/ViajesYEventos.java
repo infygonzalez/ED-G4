@@ -41,7 +41,7 @@ public class ViajesYEventos extends JPanel {
 	 */
 
 	        
-	  public ViajesYEventos(Agencias agencia) {
+	  public ViajesYEventos(Agencias agencia, Viaje viaje) {
 	        this.idAgencia = idAgencia;
 	        this.nombreID = nombreID;
 
@@ -78,10 +78,28 @@ public class ViajesYEventos extends JPanel {
 	        add(btnDesconectar);
 
 	        JButton btnEliminar1 = new JButton("");
+	        btnEliminar1.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		int rowIndex = table.getSelectedRow();
+	        		if (rowIndex != -1) {
+	        		    Controlador.eliminarViajeDeAgencia(agencia); 
+	        		    //model.removeRow(rowIndex);
+	        		}
+	        	}
+	        });
 	        btnEliminar1.setBounds(874, 141, 30, 23);
 	        add(btnEliminar1);
 
 	        JButton btnEliminar2 = new JButton("");
+	        btnEliminar2.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		int rowIndex = table_1.getSelectedRow();
+	        		if (rowIndex != -1) {
+	        		    Controlador.eliminarEventoDeViajes(viaje); 
+	        		    //model1.removeRow(rowIndex);
+	        		}
+	        	}
+	        });
 	        btnEliminar2.setBounds(874, 346, 30, 23);
 	        add(btnEliminar2);
 

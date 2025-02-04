@@ -46,6 +46,41 @@ public class controlador {
 		vuelo = gestor.buscarTodosVuelos(viaje);
 		return vuelo;
 	}
+	 public void eliminarViajeDeAgencia(Agencias agencia) {
+	    boolean eliminado = eliminarViaje(agencia);
 
+	    if (eliminado) {
+	       System.out.println("El viaje ha sido eliminado exitosamente.");
+	       } else {
+	          System.out.println("No se pudo eliminar el viaje. Verifique los datos.");
+	        }
+	    }
+	    private boolean eliminarViaje(Agencias agencia) {
+	        return new Gestor().eliminarViaje(agencia);
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    public void eliminarEventoDeViajes(Viaje viaje) {
+		    boolean eliminado2 = eliminarEvento(viaje);
+
+		    if (eliminado2) {
+		       System.out.println("El evento ha sido eliminado exitosamente.");
+		       } else {
+		          System.out.println("No se pudo eliminar el evento. Verifique los datos.");
+		        }
+		    }
+		    private boolean eliminarEvento(Viaje viaje) {
+		        return new Gestor().eliminarEvento(viaje);
+		    }
 }
 

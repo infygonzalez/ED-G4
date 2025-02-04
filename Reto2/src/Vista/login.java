@@ -9,6 +9,7 @@ import Controlador.controlador;
 import Modelo.Agencias;
 import Modelo.Gestor;
 import Modelo.Sesion;
+import Modelo.Viaje;
 
 import javax.swing.JPasswordField;
 import java.awt.Color;
@@ -91,8 +92,9 @@ public class login extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Agencias agencia= new Agencias();
 				Gestor gestor = new Gestor();
-				
-				comprobarAgencia(textUsuario.getText(), textContraseña.getText(), agencia, gestor);
+				Viaje viaje = new Viaje();
+
+				comprobarAgencia(textUsuario.getText(), textContraseña.getText(), agencia, gestor, viaje);
 				
 				
 			 
@@ -110,7 +112,7 @@ public class login extends JPanel {
 		add(lblNewLabel);
 
 	}
-	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor) {
+	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor, Viaje viaje) {
 	    agencia.setAgenciaNombre(textUsuario);
 	    agencia.setContraseña(textContraseña);
 	    
@@ -124,7 +126,7 @@ public class login extends JPanel {
 	            String nombreID = gestor.nombreAgencia(id);
 
 	            
-	            ViajesYEventos frame2 = new ViajesYEventos( agencia);
+	            ViajesYEventos frame2 = new ViajesYEventos(agencia, viaje);
 	            frame.setContentPane(frame2);
 	            frame.revalidate();
 	            frame.repaint();

@@ -20,8 +20,10 @@ public class SQLQuerys {
 
 	
 	//delete
-	public static final String DELETE_ELIMINAR="delete * from viajes where ViajeID=?";
-	
+	public static final String DELETE_ELIMINAR_VIAJE="delete from viajes where AgenciaID=?";
+	public static final String DELETE_ELIMINAR_VUELO="delete from viajes where ViajeID=?";
+	public static final String DELETE_ELIMINAR_OTROS="delete from viajes where ViajeID=?";
+	public static final String DELETE_ELIMINAR_ALOJAMIENTO="delete from viajes where ViajeID=?";
 	
 	
 }
