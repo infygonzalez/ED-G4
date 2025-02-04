@@ -21,6 +21,7 @@ import Modelo.Pais;
 import Modelo.Viaje;
 import Modelo.Agencias;
 import Modelo.Alojamiento;
+import Modelo.Evento;
 import Modelo.Otros;
 import Modelo.Vuelo;
 
@@ -41,7 +42,7 @@ public class ViajesYEventos extends JPanel {
 	 */
 
 	        
-	  public ViajesYEventos(Agencias agencia, Viaje viaje) {
+	  public ViajesYEventos(Agencias agencia) {
 	        this.idAgencia = idAgencia;
 	        this.nombreID = nombreID;
 
@@ -80,9 +81,10 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnEliminar1 = new JButton("");
 	        btnEliminar1.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		int rowIndex = table.getSelectedRow();
-	        		if (rowIndex != -1) {
-	        		    Controlador.eliminarViajeDeAgencia(agencia); 
+
+	        		Viaje viajeSeleccionado = viajeSeleccionado(agencia);
+	                if (viajeSeleccionado != null) {
+	        		    Controlador.eliminarViajeDeAgencia(viajeSeleccionado);
 	        		    //model.removeRow(rowIndex);
 	        		}
 	        	}
@@ -93,10 +95,11 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnEliminar2 = new JButton("");
 	        btnEliminar2.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		int rowIndex = table_1.getSelectedRow();
-	        		if (rowIndex != -1) {
-	        		    Controlador.eliminarEventoDeViajes(viaje); 
-	        		    //model1.removeRow(rowIndex);
+	        		if (table_1.getSelectedRow() != -1) {
+	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(), 0).toString();
+	                    String TipoEventoSeleccionado = table_1.getValueAt(table_1.getSelectedRow(), 2).toString();
+	                    
+	                   
 	        		}
 	        	}
 	        });
@@ -133,6 +136,7 @@ public class ViajesYEventos extends JPanel {
 
 	        rellenarTablaViajes(agencia);
 	    }
+	 
 	     public Viaje viajeSeleccionado(Agencias agencia) {
 	            if (table.getSelectedRow() != -1) {
 	                String ViajeIDSeleccionado = table.getValueAt(table.getSelectedRow(),0).toString();

@@ -92,9 +92,9 @@ public class login extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Agencias agencia= new Agencias();
 				Gestor gestor = new Gestor();
-				Viaje viaje = new Viaje();
 
-				comprobarAgencia(textUsuario.getText(), textContraseña.getText(), agencia, gestor, viaje);
+
+				comprobarAgencia(textUsuario.getText(), textContraseña.getText(), agencia, gestor);
 				
 				
 			 
@@ -112,7 +112,7 @@ public class login extends JPanel {
 		add(lblNewLabel);
 
 	}
-	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor, Viaje viaje) {
+	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor) {
 	    agencia.setAgenciaNombre(textUsuario);
 	    agencia.setContraseña(textContraseña);
 	    
@@ -126,7 +126,7 @@ public class login extends JPanel {
 	            String nombreID = gestor.nombreAgencia(id);
 
 	            
-	            ViajesYEventos frame2 = new ViajesYEventos(agencia, viaje);
+	            ViajesYEventos frame2 = new ViajesYEventos(agencia);
 	            frame.setContentPane(frame2);
 	            frame.revalidate();
 	            frame.repaint();

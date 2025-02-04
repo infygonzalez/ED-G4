@@ -313,7 +313,7 @@ public class Gestor {
 			return vuelos;
 			
 		}
-		public boolean eliminarViaje(Agencias agencia) {
+		public boolean eliminarViaje(Viaje viaje) {
 		    Connection conexion = null;
 		    PreparedStatement sentencia = null;
 		    boolean eliminado = false; 
@@ -324,7 +324,7 @@ public class Gestor {
 		        
 		        String sql = SQLQuerys.DELETE_ELIMINAR_VIAJE;
 		        sentencia = conexion.prepareStatement(sql);
-		        sentencia.setString(1, agencia.getAgenciaId());
+		        sentencia.setString(1, viaje.getViajesId());
 		        int filasAfectadas = sentencia.executeUpdate();
 		        if (filasAfectadas > -1) {
 		        	eliminado = true;
@@ -349,7 +349,43 @@ public class Gestor {
 		    
 		    return eliminado;
 		}
-		public boolean eliminarEvento(Viaje viaje) {
+		public boolean eliminarVuelo(Viaje viaje) {
+		    Connection conexion = null;
+		    PreparedStatement sentencia = null;
+		    boolean eliminado = false; 
+		    
+		    try {
+		        Class.forName(DButils.DRIVER);
+		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
+		        
+		        String sql = SQLQuerys.DELETE_ELIMINAR_VUELO;
+		        sentencia = conexion.prepareStatement(sql);
+		        sentencia.setString(1, viaje.getViajesId());
+		        int filasAfectadas = sentencia.executeUpdate();
+		        if (filasAfectadas > -1) {
+		        	eliminado = true;
+		        }
+		        
+		    } catch (SQLException sqle) {
+		        System.out.println("Error con la base de datos: " + sqle.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("Error genérico: " + e.getMessage());
+		    } finally {
+		        try {
+		            if (sentencia != null) {
+		                sentencia.close();
+		            }
+		            if (conexion != null) {
+		                conexion.close();
+		            }
+		        } catch (SQLException e) {
+		            System.out.println("Error al cerrar recursos: " + e.getMessage());
+		        }
+		    }
+		    
+		    return eliminado;
+		}
+		public boolean eliminarAlojamiento(Viaje viaje) {
 		    Connection conexion = null;
 		    PreparedStatement sentencia = null;
 		    boolean eliminado = false; 
@@ -359,8 +395,42 @@ public class Gestor {
 		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
 		        
 		        String sql = SQLQuerys.DELETE_ELIMINAR_ALOJAMIENTO;
-		        String sql2 = SQLQuerys.DELETE_ELIMINAR_OTROS;
-		        String sql3 = SQLQuerys.DELETE_ELIMINAR_VUELO;
+		        sentencia = conexion.prepareStatement(sql);
+		        sentencia.setString(1, viaje.getViajesId());
+		        int filasAfectadas = sentencia.executeUpdate();
+		        if (filasAfectadas > -1) {
+		        	eliminado = true;
+		        }
+		        
+		    } catch (SQLException sqle) {
+		        System.out.println("Error con la base de datos: " + sqle.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("Error genérico: " + e.getMessage());
+		    } finally {
+		        try {
+		            if (sentencia != null) {
+		                sentencia.close();
+		            }
+		            if (conexion != null) {
+		                conexion.close();
+		            }
+		        } catch (SQLException e) {
+		            System.out.println("Error al cerrar recursos: " + e.getMessage());
+		        }
+		    }
+		    
+		    return eliminado;
+		}
+		public boolean eliminarOtros(Viaje viaje) {
+		    Connection conexion = null;
+		    PreparedStatement sentencia = null;
+		    boolean eliminado = false; 
+		    
+		    try {
+		        Class.forName(DButils.DRIVER);
+		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
+		        
+		        String sql = SQLQuerys.DELETE_ELIMINAR_OTROS;
 		        sentencia = conexion.prepareStatement(sql);
 		        sentencia.setString(1, viaje.getViajesId());
 		        int filasAfectadas = sentencia.executeUpdate();

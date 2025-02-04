@@ -46,8 +46,8 @@ public class controlador {
 		vuelo = gestor.buscarTodosVuelos(viaje);
 		return vuelo;
 	}
-	 public void eliminarViajeDeAgencia(Agencias agencia) {
-	    boolean eliminado = eliminarViaje(agencia);
+	 public void eliminarViajeDeAgencia(Viaje viaje) {
+	    boolean eliminado = eliminarViaje(viaje);
 
 	    if (eliminado) {
 	       System.out.println("El viaje ha sido eliminado exitosamente.");
@@ -55,32 +55,59 @@ public class controlador {
 	          System.out.println("No se pudo eliminar el viaje. Verifique los datos.");
 	        }
 	    }
-	    private boolean eliminarViaje(Agencias agencia) {
-	        return new Gestor().eliminarViaje(agencia);
+	    private boolean eliminarViaje(Viaje viaje) {
+	        return new Gestor().eliminarViaje(viaje);
 	    }
 	    
 	    
 	    
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    public void eliminarEventoDeViajes(Viaje viaje) {
-		    boolean eliminado2 = eliminarEvento(viaje);
+	    public void eliminarEventoVuelo(Viaje viaje) {
+		    boolean eliminado = eliminarVuelo(viaje);
 
-		    if (eliminado2) {
-		       System.out.println("El evento ha sido eliminado exitosamente.");
+		    if (eliminado) {
+		       System.out.println("El vuelo ha sido eliminado exitosamente.");
 		       } else {
-		          System.out.println("No se pudo eliminar el evento. Verifique los datos.");
+		          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
 		        }
 		    }
-		    private boolean eliminarEvento(Viaje viaje) {
-		        return new Gestor().eliminarEvento(viaje);
+		    private boolean eliminarVuelo(Viaje viaje) {
+		        return new Gestor().eliminarVuelo(viaje);
 		    }
+	    
+	    
+		    
+		    
+		  public void eliminarEventoAlojamiento(Viaje viaje) {
+			    boolean eliminado = eliminarAlojamiento(viaje);
+
+			    if (eliminado) {
+			       System.out.println("El vuelo ha sido eliminado exitosamente.");
+			       } else {
+			          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
+			        }
+			    }
+			    private boolean eliminarAlojamiento(Viaje viaje) {
+			        return new Gestor().eliminarAlojamiento(viaje);
+			    }
+		    
+	    
+			    
+		  public void eliminarEventoOtros(Viaje viaje) {
+				    boolean eliminado = eliminarOtros(viaje);
+
+				    if (eliminado) {
+				       System.out.println("El vuelo ha sido eliminado exitosamente.");
+				       } else {
+				          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
+				        }
+				    }
+				    private boolean eliminarOtros(Viaje viaje) {
+				        return new Gestor().eliminarOtros(viaje);
+				    }
+			    
+	    
+	    
+	    
 }
 
