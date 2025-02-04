@@ -11,11 +11,11 @@ public class SQLQuerys {
 	//selects
 	public static final String SELECT_LOGIN= "select * from agencias where Nombre=? and contraseña=?";
 	public static final String SELECT_ID_VALIDAR= "select agenciaID from agencias where agenciaID=?"; 
-	public static final String SELECT_TODOS_VIAJES="select * from viajes";
+	public static final String SELECT_TODOS_VIAJES="select * from viajes where AgenciaID = ?";
 	public static final String SELECT_TODOS_PAISES="select * from paises";
-	public static final String SELECT_TODOS_ALOJAMIENTOS="select * from Alojamientos";
-	public static final String SELECT_TODOS_VUELOS="select * from Vuelos";
-	public static final String SELECT_TODOS_OTROS="select * from Actividades";
+	public static final String SELECT_TODOS_ALOJAMIENTOS="select * from Alojamientos where ViajeID = ?";
+	public static final String SELECT_TODOS_VUELOS="select * from Vuelos where ViajeID = ?";
+	public static final String SELECT_TODOS_OTROS="select * from Actividades where ViajeID = ?";
 	public static final String SELECT_NOMBRE_AGENCIA="select Nombre from Agencias where AgenciaID = ?";
 
 	

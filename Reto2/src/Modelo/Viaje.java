@@ -14,13 +14,30 @@ public class Viaje {
 	private String viajesDuracion;
 	private Agencias agencia;
 	private Pais pais;
-	
+	private ArrayList<Alojamiento> alojamiento;
+	private ArrayList<Vuelo> vuelo;
+	private ArrayList<Otros> otros;
+
 	
 	public Viaje() {
-	
+		viajesId="";
+		viajesNombre="";
+		viajesDescripcion="";
+		viajesFechaInicio="";
+		viajesFechaFin="";
+		viajesTipo="";
+		viajesDescServNo="";
+		viajesDuracion="";
+		agencia=new Agencias();
+		pais= new Pais();
+		ArrayList<Alojamiento> alojamiento=new  ArrayList<Alojamiento>();
+		ArrayList<Vuelo> vuelo= new ArrayList<Vuelo>();
+		ArrayList<Otros> otros= new ArrayList<Otros>();
 	}
 
-	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechaInicio,String viajesFechaFin, String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais){
+	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechaInicio,String viajesFechaFin, 
+			String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais, 
+			 ArrayList<Alojamiento> alojamiento, ArrayList<Vuelo> vuelo, ArrayList<Otros> otros){
 		this.viajesId=viajesId;
 		this.viajesNombre=viajesNombre;
 		this.viajesDescripcion=viajesDescripcion;
@@ -31,58 +48,35 @@ public class Viaje {
 		this.viajesDuracion=viajesDuracion;
 		this.agencia=agencia;
 		this.pais=pais;
+		this.alojamiento=alojamiento;
+		this.vuelo=vuelo;
+		this.otros=otros;
 
 		
 	}
-	
+
 	public String getViajesId() {
 		return viajesId;
 	}
+
 	public void setViajesId(String viajesId) {
 		this.viajesId = viajesId;
 	}
+
 	public String getViajesNombre() {
 		return viajesNombre;
 	}
+
 	public void setViajesNombre(String viajesNombre) {
 		this.viajesNombre = viajesNombre;
 	}
+
 	public String getViajesDescripcion() {
 		return viajesDescripcion;
 	}
+
 	public void setViajesDescripcion(String viajesDescripcion) {
 		this.viajesDescripcion = viajesDescripcion;
-	}
-	
-	public String getViajesTipo() {
-		return viajesTipo;
-	}
-	public void setViajesTipo(String viajesTipo) {
-		this.viajesTipo = viajesTipo;
-	}
-	public String getViajesDescServNo() {
-		return viajesDescServNo;
-	}
-	public void setViajesDescServNo(String viajesDescServNo) {
-		this.viajesDescServNo = viajesDescServNo;
-	}
-	public String getViajesDuracion() {
-		return viajesDuracion;
-	}
-	public void setViajesDuracion(String viajesDuracion) {
-		this.viajesDuracion = viajesDuracion;
-	}
-	public Agencias getAgencia() {
-		return agencia;
-	}
-	public void setAgencia(Agencias agencia) {
-		this.agencia = agencia;
-	}
-	public Pais getPais() {
-		return pais;
-	}
-	public void setPais(Pais pais) {
-		this.pais = pais;
 	}
 
 	public String getViajesFechaInicio() {
@@ -101,13 +95,80 @@ public class Viaje {
 		this.viajesFechaFin = viajesFechaFin;
 	}
 
+	public String getViajesTipo() {
+		return viajesTipo;
+	}
+
+	public void setViajesTipo(String viajesTipo) {
+		this.viajesTipo = viajesTipo;
+	}
+
+	public String getViajesDescServNo() {
+		return viajesDescServNo;
+	}
+
+	public void setViajesDescServNo(String viajesDescServNo) {
+		this.viajesDescServNo = viajesDescServNo;
+	}
+
+	public String getViajesDuracion() {
+		return viajesDuracion;
+	}
+
+	public void setViajesDuracion(String viajesDuracion) {
+		this.viajesDuracion = viajesDuracion;
+	}
+
+	public Agencias getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Agencias agencia) {
+		this.agencia = agencia;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public ArrayList<Alojamiento> getAlojamiento() {
+		return alojamiento;
+	}
+
+	public void setAlojamiento(ArrayList<Alojamiento> alojamiento) {
+		this.alojamiento = alojamiento;
+	}
+
+	public ArrayList<Vuelo> getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(ArrayList<Vuelo> vuelo) {
+		this.vuelo = vuelo;
+	}
+
+	public ArrayList<Otros> getOtros() {
+		return otros;
+	}
+
+	public void setOtros(ArrayList<Otros> otros) {
+		this.otros = otros;
+	}
+
 	@Override
 	public String toString() {
 		return "Viaje [viajesId=" + viajesId + ", viajesNombre=" + viajesNombre + ", viajesDescripcion="
 				+ viajesDescripcion + ", viajesFechaInicio=" + viajesFechaInicio + ", viajesFechaFin=" + viajesFechaFin
 				+ ", viajesTipo=" + viajesTipo + ", viajesDescServNo=" + viajesDescServNo + ", viajesDuracion="
-				+ viajesDuracion + ", agencia=" + agencia + ", pais=" + pais + "]";
+				+ viajesDuracion + ", agencia=" + agencia + ", pais=" + pais + ", alojamiento=" + alojamiento
+				+ ", vuelo=" + vuelo + ", otros=" + otros + "]";
 	}
+	
+	
 
 	
 	

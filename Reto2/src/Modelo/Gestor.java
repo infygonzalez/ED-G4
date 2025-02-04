@@ -121,7 +121,7 @@ public class Gestor {
 				
 			}
 		
-		public ArrayList<Viaje> buscarTodosViajes(ArrayList<Pais> paises){
+		public ArrayList<Viaje> buscarTodosViajes(ArrayList<Pais> paises, Agencias agencia){
 			Connection conexion =null;
 			PreparedStatement sentencia=null;
 			ResultSet resultset = null;
@@ -131,10 +131,13 @@ public class Gestor {
 				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 				String sql = SQLQuerys.SELECT_TODOS_VIAJES;
 				sentencia=conexion.prepareStatement(sql);
+				sentencia.setString(1, agencia.getAgenciaId());
 				resultset = sentencia.executeQuery();
 				viajes = new ArrayList<Viaje>();
 				while (resultset.next()) {
 					Viaje viaje =new Viaje();
+					viaje.setAgencia(agencia);
+					viaje.setViajesId(resultset.getString("ViajeID"));
 					viaje.setViajesNombre(resultset.getString("Nombre"));
 					viaje.setViajesTipo(resultset.getString("TipoViaje"));
 					viaje.setViajesDuracion(resultset.getString("DuracionDias"));
@@ -173,7 +176,7 @@ public class Gestor {
 			
 		}
 		
-		public ArrayList<Alojamiento> buscarTodosAlojamientos(){
+		public ArrayList<Alojamiento> buscarTodosAlojamientos(Viaje viaje){
 			Connection conexion =null;
 			PreparedStatement sentencia=null;
 			ResultSet resultset = null;
@@ -183,10 +186,12 @@ public class Gestor {
 				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 				String sql = SQLQuerys.SELECT_TODOS_ALOJAMIENTOS;
 				sentencia=conexion.prepareStatement(sql);
+				sentencia.setString(1, viaje.getViajesId());
 				resultset = sentencia.executeQuery();
 				alojamientos = new ArrayList<Alojamiento>();
 				while (resultset.next()) {
 					Alojamiento alojamiento =new Alojamiento();
+					alojamiento.setViaje(viaje);
 					alojamiento.setNombre(resultset.getString("NombreEvento"));
 					alojamiento.setFecEntrada(resultset.getString("FechaEntrada"));
 					alojamiento.setPrecio(resultset.getString("Precio"));
@@ -217,7 +222,7 @@ public class Gestor {
 			
 		}
 		
-		public ArrayList<Otros> buscarTodosOtros(){
+		public ArrayList<Otros> buscarTodosOtros(Viaje viaje){
 			Connection conexion =null;
 			PreparedStatement sentencia=null;
 			ResultSet resultset = null;
@@ -227,10 +232,12 @@ public class Gestor {
 				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 				String sql = SQLQuerys.SELECT_TODOS_OTROS;
 				sentencia=conexion.prepareStatement(sql);
+				sentencia.setString(1, viaje.getViajesId());
 				resultset = sentencia.executeQuery();
 				otros = new ArrayList<Otros>();
 				while (resultset.next()) {
 					Otros otro =new Otros();
+					otro.setViaje(viaje);
 					otro.setNombre(resultset.getString("NombreEvento"));
 					otro.setFecha(resultset.getString("Fecha"));
 					otro.setPrecio(resultset.getString("Precio"));
@@ -261,7 +268,7 @@ public class Gestor {
 			
 		}
 		
-		public ArrayList<Vuelo> buscarTodosVuelos(){
+		public ArrayList<Vuelo> buscarTodosVuelos(Viaje viaje){
 			Connection conexion =null;
 			PreparedStatement sentencia=null;
 			ResultSet resultset = null;
@@ -271,10 +278,12 @@ public class Gestor {
 				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 				String sql = SQLQuerys.SELECT_TODOS_VUELOS;
 				sentencia=conexion.prepareStatement(sql);
+				sentencia.setString(1, viaje.getViajesId());
 				resultset = sentencia.executeQuery();
 				vuelos = new ArrayList<Vuelo>();
 				while (resultset.next()) {
 					Vuelo vuelo =new Vuelo();
+					vuelo.setViaje(viaje);
 					vuelo.setNombre(resultset.getString("NombreEvento"));
 					vuelo.setFecSal(resultset.getString("FechaSalida"));
 					vuelo.setPrecio(resultset.getString("PrecioTotal"));
@@ -308,40 +317,24 @@ public class Gestor {
 			int idAgencia = -1; // Valor por defecto si la autenticación falla
 
 		    String sql = "SELECT AgenciaID FROM Agencias WHERE Nombre = ? AND contraseña = ?";
-
 		    
-
 		    try (Connection conn = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
-
-		         PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-		        
-
+		        PreparedStatement stmt = conn.prepareStatement(sql)) {
+		    	
 		        stmt.setString(1, usuario);
-
 		        stmt.setString(2, contraseña);
-
-		        
 
 		        ResultSet rs = stmt.executeQuery();
 
 		        
 
 		        if (rs.next()) {
-
 		            idAgencia = rs.getInt("AgenciaID"); // Obtiene el ID de la agencia
-
 		        }
 
-		        
-
 		    } catch (SQLException e) {
-
 		        e.printStackTrace();
-
 		    }
-
-		    
 
 		    return idAgencia;
 
@@ -349,74 +342,43 @@ public class Gestor {
 		public String nombreAgencia(int id) {
 
 		    Connection conexion = null;
-
 		    PreparedStatement stmt = null;
-
 		    ResultSet rs = null;
-
 		    String nombre = null; // Variable para almacenar el resultado
-
-
 
 		    try {
 
 		        // Establecer la conexión
-
 		        Class.forName(DButils.DRIVER);
-
 		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
-
-
-
+		        
 		        // Preparar la consulta
-
 		        stmt = conexion.prepareStatement(SQLQuerys.SELECT_NOMBRE_AGENCIA);
-
 		        stmt.setInt(1, id);
-
-
-
+		        
 		        // Ejecutar la consulta
-
 		        rs = stmt.executeQuery();
-
-
-
+		        
 		        // Obtener el resultado
-
 		        if (rs.next()) {
-
 		            nombre = rs.getString(1); // recoge el String de la segunda columna de la BD, es decir, el nombre
-
 		        }
 
 		    } catch (Exception e) {
-
 		        e.printStackTrace(); // Manejo básico de errores
-
 		    } finally {
-
+		    	
 		        // Cerrar los recursos
-
 		        try {
 
 		            if (rs != null) rs.close();
-
 		            if (stmt != null) stmt.close();
-
 		            if (conexion != null) conexion.close();
-
 		        } catch (Exception ex) {
-
 		            ex.printStackTrace();
-
 		        }
-
 		    }
 
-
-
 		    return nombre; // Devuelve el nombre de la agencia o null si no se encontró
-
 		}
 }

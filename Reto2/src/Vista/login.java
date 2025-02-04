@@ -114,19 +114,17 @@ public class login extends JPanel {
 	    agencia.setAgenciaNombre(textUsuario);
 	    agencia.setContraseña(textContraseña);
 	    
-	    if (gestor.comprobarAgencia(agencia)) {  // No es necesario comparar con 'true'
-	        int id = gestor.autentificarAgencia(textUsuario, textContraseña);  // Uso correcto de 'gestor'
+	    if (gestor.comprobarAgencia(agencia)) {  
+	        int id = gestor.autentificarAgencia(textUsuario, textContraseña);  
 	        if (id != -1) {
 	            Sesion.setIdAgencia(id);
 	            System.out.println("Sesion iniciada con ID: " + Sesion.getIdAgencia());
+	    		agencia.setAgenciaId(Sesion.getIdAgencia()+"");
 
-	            int idAgencia = Sesion.getIdAgencia();
 	            String nombreID = gestor.nombreAgencia(id);
 
-	            // Asegúrate de que el constructor de 'ViajesYEventos' sea correcto
-	            ViajesYEventos frame2 = new ViajesYEventos(idAgencia, nombreID);
-
-	            // Establecer el contenido del panel correctamente
+	            
+	            ViajesYEventos frame2 = new ViajesYEventos( agencia);
 	            frame.setContentPane(frame2);
 	            frame.revalidate();
 	            frame.repaint();
