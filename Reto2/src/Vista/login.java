@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import Vista.*;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
+import java.awt.Font;
 
 
 
@@ -33,8 +35,6 @@ public class login extends JPanel {
 	private JFrame frame;
 	private JLabel lblNewLabel;
 	private JTextField textContraseña;
-	private JPanel panel;
-	private JLabel lblMensaje;
 
 	/**
 	 * Create the panel.
@@ -46,48 +46,35 @@ public class login extends JPanel {
 		setBackground(new Color(153, 204, 255));
 		setLayout(null);
 		
-		panel = new JPanel();
-		panel.setBackground(new Color(153, 204, 255));
-		panel.setBounds(0, 242, 1280, 195);
-		add(panel);
-		panel.setLayout(null);
-		
-		textContraseña = new JTextField();
-		textContraseña.setBounds(600, 75, 86, 20);
-		panel.add(textContraseña);
-		textContraseña.setColumns(10);
-		
 		lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(509, 49, 66, 14);
-		panel.add(lblUsuario);
-		lblUsuario.setBackground(new Color(255, 0, 0));
+		lblUsuario.setForeground(Color.BLACK);
+		lblUsuario.setBounds(354, 289, 210, 64);
+		add(lblUsuario);
+		lblUsuario.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
+		lblUsuario.setBackground(Color.GREEN);
 		
 		textUsuario = new JTextField();
-		textUsuario.setBounds(599, 46, 86, 20);
-		panel.add(textUsuario);
+		textUsuario.setBounds(594, 306, 258, 31);
+		add(textUsuario);
 		textUsuario.setColumns(10);
 		
 		lblContraseña = new JLabel("Contraseña:");
-		lblContraseña.setBounds(509, 74, 80, 14);
-		panel.add(lblContraseña);
+		lblContraseña.setBounds(354, 345, 210, 64);
+		add(lblContraseña);
+		lblContraseña.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
 		lblContraseña.setBackground(Color.GREEN);
 		lblContraseña.setForeground(Color.BLACK);
 		
-		btnInicioSesion = new JButton("Iniciar sesion");
-		btnInicioSesion.setBounds(463, 119, 126, 23);
-		panel.add(btnInicioSesion);
+		textContraseña = new JTextField();
+		textContraseña.setBounds(594, 363, 258, 31);
+		add(textContraseña);
+		textContraseña.setColumns(10);
 		
-		btnNuevaAgencia = new JButton("Nueva agencia");
-		btnNuevaAgencia.setBounds(623, 119, 133, 23);
-		panel.add(btnNuevaAgencia);
-		btnNuevaAgencia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				NuevoPerfil nuevoPerfil = new NuevoPerfil(frame);
-				frame.setContentPane(nuevoPerfil);
-                frame.revalidate(); 
-                frame.repaint();   
-			}
-		});
+		btnInicioSesion = new JButton("Iniciar sesion");
+		btnInicioSesion.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		btnInicioSesion.setBounds(308, 451, 204, 69);
+		add(btnInicioSesion);
+		btnInicioSesion.setBackground(new Color(255, 160, 122));
 		btnInicioSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Agencias agencia= new Agencias();
@@ -102,26 +89,41 @@ public class login extends JPanel {
 
 		});
 		
-		lblMensaje = new JLabel("");
-		lblMensaje.setBounds(59, 242, 293, 28);
-		add(lblMensaje);
+		btnNuevaAgencia = new JButton("Nueva agencia");
+		btnNuevaAgencia.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		btnNuevaAgencia.setBounds(688, 451, 204, 69);
+		add(btnNuevaAgencia);
+		btnNuevaAgencia.setBackground(new Color(255, 160, 122));
+		btnNuevaAgencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevoPerfil nuevoPerfil = new NuevoPerfil(frame);
+				frame.setContentPane(nuevoPerfil);
+                frame.revalidate(); 
+                frame.repaint();   
+			}
+		});
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("img/fondoInicio.png"));
-		lblNewLabel.setBounds(0, 0, 1280, 720);
+		lblNewLabel.setIcon(new ImageIcon("img/fondo blur.jpg"));
+		lblNewLabel.setBounds(0, 0, 1290, 717);
 		add(lblNewLabel);
 
 	}
 	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor) {
 	    agencia.setAgenciaNombre(textUsuario);
 	    agencia.setContraseña(textContraseña);
+	    Agencias agenciaLogin = gestor.comprobarAgencia(agencia);
 	    
-	    if (gestor.comprobarAgencia(agencia)) {  
+	    if (agenciaLogin !=null) {  
 	        int id = gestor.autentificarAgencia(textUsuario, textContraseña);  
 	        if (id != -1) {
 	            Sesion.setIdAgencia(id);
 	            System.out.println("Sesion iniciada con ID: " + Sesion.getIdAgencia());
-	    		agencia.setAgenciaId(Sesion.getIdAgencia()+"");
+	            
+	             } else {
+	            System.out.println("Credenciales incorrectas");
+	        }
+	    		
 
 	            String nombreID = gestor.nombreAgencia(id);
 
@@ -131,9 +133,7 @@ public class login extends JPanel {
 	            frame.revalidate();
 	            frame.repaint();
 
-	        } else {
-	            System.out.println("Credenciales incorrectas");
-	        }
+	       
 	    } else {
 	        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
 	    }

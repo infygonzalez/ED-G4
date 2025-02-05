@@ -15,7 +15,7 @@ import Modelo.*;
 public class Gestor {
 
 	
-		public boolean comprobarAgencia (Agencias agencia) {
+		public Agencias comprobarAgencia (Agencias agencia) {
 			Connection conexion =null;
 			PreparedStatement sentencia=null;
 			ResultSet rs = null;
@@ -31,13 +31,26 @@ public class Gestor {
 				sentencia.setString(2,agencia.getContraseña());
 				rs=sentencia.executeQuery();
 				
-				return rs.next();
+				if (rs.next()) {
+					agencia = new Agencias();
+					agencia.setAgenciaId(rs.getString("AgenciaID"));
+					agencia.setAgenciaColorMarca(rs.getString("ColorMarca"));
+					agencia.setAgenciaNombre(rs.getString("Nombre"));
+					agencia.setAgenciaNumEmple(rs.getString("NumEmpleados"));
+					agencia.setAgenciaLogo(rs.getString("LogoURL"));
+					agencia.setContraseña(rs.getString("Contraseña"));
+					agencia.setAgenciaTipo(rs.getString("TipoAgencia"));
+					
+					return agencia;
+					
+				}
+				return null;
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				return false;
+				return agencia;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return false;
+				return agencia;
 			}		
 		}
 

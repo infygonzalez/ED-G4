@@ -60,7 +60,7 @@ public class Ventana extends JFrame {
                 repaint();   
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon("img/fondoInicio.png"));
+		btnNewButton.setIcon(new ImageIcon("img/imagen fondo.jpg"));
 		btnNewButton.setBounds(0, 0, 1280, 720);
 		contentPane.add(btnNewButton);
 	}

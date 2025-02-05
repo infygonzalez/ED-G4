@@ -24,6 +24,10 @@ import Modelo.Alojamiento;
 import Modelo.Evento;
 import Modelo.Otros;
 import Modelo.Vuelo;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 
 public class ViajesYEventos extends JPanel {
@@ -59,22 +63,40 @@ public class ViajesYEventos extends JPanel {
 	        model1.addColumn("precio");
 
 	        JButton btnNuevoViaje = new JButton("Nuevo viaje");
-	        btnNuevoViaje.setBounds(914, 141, 104, 23);
+	        btnNuevoViaje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 22));
+	        btnNuevoViaje.setBackground(new Color(144, 238, 144));
+	        btnNuevoViaje.setBounds(851, 68, 249, 77);
 	        add(btnNuevoViaje);
 
 	        JButton btnNuevoEvento = new JButton("Nuevo evento");
-	        btnNuevoEvento.setBounds(914, 342, 104, 23);
+	        btnNuevoEvento.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+	        btnNuevoEvento.setBackground(new Color(144, 238, 144));
+	        btnNuevoEvento.setBounds(851, 343, 249, 77);
 	        add(btnNuevoEvento);
 
 	        JButton btnGenerarOferta = new JButton("Generar oferta cliente");
-	        btnGenerarOferta.setBounds(554, 467, 170, 23);
+	        btnGenerarOferta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+	        btnGenerarOferta.setBackground(new Color(255, 160, 122));
+	        btnGenerarOferta.setBounds(346, 577, 332, 86);
 	        add(btnGenerarOferta);
 
 	        JButton btnDesconectar = new JButton("Desconectar");
-	        btnDesconectar.setBounds(874, 467, 117, 23);
+	        btnDesconectar.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		Ventana ventana = new Ventana();
+					ventana.setVisible(true);
+					
+	                
+	        	}
+	        });
+	        btnDesconectar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+	        btnDesconectar.setBackground(new Color(255, 160, 122));
+	        btnDesconectar.setBounds(910, 577, 332, 86);
 	        add(btnDesconectar);
 
-	        JButton btnEliminar1 = new JButton("");
+	        JButton btnEliminar1 = new JButton("Eliminar viaje");
+	        btnEliminar1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+	        btnEliminar1.setBackground(new Color(248, 54, 60));
 	        btnEliminar1.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 
@@ -88,10 +110,12 @@ public class ViajesYEventos extends JPanel {
 	                
 	        	}
 	        });
-	        btnEliminar1.setBounds(874, 141, 30, 23);
+	        btnEliminar1.setBounds(851, 179, 249, 77);
 	        add(btnEliminar1);
 
-	        JButton btnEliminar2 = new JButton("");
+	        JButton btnEliminar2 = new JButton("Eliminar evento");
+	        btnEliminar2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+	        btnEliminar2.setBackground(new Color(248, 54, 60));
 	        btnEliminar2.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		boolean valido = false;
@@ -136,11 +160,11 @@ public class ViajesYEventos extends JPanel {
 	        		}
 	        	}
 	        });
-	        btnEliminar2.setBounds(874, 346, 30, 23);
+	        btnEliminar2.setBounds(851, 444, 249, 77);
 	        add(btnEliminar2);
 
 	        JScrollPane scrollPane = new JScrollPane();
-	        scrollPane.setBounds(414, 141, 450, 110);
+	        scrollPane.setBounds(221, 37, 590, 236);
 	        add(scrollPane);
 
 	        table = new JTable(model);
@@ -148,11 +172,16 @@ public class ViajesYEventos extends JPanel {
 	        table.setDefaultEditor(Object.class, null);
 
 	        JScrollPane scrollPane_1 = new JScrollPane();
-	        scrollPane_1.setBounds(414, 346, 450, 110);
+	        scrollPane_1.setBounds(221, 317, 590, 236);
 	        add(scrollPane_1);
 
 	        table_1 = new JTable(model1);
 	        scrollPane_1.setViewportView(table_1);
+	        
+	        JLabel lblNewLabel = new JLabel("");
+	        lblNewLabel.setIcon(new ImageIcon("img/fondo blur.jpg"));
+	        lblNewLabel.setBounds(0, 0, 1280, 720);
+	        add(lblNewLabel);
 
 	        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 	            public void valueChanged(ListSelectionEvent event) {
