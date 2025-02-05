@@ -3,8 +3,15 @@ package Vista;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import Modelo.Agencias;
+
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NuevoViaje extends JPanel {
 
@@ -17,7 +24,7 @@ public class NuevoViaje extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NuevoViaje() {
+	public NuevoViaje(Agencias agencia) {
 		setLayout(null);
 		
 		JLabel lblNombreViaje = new JLabel("Nombre viaje");
@@ -81,6 +88,14 @@ public class NuevoViaje extends JPanel {
 		add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(NuevoViaje.this);
+                frame.setContentPane(new ViajesYEventos(agencia));
+                frame.revalidate();
+                frame.repaint();
+			}
+		});
 		btnCancelar.setBounds(273, 416, 89, 23);
 		add(btnCancelar);
 

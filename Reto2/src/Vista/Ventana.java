@@ -64,4 +64,5 @@ public class Ventana extends JFrame {
 		btnNewButton.setBounds(0, 0, 1280, 720);
 		contentPane.add(btnNewButton);
 	}
+	
 }

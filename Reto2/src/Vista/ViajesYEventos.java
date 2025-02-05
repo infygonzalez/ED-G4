@@ -2,6 +2,7 @@ package Vista;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -63,12 +64,26 @@ public class ViajesYEventos extends JPanel {
 	        model1.addColumn("precio");
 
 	        JButton btnNuevoViaje = new JButton("Nuevo viaje");
+	        btnNuevoViaje.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ViajesYEventos.this);
+	                frame.setContentPane(new NuevoViaje(agencia));
+	                frame.repaint();
+	        	}
+	        });
 	        btnNuevoViaje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 22));
 	        btnNuevoViaje.setBackground(new Color(144, 238, 144));
 	        btnNuevoViaje.setBounds(851, 68, 249, 77);
 	        add(btnNuevoViaje);
 
 	        JButton btnNuevoEvento = new JButton("Nuevo evento");
+	        btnNuevoEvento.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ViajesYEventos.this);
+	                frame.setContentPane(new NuevoEvento(agencia));
+	                frame.repaint();
+	        	}
+	        });
 	        btnNuevoEvento.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 	        btnNuevoEvento.setBackground(new Color(144, 238, 144));
 	        btnNuevoEvento.setBounds(851, 343, 249, 77);
