@@ -191,6 +191,7 @@ public class Gestor {
 				alojamientos = new ArrayList<Alojamiento>();
 				while (resultset.next()) {
 					Alojamiento alojamiento =new Alojamiento();
+					alojamiento.setEventoId(resultset.getString("AlojamientoID"));
 					alojamiento.setViaje(viaje);
 					alojamiento.setNombre(resultset.getString("NombreEvento"));
 					alojamiento.setFecEntrada(resultset.getString("FechaEntrada"));
@@ -237,6 +238,7 @@ public class Gestor {
 				otros = new ArrayList<Otros>();
 				while (resultset.next()) {
 					Otros otro =new Otros();
+					otro.setEventoId(resultset.getString("ActividadID"));
 					otro.setViaje(viaje);
 					otro.setNombre(resultset.getString("NombreEvento"));
 					otro.setFecha(resultset.getString("Fecha"));
@@ -283,6 +285,7 @@ public class Gestor {
 				vuelos = new ArrayList<Vuelo>();
 				while (resultset.next()) {
 					Vuelo vuelo =new Vuelo();
+					vuelo.setEventoId(resultset.getString("VueloID"));
 					vuelo.setViaje(viaje);
 					vuelo.setNombre(resultset.getString("NombreEvento"));
 					vuelo.setFecSal(resultset.getString("FechaSalida"));
@@ -403,7 +406,7 @@ public class Gestor {
 		        }
 		        
 		    } catch (SQLException sqle) {
-		        System.out.println("Error con la base de datos: " + sqle.getMessage());
+		        System.out.println("Error con la base de datos: " + sqle.getMessage() + alojamiento.getEventoId());
 		    } catch (Exception e) {
 		        System.out.println("Error genérico: " + e.getMessage());
 		    } finally {

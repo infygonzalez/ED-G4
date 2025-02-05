@@ -46,7 +46,41 @@ public class controlador {
 		vuelo = gestor.buscarTodosVuelos(viaje);
 		return vuelo;
 	}
-	 public void eliminarViajeDeAgencia(Viaje viaje) {
+	
+	public boolean borrarViaje(Viaje viaje) {
+        Gestor gestorViajes = new Gestor();
+        boolean valido=true;
+        ArrayList<Vuelo>vuelos= viaje.getVuelo();
+        for(int i =0;i<vuelos.size();i++) {
+            
+            if(valido==true) {
+                valido=eliminarVuelo(vuelos.get(i));
+            }
+            
+        }
+        ArrayList<Alojamiento>alojamientos= viaje.getAlojamiento();
+        for(int i =0;i<alojamientos.size();i++) {
+            
+            if(valido==true) {
+                valido=eliminarAlojamiento(alojamientos.get(i));
+            }
+            
+        }
+        ArrayList<Otros>otros= viaje.getOtros();
+        for(int i =0;i<otros.size();i++) {
+            
+            if(valido==true) {
+                valido=eliminarOtros(otros.get(i));
+            }
+            
+        }
+        if(valido==true) {
+            valido=gestorViajes.eliminarViaje(viaje);
+        }
+        return valido;
+    }
+	
+	 /*public void eliminarViajeDeAgencia(Viaje viaje) {
 	    boolean eliminado = eliminarViaje(viaje);
 
 	    if (eliminado) {
@@ -58,9 +92,7 @@ public class controlador {
 	    private boolean eliminarViaje(Viaje viaje) {
 	        return new Gestor().eliminarViaje(viaje);
 	    }
-	    
-	    
-	    
+	    */
 	    
 	    public void eliminarEventoVuelo(Vuelo vuelo) {
 		    boolean eliminado = eliminarVuelo(vuelo);
@@ -71,13 +103,15 @@ public class controlador {
 		          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
 		        }
 		    }
-		    private boolean eliminarVuelo(Vuelo vuelo) {
+
+	    
+		    public boolean eliminarVuelo(Vuelo vuelo) {
 		        return new Gestor().eliminarVuelo(vuelo);
 		    }
-	    
-	    
 		    
 		    
+		    
+	    
 		  public void eliminarEventoAlojamiento(Alojamiento alojamiento) {
 			    boolean eliminado = eliminarAlojamiento(alojamiento);
 
@@ -87,7 +121,7 @@ public class controlador {
 			          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
 			        }
 			    }
-			    private boolean eliminarAlojamiento(Alojamiento alojamiento) {
+			    public boolean eliminarAlojamiento(Alojamiento alojamiento) {
 			        return new Gestor().eliminarAlojamiento(alojamiento);
 			    }
 		    
@@ -102,7 +136,7 @@ public class controlador {
 				          System.out.println("No se pudo eliminar el vuelo. Verifique los datos.");
 				        }
 				    }
-				    private boolean eliminarOtros(Otros otros) {
+				    public boolean eliminarOtros(Otros otros) {
 				        return new Gestor().eliminarOtros(otros);
 				    }
 			    

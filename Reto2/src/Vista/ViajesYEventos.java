@@ -81,9 +81,11 @@ public class ViajesYEventos extends JPanel {
 	        		Viaje viajeSeleccionado = viajeSeleccionado(agencia);
 	        		int rowIndex = table.getSelectedRow();
 	                if (viajeSeleccionado != null && rowIndex != -1) {
-	        		    Controlador.eliminarViajeDeAgencia(viajeSeleccionado);
+	        		    Controlador.borrarViaje(viajeSeleccionado);
 	        		    model.removeRow(rowIndex);
+	        		    model1.setRowCount(0);
 	        		}
+	                
 	        	}
 	        });
 	        btnEliminar1.setBounds(874, 141, 30, 23);
@@ -92,20 +94,39 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnEliminar2 = new JButton("");
 	        btnEliminar2.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		int SelectedRow = table_1.getSelectedRow();
-	        		if (SelectedRow != -1 ) {
+	        		boolean valido = false;
+	        		if (table_1.getSelectedRow() != -1 ) {
 	        			
-	                    String EventoIDSeleccionado = table_1.getValueAt(SelectedRow,0).toString();
-	                    String TipoEventoSeleccionado = table_1.getValueAt(SelectedRow,3).toString();
+	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),0).toString();
+	                    String TipoEventoSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),2).toString();
+	                    int rowIndex = table.getSelectedRow();		           
 	                    
-		           
+	                    if (TipoEventoSeleccionado.equals("Vuelo")) {
+	                    	 ArrayList<Vuelo> vuelo = viajeSeleccionado(agencia).getVuelo();
+	     	                for (int i = 0; i < vuelo.size(); i++) {
+	     	                    if (vuelo.get(i).getEventoId().equals(EventoIDSeleccionado)) {
+	     	                    	 valido = Controlador.eliminarVuelo(vuelo.get(i));
+	     	                    }
+	     	                }model1.removeRow(rowIndex);
+	                       
+	                    } 
 	                    
-	                    if (EventoIDSeleccionado != null && TipoEventoSeleccionado.equals("Vuelo")) {
-	                        System.out.println("ya tu chabe");
-	                    } else if (EventoIDSeleccionado != null && TipoEventoSeleccionado.equals("Alojamiento")) {
-	                        System.out.println("ya tu chabe2");
-	                    } else if (EventoIDSeleccionado != null && TipoEventoSeleccionado.equals("Actividades")) {
-	                        System.out.println("ya tu chabe3");
+	                    else if (TipoEventoSeleccionado.equals("Alojamiento")) {
+	                    	ArrayList<Alojamiento> alojamiento = viajeSeleccionado(agencia).getAlojamiento();
+	     	                for (int i = 0; i < alojamiento.size(); i++) {
+	     	                    if (alojamiento.get(i).getEventoId().equals(EventoIDSeleccionado)) {
+	     	                    	 valido = Controlador.eliminarAlojamiento(alojamiento.get(i));
+	     	                    }
+	     	                }model1.removeRow(rowIndex);
+	                    } 
+	                    
+	                    else if (TipoEventoSeleccionado.equals("Actividades")) {
+	                    	ArrayList<Otros> actividades = viajeSeleccionado(agencia).getOtros();
+	     	                for (int i = 0; i < actividades.size(); i++) {
+	     	                    if (actividades.get(i).getEventoId().equals(EventoIDSeleccionado)) {
+	     	                    	 valido = Controlador.eliminarOtros(actividades.get(i));
+	     	                    }
+	     	                }model1.removeRow(rowIndex);
 	                    }
 
 	                    
@@ -163,6 +184,7 @@ public class ViajesYEventos extends JPanel {
 	            }
 	            return null;
 	        }
+	     
 	
 	 private void rellenarTablaViajes(Agencias agencia) {
 	        model.setRowCount(0);

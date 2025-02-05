@@ -21,9 +21,9 @@ public class SQLQuerys {
 	
 	//delete
 	public static final String DELETE_ELIMINAR_VIAJE="delete from viajes where ViajeID=?";
-	public static final String DELETE_ELIMINAR_VUELO="delete from viajes where ViajeID=?";
-	public static final String DELETE_ELIMINAR_OTROS="delete from viajes where ViajeID=?";
-	public static final String DELETE_ELIMINAR_ALOJAMIENTO="delete from viajes where ViajeID=?";
+	public static final String DELETE_ELIMINAR_VUELO="delete from Vuelos where VueloID=?";
+	public static final String DELETE_ELIMINAR_OTROS="delete from Actividades where ActividadID=?";
+	public static final String DELETE_ELIMINAR_ALOJAMIENTO="delete from Alojamientos where AlojamientoID=?";
 	
 	
 }

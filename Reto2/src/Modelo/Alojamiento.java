@@ -13,6 +13,15 @@ public class Alojamiento {
 	private String precio;
 	
 	public Alojamiento() {
+		NMBHotel="";
+		fecEntrada="";
+		fecSalida="";
+		ciudad="";
+		tipoHab="";
+		eventoId="";
+		viaje=new Viaje();
+		nombre="";
+		precio="";
 		
 	}
 	
