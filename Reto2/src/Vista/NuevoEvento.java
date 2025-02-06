@@ -18,14 +18,13 @@ public class NuevoEvento extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NuevoEvento(Agencias agencia) {
+	public NuevoEvento(Agencias agencia, JFrame frame) {
 		setLayout(null);
 		
 		JButton btnNewButton = new JButton("cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(NuevoEvento.this);
-                frame.setContentPane(new ViajesYEventos(agencia));
+                frame.setContentPane(new ViajesYEventos(agencia, frame));
                 frame.revalidate();
                 frame.repaint();
 			}

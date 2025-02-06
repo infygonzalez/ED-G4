@@ -24,7 +24,7 @@ public class NuevoViaje extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NuevoViaje(Agencias agencia) {
+	public NuevoViaje(Agencias agencia, JFrame frame) {
 		setLayout(null);
 		
 		JLabel lblNombreViaje = new JLabel("Nombre viaje");
@@ -90,8 +90,8 @@ public class NuevoViaje extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(NuevoViaje.this);
-                frame.setContentPane(new ViajesYEventos(agencia));
+				
+                frame.setContentPane(new ViajesYEventos(agencia, frame));
                 frame.revalidate();
                 frame.repaint();
 			}

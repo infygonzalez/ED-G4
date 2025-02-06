@@ -45,7 +45,7 @@ public class ViajesYEventos extends JPanel {
 	 */
 
 	        
-	  public ViajesYEventos(Agencias agencia) {
+	  public ViajesYEventos(Agencias agencia, JFrame frame) {
 	        
 	        setLayout(null);
 
@@ -66,9 +66,9 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnNuevoViaje = new JButton("Nuevo viaje");
 	        btnNuevoViaje.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ViajesYEventos.this);
-	                frame.setContentPane(new NuevoViaje(agencia));
+	                frame.setContentPane(new NuevoViaje(agencia, frame));
 	                frame.repaint();
+	                frame.revalidate();
 	        	}
 	        });
 	        btnNuevoViaje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 22));
@@ -79,9 +79,10 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnNuevoEvento = new JButton("Nuevo evento");
 	        btnNuevoEvento.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(ViajesYEventos.this);
-	                frame.setContentPane(new NuevoEvento(agencia));
+	                frame.setContentPane(new NuevoEvento(agencia, frame));
 	                frame.repaint();
+	                frame.revalidate();
+
 	        	}
 	        });
 	        btnNuevoEvento.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
