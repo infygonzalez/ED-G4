@@ -2,24 +2,47 @@ package Vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import com.toedter.calendar.JCalendar;
+
+import Modelo.Aeropuerto;
 import Modelo.Agencias;
+import Modelo.Gestor;
+import Modelo.Pais;
+import Modelo.Viaje;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
+
+import Controlador.controlador;
+import javax.swing.DefaultComboBoxModel;
 
 public class NuevoViaje extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textNombre;
+	private JTextField textDuracion;
+	private JTextField textDesc;
+	private JTextField textServNo;
+	private JDateChooser dateChooser_1;
+	private JDateChooser dateChooser;
+	private JComboBox comboBox_2;
+	private JComboBox comboBox_1;
 
 	/**
 	 * Create the panel.
@@ -35,8 +58,15 @@ public class NuevoViaje extends JPanel {
 		lblTipoViaje.setBounds(44, 75, 86, 14);
 		add(lblTipoViaje);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(44, 120, 46, 14);
+		JCalendar calendar = new JCalendar();
+        int año = calendar.getCalendar().get(Calendar.YEAR);
+        int mes = calendar.getCalendar().get(Calendar.MONTH);
+        int dia = calendar.getCalendar().get(Calendar.DAY_OF_MONTH);
+        String fecha = dia+"-"+mes+"-"+año;
+        System.out.print(fecha);
+		
+		JLabel lblNewLabel_2 = new JLabel("Fecha de Inicio");
+		lblNewLabel_2.setBounds(44, 114, 86, 14);
 		add(lblNewLabel_2);
 		
 		JLabel lblDias = new JLabel("Dias");
@@ -55,35 +85,65 @@ public class NuevoViaje extends JPanel {
 		lblServNoIncluidos.setBounds(44, 336, 115, 14);
 		add(lblServNoIncluidos);
 		
-		textField = new JTextField();
-		textField.setBounds(169, 31, 86, 20);
-		add(textField);
-		textField.setColumns(10);
+		textNombre = new JTextField();
+		textNombre.setBounds(169, 31, 86, 20);
+		add(textNombre);
+		textNombre.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(169, 71, 86, 18);
-		add(comboBox);
+		comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Novios", "Senior", "Grupos", "Grandes viajes(destinos exoticos)", "Combinado(vuelo+hotel)", "Escapadas", "Familias con niños menores"}));
+		comboBox_2.setBounds(169, 71, 86, 18);
+		add(comboBox_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(169, 185, 86, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		textDuracion = new JTextField();
+		textDuracion.setBounds(169, 185, 86, 20);
+		add(textDuracion);
+		textDuracion.setColumns(10);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(169, 231, 86, 18);
 		add(comboBox_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(169, 269, 259, 53);
-		add(textField_2);
-		textField_2.setColumns(10);
+		textDesc = new JTextField();
+		textDesc.setBounds(169, 269, 259, 53);
+		add(textDesc);
+		textDesc.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(169, 336, 259, 53);
-		add(textField_3);
-		textField_3.setColumns(10);
+		textServNo = new JTextField();
+		textServNo.setBounds(169, 336, 259, 53);
+		add(textServNo);
+		textServNo.setColumns(10);
 		
+		llenarComboBoxPaises(comboBox_1);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(171, 114, 86, 20);
+		add(dateChooser);
+		
+		JLabel lblNewLabel = new JLabel("Fecha de fin");
+		lblNewLabel.setBounds(44, 151, 86, 14);
+		add(lblNewLabel);
+		
+		dateChooser_1 = new JDateChooser();
+		dateChooser_1.setBounds(169, 145, 86, 20);
+		add(dateChooser_1);
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        java.util.Date fechaInicio = dateChooser.getDate();
+		        java.util.Date fechaFin = dateChooser_1.getDate();
+
+		        insertarViaje(
+		            textNombre.getText(),
+		            textDesc.getText(),
+		            String.valueOf(comboBox_2.getSelectedItem()), 
+		            fechaInicio,  
+		            fechaFin,    
+		            "", 
+		            textServNo.getText()
+		        );
+		    }
+		});
 		btnGuardar.setBounds(82, 416, 89, 23);
 		add(btnGuardar);
 		
@@ -99,6 +159,91 @@ public class NuevoViaje extends JPanel {
 		btnCancelar.setBounds(273, 416, 89, 23);
 		add(btnCancelar);
 
-	}
+		
+		//llenarComboBoxAeropuertos(lo que sea pero va en eventos);
+		
+		
+		// Agregar PropertyChangeListener a los JDateChooser
+        PropertyChangeListener listener = new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                calcularDiferenciaDias();
+            }
+        };
 
+        dateChooser.addPropertyChangeListener("date", listener);
+        dateChooser_1.addPropertyChangeListener("date", listener);
+    
+	}
+	
+	
+	public void llenarComboBoxPaises(JComboBox<String> comboBox) {
+	    Gestor gestor = new Gestor();
+	    ArrayList<Pais> listaPaises = gestor.buscarTodosPaises();
+	    
+	    comboBox.removeAllItems(); // Limpiar el comboBox antes de llenarlo
+
+	    for (Pais pais : listaPaises) {
+	        comboBox.addItem(pais.getDescripcion()); // Suponiendo que quieres mostrar el nombre del país
+	    }
+	}
+	
+	
+	public void llenarComboBoxAeropuertos(JComboBox<String> comboBox2) {
+	    Gestor gestor = new Gestor();
+	    ArrayList<Aeropuerto> listaAeropuertos = gestor.buscarTodosAeropuertos();
+	    
+	    comboBox2.removeAllItems(); // Limpiar el comboBox antes de llenarlo
+
+	    for (Aeropuerto aeropuerto : listaAeropuertos) {
+	        comboBox2.addItem(aeropuerto.getLugarAero()); // Suponiendo que quieres mostrar el nombre del país
+	    }
+	}
+	
+	
+	private int calcularDiferenciaDias() {
+	    if (dateChooser.getDate() != null && dateChooser_1.getDate() != null) {
+	        LocalDate inicio = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	        LocalDate fin = dateChooser_1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	        
+	        if (inicio.isAfter(fin)) {
+	            JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser posterior a la fecha de fin.", "Error", JOptionPane.WARNING_MESSAGE);
+	            textDuracion.setText("");  // Limpiar el campo
+	            dateChooser_1.setDate(null);  // Resetear la fecha de fin
+	            return 0;  // Devolver 0 para evitar valores incorrectos
+	        }
+
+	        long diasDiferencia = ChronoUnit.DAYS.between(inicio, fin);
+	        textDuracion.setText(String.valueOf(diasDiferencia));  // Solo se muestra en el textDuracion
+	        return (int) diasDiferencia;
+	    } else {
+	        textDuracion.setText("");  // Si falta alguna fecha, limpiar el campo
+	        return 0;
+	    }
+	}
+	
+	
+	private String convertirFechaADatabaseFormat(java.util.Date date) {
+	    if (date != null) {
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	        return sdf.format(date);
+	    }
+	    return null; // En caso de que la fecha sea null, devolver null.
+	}
+	
+	
+	private void insertarViaje(String nombre, String descripcion, String tipo, java.util.Date fechaInicio, java.util.Date fechaFin, String duracion, String servNo) {
+	    String fechaInicioFormatted = convertirFechaADatabaseFormat(fechaInicio);
+	    String fechaFinFormatted = convertirFechaADatabaseFormat(fechaFin);
+	    
+	    Viaje viaje = new Viaje();
+	    viaje.setViajesNombre(nombre);
+	    viaje.setViajesDescripcion(descripcion);
+	    viaje.setViajesTipo(tipo);
+	    viaje.setViajesFechaInicio(fechaInicioFormatted); 
+	    viaje.setViajesFechaFin(fechaFinFormatted);  
+	    viaje.setViajesDuracion(duracion);
+	    viaje.setViajesDescServNo(servNo);
+	    controlador.insertarViaje(viaje);
+	}
 }

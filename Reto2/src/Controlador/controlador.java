@@ -11,6 +11,10 @@ public class controlador {
 		Gestor gestor = new Gestor();
 		gestor.insertarAgencia(agencia);
 	}
+	public static void insertarViaje(Viaje viaje) {
+		Gestor gestor = new Gestor();
+		gestor.insertarViaje(viaje);
+	}
 	public void comprobarAgencia(Agencias agencia) {
 		Gestor gestor = new Gestor();
 		gestor.insertarAgencia(agencia);
@@ -50,6 +54,7 @@ public class controlador {
 	public boolean borrarViaje(Viaje viaje) {
         Gestor gestorViajes = new Gestor();
         boolean valido=true;
+        
         ArrayList<Vuelo>vuelos= viaje.getVuelo();
         for(int i =0;i<vuelos.size();i++) {
             

@@ -90,6 +90,80 @@ public class Gestor {
 			}
 		
 	}
+		public void insertarViaje (Viaje viaje) {
+			Connection conexion =null;
+			Statement sentencia=null;
+			
+			try{
+				Class.forName(DButils.DRIVER);
+				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+				sentencia=conexion.createStatement();
+				String sql = SQLQuerys.INSERT_VIAJE + viaje.getViajesNombre() + SQLQuerys.SEPARATOR + viaje.getViajesDescripcion() + SQLQuerys.SEPARATOR + viaje.getViajesTipo()
+				+ SQLQuerys.SEPARATOR + viaje.getViajesFechaInicio() + SQLQuerys.SEPARATOR + viaje.getViajesFechaFin() + SQLQuerys.SEPARATOR + viaje.getViajesDescServNo() + SQLQuerys.END_BLOCK;
+				sentencia.executeUpdate(sql);
+				
+				
+			}catch(SQLException sqle) {
+				
+				System.out.println("Error con la base de datos "+ sqle.getMessage());
+			}catch(Exception e) {
+				System.out.println("Error generico"+ e.getMessage());
+			}
+			
+			try {
+				sentencia.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la sentencia");
+			}
+			try {
+				conexion.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la conexion");
+			}
+		
+	}
+		public ArrayList<Aeropuerto> buscarTodosAeropuertos(){
+			Connection conexion =null;
+			PreparedStatement sentencia=null;
+			ResultSet resultset = null;
+			ArrayList<Aeropuerto> aeropuertos = null;				
+			try {
+				Class.forName(DButils.DRIVER);
+				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+				String sql = SQLQuerys.SELECT_TODOS_AEROPUERTO;
+				sentencia=conexion.prepareStatement(sql);
+				resultset = sentencia.executeQuery();
+				aeropuertos = new ArrayList<Aeropuerto>();
+				while (resultset.next()) {
+					Aeropuerto aeropuerto =new Aeropuerto();
+					aeropuerto.setCodAero(resultset.getString("CodigoIATA"));
+					aeropuerto.setLugarAero(resultset.getString("NombreAeropuerto"));
+					aeropuertos.add(aeropuerto);
+				}
+				
+				
+			
+			}catch (SQLException sqle) {
+				System.out.println("error con la base de datos " + sqle.getMessage());
+			}catch(Exception e) {
+				System.out.println("Error generico "+ e.getMessage());
+			}try {
+				resultset.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar resulset ");
+			}try {
+				sentencia.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar sentencia ");
+			}try {
+				conexion.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar conexion ");
+			}
+			
+			return aeropuertos;
+			
+		}
 		
 		public ArrayList<Pais> buscarTodosPaises(){
 				Connection conexion =null;

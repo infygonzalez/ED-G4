@@ -5,6 +5,7 @@ public class SQLQuerys {
 	
 	//inserts
 	public static final String INSERT__AGENCIA = "insert into agencias(Nombre, LogoURL, ColorMarca, NumEmpleados, TipoAgencia,  Contraseña) values('";
+	public static final String INSERT_VIAJE = "insert into viajes(Nombre, Descripcion,  TipoViaje, FechaInicio, FechaFin, ServiciosNoIncluidos) values('";
 	public static final String SEPARATOR = "', '";
 	public static final String END_BLOCK = "')";
 	
@@ -13,6 +14,7 @@ public class SQLQuerys {
 	public static final String SELECT_ID_VALIDAR= "select agenciaID from agencias where agenciaID=?"; 
 	public static final String SELECT_TODOS_VIAJES="select * from viajes where AgenciaID = ?";
 	public static final String SELECT_TODOS_PAISES="select * from paises";
+	public static final String SELECT_TODOS_AEROPUERTO="select * from Aeropuerto";
 	public static final String SELECT_TODOS_ALOJAMIENTOS="select * from Alojamientos where ViajeID = ?";
 	public static final String SELECT_TODOS_VUELOS="select * from Vuelos where ViajeID = ?";
 	public static final String SELECT_TODOS_OTROS="select * from Actividades where ViajeID = ?";
