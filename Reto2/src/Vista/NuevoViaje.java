@@ -12,6 +12,7 @@ import Modelo.Aeropuerto;
 import Modelo.Agencias;
 import Modelo.Gestor;
 import Modelo.Pais;
+import Modelo.Sesion;
 import Modelo.Viaje;
 
 import javax.swing.JComboBox;
@@ -133,7 +134,12 @@ public class NuevoViaje extends JPanel {
 		        java.util.Date fechaInicio = dateChooser.getDate();
 		        java.util.Date fechaFin = dateChooser_1.getDate();
 
+		        
+		        String paisId = getPaisIdSeleccionado();
+		        
 		        insertarViaje(
+		        	agencia,
+		        	paisId,
 		            textNombre.getText(),
 		            textDesc.getText(),
 		            String.valueOf(comboBox_2.getSelectedItem()), 
@@ -141,8 +147,14 @@ public class NuevoViaje extends JPanel {
 		            fechaFin,    
 		            "", 
 		            textServNo.getText()
+		            
 		        );
+		        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+		        frame.setContentPane(new ViajesYEventos(agencia, frame));
+                frame.revalidate();
+                frame.repaint();
 		    }
+		    
 		});
 		btnGuardar.setBounds(82, 416, 89, 23);
 		add(btnGuardar);
@@ -175,11 +187,19 @@ public class NuevoViaje extends JPanel {
         dateChooser_1.addPropertyChangeListener("date", listener);
     
 	}
+	private ArrayList<Pais> listaPaises;
 	
+	private String getPaisIdSeleccionado() {
+	    int selectedIndex = comboBox_1.getSelectedIndex();
+	    if (selectedIndex >= 0 && selectedIndex < listaPaises.size()) {
+	        return listaPaises.get(selectedIndex).getCodPais(); 
+	    }
+	    return null; 
+	}
 	
 	public void llenarComboBoxPaises(JComboBox<String> comboBox) {
 	    Gestor gestor = new Gestor();
-	    ArrayList<Pais> listaPaises = gestor.buscarTodosPaises();
+	    listaPaises = gestor.buscarTodosPaises();
 	    
 	    comboBox.removeAllItems(); // Limpiar el comboBox antes de llenarlo
 
@@ -209,8 +229,8 @@ public class NuevoViaje extends JPanel {
 	        if (inicio.isAfter(fin)) {
 	            JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser posterior a la fecha de fin.", "Error", JOptionPane.WARNING_MESSAGE);
 	            textDuracion.setText("");  // Limpiar el campo
-	            dateChooser_1.setDate(null);  // Resetear la fecha de fin
-	            return 0;  // Devolver 0 para evitar valores incorrectos
+	            dateChooser_1.setDate(null); 
+	            return 0;  
 	        }
 
 	        long diasDiferencia = ChronoUnit.DAYS.between(inicio, fin);
@@ -228,15 +248,17 @@ public class NuevoViaje extends JPanel {
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	        return sdf.format(date);
 	    }
-	    return null; // En caso de que la fecha sea null, devolver null.
+	    return null; 
 	}
 	
 	
-	private void insertarViaje(String nombre, String descripcion, String tipo, java.util.Date fechaInicio, java.util.Date fechaFin, String duracion, String servNo) {
+	private void insertarViaje(Agencias agencia,String paisId, String nombre, String descripcion, String tipo, java.util.Date fechaInicio, java.util.Date fechaFin, String duracion, String servNo) {
 	    String fechaInicioFormatted = convertirFechaADatabaseFormat(fechaInicio);
 	    String fechaFinFormatted = convertirFechaADatabaseFormat(fechaFin);
 	    
 	    Viaje viaje = new Viaje();
+	    viaje.setAgenciaId(Integer.parseInt(agencia.getAgenciaId()));
+	    viaje.setPaisId(paisId);
 	    viaje.setViajesNombre(nombre);
 	    viaje.setViajesDescripcion(descripcion);
 	    viaje.setViajesTipo(tipo);

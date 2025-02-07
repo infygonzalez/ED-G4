@@ -204,7 +204,6 @@ public class ViajesYEventos extends JPanel {
 	            	Viaje viajeSeleccionado = viajeSeleccionado(agencia);
 	                if (viajeSeleccionado != null) {
 	                actualizarEventos(viajeSeleccionado);
-	                    
 	                }
 	            }
 	        });
@@ -235,6 +234,8 @@ public class ViajesYEventos extends JPanel {
 	        model.setRowCount(0);
 	        ArrayList<Pais> pais = Controlador.buscarTodosPaises();
 	        ArrayList<Viaje> viajes = Controlador.buscarTodosViajes(pais, agencia);
+	        
+	        
 	        agencia.setViajes(viajes);
 	        for (Viaje viaje:viajes) {
 	            String[] fila = new String[100];

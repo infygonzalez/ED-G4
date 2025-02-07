@@ -81,7 +81,7 @@ public class login extends JPanel {
 				Gestor gestor = new Gestor();
 
 
-				comprobarAgencia(textUsuario.getText(), textContraseña.getText(), agencia, gestor, frame);
+				comprobarAgencia(textUsuario.getText(), textContraseña.getText(), gestor, frame);
 				
 				
 			 
@@ -109,23 +109,21 @@ public class login extends JPanel {
 		add(lblNewLabel);
 
 	}
-	private void comprobarAgencia(String textUsuario, String textContraseña, Agencias agencia, Gestor gestor, JFrame frame) {
+	private void comprobarAgencia(String textUsuario, String textContraseña, Gestor gestor, JFrame frame) {
+		Agencias agencia= new Agencias();
 	    agencia.setAgenciaNombre(textUsuario);
 	    agencia.setContraseña(textContraseña);
 	    Agencias agenciaLogin = gestor.comprobarAgencia(agencia);
 	    
 	    if (agenciaLogin !=null) {  
-	        int id = gestor.autentificarAgencia(textUsuario, textContraseña);  
-	        if (id != -1) {
-	            Sesion.setIdAgencia(id);
+	        agencia = gestor.autentificarAgencia(textUsuario, textContraseña);  
+	        if (agencia.getAgenciaId() != "-1") {
 	            System.out.println("Sesion iniciada con ID: " + Sesion.getIdAgencia());
 	            
 	             } else {
 	            System.out.println("Credenciales incorrectas");
 	        }
 	    		
-
-	            String nombreID = gestor.nombreAgencia(id);
 
 	            
 	            ViajesYEventos frame2 = new ViajesYEventos(agencia, frame);

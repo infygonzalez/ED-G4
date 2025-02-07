@@ -5,6 +5,8 @@ import Modelo.Agencias;
 
 public class Viaje {
 	private String viajesId;
+	private int AgenciaId;
+	private String PaisId;
 	private String viajesNombre;
 	private String viajesDescripcion;
 	private String viajesFechaInicio;
@@ -21,6 +23,8 @@ public class Viaje {
 	
 	public Viaje() {
 		viajesId="";
+		AgenciaId=0;
+		PaisId="";
 		viajesNombre="";
 		viajesDescripcion="";
 		viajesFechaInicio="";
@@ -35,10 +39,12 @@ public class Viaje {
 		ArrayList<Otros> otros= new ArrayList<Otros>();
 	}
 
-	public Viaje (String viajesId, String viajesNombre, String viajesDescripcion, String viajesFechaInicio,String viajesFechaFin, 
+	public Viaje (String viajesId, int AgenciaId, String PaisId, String viajesNombre, String viajesDescripcion, String viajesFechaInicio,String viajesFechaFin, 
 			String viajesTipo, String viajesDescServNo,String viajesDuracion,Agencias agencia, Pais pais, 
 			 ArrayList<Alojamiento> alojamiento, ArrayList<Vuelo> vuelo, ArrayList<Otros> otros){
 		this.viajesId=viajesId;
+		this.AgenciaId=AgenciaId;
+		this.PaisId=PaisId;
 		this.viajesNombre=viajesNombre;
 		this.viajesDescripcion=viajesDescripcion;
 		this.viajesFechaInicio=viajesFechaInicio;
@@ -159,16 +165,31 @@ public class Viaje {
 		this.otros = otros;
 	}
 
+	
+	public int getAgenciaId() {
+		return AgenciaId;
+	}
+
+	public void setAgenciaId(int agenciaId) {
+		AgenciaId = agenciaId;
+	}
+
+	public String getPaisId() {
+		return PaisId;
+	}
+
+	public void setPaisId(String paisId) {
+		PaisId = paisId;
+	}
+
 	@Override
 	public String toString() {
-		return "Viaje [viajesId=" + viajesId + ", viajesNombre=" + viajesNombre + ", viajesDescripcion="
-				+ viajesDescripcion + ", viajesFechaInicio=" + viajesFechaInicio + ", viajesFechaFin=" + viajesFechaFin
-				+ ", viajesTipo=" + viajesTipo + ", viajesDescServNo=" + viajesDescServNo + ", viajesDuracion="
-				+ viajesDuracion + ", agencia=" + agencia + ", pais=" + pais + ", alojamiento=" + alojamiento
-				+ ", vuelo=" + vuelo + ", otros=" + otros + "]";
+		return "Viaje [viajesId=" + viajesId + ", AgenciaId=" + AgenciaId + ", PaisId=" + PaisId + ", viajesNombre="
+				+ viajesNombre + ", viajesDescripcion=" + viajesDescripcion + ", viajesFechaInicio=" + viajesFechaInicio
+				+ ", viajesFechaFin=" + viajesFechaFin + ", viajesTipo=" + viajesTipo + ", viajesDescServNo="
+				+ viajesDescServNo + ", viajesDuracion=" + viajesDuracion + ", agencia=" + agencia + ", pais=" + pais
+				+ ", alojamiento=" + alojamiento + ", vuelo=" + vuelo + ", otros=" + otros + "]";
 	}
-	
-	
 
 	
 	

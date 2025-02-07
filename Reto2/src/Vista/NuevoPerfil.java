@@ -2,6 +2,7 @@ package Vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -105,14 +106,21 @@ public class NuevoPerfil extends JPanel {
 		btnGuardar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertarAgencia(textNombre.getText(), textColor.getText(), String.valueOf(comboEmple.getSelectedItem()), 
+				if (textNombre.getText().equals("") && textContraseña.getText().equals("")) {
+					
+				JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
+				
+				
+				}else {
+					insertarAgencia(textNombre.getText(), textColor.getText(), String.valueOf(comboEmple.getSelectedItem()), 
 						String.valueOf(comboTipo.getSelectedItem()), textLogo.getText(), textContraseña.getText());
+					
+					login login = new login(frame);
+					frame.setContentPane(login);
+	                frame.revalidate(); 
+	                repaint();
+				}
 				
-				
-				login login = new login(frame);
-				frame.setContentPane(login);
-                frame.revalidate(); 
-                repaint();
 				
 			}
 		});

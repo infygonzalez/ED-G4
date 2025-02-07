@@ -98,7 +98,7 @@ public class Gestor {
 				Class.forName(DButils.DRIVER);
 				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 				sentencia=conexion.createStatement();
-				String sql = SQLQuerys.INSERT_VIAJE + viaje.getViajesNombre() + SQLQuerys.SEPARATOR + viaje.getViajesDescripcion() + SQLQuerys.SEPARATOR + viaje.getViajesTipo()
+				String sql = SQLQuerys.INSERT_VIAJE + viaje.getAgenciaId() + SQLQuerys.SEPARATOR + viaje.getPaisId() + SQLQuerys.SEPARATOR + viaje.getViajesNombre() + SQLQuerys.SEPARATOR + viaje.getViajesDescripcion() + SQLQuerys.SEPARATOR + viaje.getViajesTipo()
 				+ SQLQuerys.SEPARATOR + viaje.getViajesFechaInicio() + SQLQuerys.SEPARATOR + viaje.getViajesFechaFin() + SQLQuerys.SEPARATOR + viaje.getViajesDescServNo() + SQLQuerys.END_BLOCK;
 				sentencia.executeUpdate(sql);
 				
@@ -547,11 +547,10 @@ public class Gestor {
 		    
 		    return eliminado;
 		}
-		public static int autentificarAgencia(String usuario, String contraseña) {
-			int idAgencia = -1; // Valor por defecto si la autenticación falla
+		public static Agencias autentificarAgencia(String usuario, String contraseña) {
 
-		    String sql = "SELECT AgenciaID FROM Agencias WHERE Nombre = ? AND contraseña = ?";
-		    
+		    String sql = "SELECT * FROM Agencias WHERE Nombre = ? AND contraseña = ?";
+		    Agencias agencia = null;
 		    try (Connection conn = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 		        PreparedStatement stmt = conn.prepareStatement(sql)) {
 		    	
@@ -563,57 +562,23 @@ public class Gestor {
 		        
 
 		        if (rs.next()) {
-		            idAgencia = rs.getInt("AgenciaID"); // Obtiene el ID de la agencia
+		        	agencia = new Agencias();
+		        	agencia.setAgenciaId(rs.getString("AgenciaID"));
+		        	agencia.setAgenciaColorMarca(rs.getString("ColorMarca"));
+		        	agencia.setAgenciaLogo(rs.getString("LogoURL"));
+		        	agencia.setAgenciaNombre(rs.getString("Nombre"));
+		        	agencia.setAgenciaNumEmple(rs.getString("NumEmpleados"));
+		        	agencia.setAgenciaTipo(rs.getString("TipoAgencia"));
+		        	agencia.setContraseña(rs.getString("Contraseña"));
 		        }
 
 		    } catch (SQLException e) {
 		        e.printStackTrace();
 		    }
 
-		    return idAgencia;
+		    return agencia;
 
 		}
 		
-		public String nombreAgencia(int id) {
 
-		    Connection conexion = null;
-		    PreparedStatement stmt = null;
-		    ResultSet rs = null;
-		    String nombre = null; // Variable para almacenar el resultado
-
-		    try {
-
-		        // Establecer la conexión
-		        Class.forName(DButils.DRIVER);
-		        conexion = DriverManager.getConnection(DButils.URL, DButils.USER, DButils.CONTRASEÑA);
-		        
-		        // Preparar la consulta
-		        stmt = conexion.prepareStatement(SQLQuerys.SELECT_NOMBRE_AGENCIA);
-		        stmt.setInt(1, id);
-		        
-		        // Ejecutar la consulta
-		        rs = stmt.executeQuery();
-		        
-		        // Obtener el resultado
-		        if (rs.next()) {
-		            nombre = rs.getString(1); // recoge el String de la segunda columna de la BD, es decir, el nombre
-		        }
-
-		    } catch (Exception e) {
-		        e.printStackTrace(); // Manejo básico de errores
-		    } finally {
-		    	
-		        // Cerrar los recursos
-		        try {
-
-		            if (rs != null) rs.close();
-		            if (stmt != null) stmt.close();
-		            if (conexion != null) conexion.close();
-		        } catch (Exception ex) {
-		            ex.printStackTrace();
-		        }
-		    }
-
-		    return nombre; // Devuelve el nombre de la agencia o null si no se encontró
-		}
 }
