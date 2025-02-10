@@ -11,6 +11,7 @@ public class Alojamiento {
 	private Viaje viaje;
 	private String nombre;
 	private String precio;
+	private int viajeId;
 	
 	public Alojamiento() {
 		NMBHotel="";
@@ -22,11 +23,12 @@ public class Alojamiento {
 		viaje=new Viaje();
 		nombre="";
 		precio="";
+		viajeId=0;
 		
 	}
 	
 	public Alojamiento(String NMBHotel, String fecEntrada, String fecSalida, String ciudad, String tipoHab,
-			String eventoId, Viaje viaje, String nombre, String precio) {
+			String eventoId, Viaje viaje, String nombre, String precio, int viajeId) {
 		this.NMBHotel = NMBHotel;
 		this.fecEntrada = fecEntrada;
 		this.fecSalida = fecSalida;
@@ -36,6 +38,7 @@ public class Alojamiento {
 		this.viaje = viaje;
 		this.nombre = nombre;
 		this.precio = precio;
+		this.viajeId=viajeId;
 	}
 
 	public String getNMBHotel() {
@@ -109,12 +112,24 @@ public class Alojamiento {
 	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
+	
+
+	public int getViajeId() {
+		return viajeId;
+	}
+
+	public void setViajeId(int viajeId) {
+		this.viajeId = viajeId;
+	}
 
 	@Override
 	public String toString() {
 		return "Alojamiento [NMBHotel=" + NMBHotel + ", fecEntrada=" + fecEntrada + ", fecSalida=" + fecSalida
-				+ ", ciudad=" + ciudad + ", tipoHab=" + tipoHab + ", eventoId=" + eventoId + ", viaje=" + viaje + ", nombre=" + nombre + ", precio=" + precio + "]";
+				+ ", ciudad=" + ciudad + ", tipoHab=" + tipoHab + ", eventoId=" + eventoId + ", viaje=" + viaje
+				+ ", nombre=" + nombre + ", precio=" + precio + ", viajeId=" + viajeId + "]";
 	}
+
+	
 
 	
 	

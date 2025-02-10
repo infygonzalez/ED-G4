@@ -6,6 +6,8 @@ public class SQLQuerys {
 	//inserts
 	public static final String INSERT__AGENCIA = "insert into agencias(Nombre, LogoURL, ColorMarca, NumEmpleados, TipoAgencia,  Contraseña) values('";
 	public static final String INSERT_VIAJE = "insert into viajes(AgenciaID, PaisID, Nombre, Descripcion,  TipoViaje, FechaInicio, FechaFin, ServiciosNoIncluidos) values('";
+	public static final String INSERT_ALOJAMIENTO = "insert into Alojamientos(ViajeID, NombreEvento, NombreHotel, Ciudad,  TipoHabitacion, FechaEntrada, FechaSalida, Precio) values('";
+
 	public static final String SEPARATOR = "', '";
 	public static final String END_BLOCK = "')";
 	

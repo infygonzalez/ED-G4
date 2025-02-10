@@ -125,8 +125,8 @@ public class login extends JPanel {
 	        }
 	    		
 
-	            
-	            ViajesYEventos frame2 = new ViajesYEventos(agencia, frame);
+	            Viaje viaje = new Viaje();
+	            ViajesYEventos frame2 = new ViajesYEventos(agencia,viaje, frame);
 	            frame.setContentPane(frame2);
 	            frame.revalidate();
 	            frame.repaint();

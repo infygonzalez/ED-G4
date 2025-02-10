@@ -122,6 +122,40 @@ public class Gestor {
 			}
 		
 	}
+		public void insertarAlojamiento (Alojamiento alojamiento) {
+			Connection conexion =null;
+			Statement sentencia=null;
+			
+			try{
+				Class.forName(DButils.DRIVER);
+				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+				sentencia=conexion.createStatement();
+				String sql = SQLQuerys.INSERT_ALOJAMIENTO + alojamiento.getViajeId() + SQLQuerys.SEPARATOR + alojamiento.getNombre() + SQLQuerys.SEPARATOR + alojamiento.getNMBHotel() + SQLQuerys.SEPARATOR + alojamiento.getCiudad() + SQLQuerys.SEPARATOR + alojamiento.getTipoHab()
+				+ SQLQuerys.SEPARATOR + alojamiento.getFecEntrada()
+				+ SQLQuerys.SEPARATOR + alojamiento.getFecSalida() + SQLQuerys.SEPARATOR + alojamiento.getPrecio() + SQLQuerys.END_BLOCK;
+				sentencia.executeUpdate(sql);
+				
+				
+			}catch(SQLException sqle) {
+				
+				System.out.println("Error con la base de datos "+ sqle.getMessage());
+			}catch(Exception e) {
+				System.out.println("Error generico"+ e.getMessage());
+			}
+			
+			try {
+				sentencia.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la sentencia");
+			}
+			try {
+				conexion.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la conexion");
+			}
+		
+	}
+		
 		public ArrayList<Aeropuerto> buscarTodosAeropuertos(){
 			Connection conexion =null;
 			PreparedStatement sentencia=null;

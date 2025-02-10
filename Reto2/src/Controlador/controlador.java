@@ -15,6 +15,10 @@ public class controlador {
 		Gestor gestor = new Gestor();
 		gestor.insertarViaje(viaje);
 	}
+	public static void insertarAlojamiento(Alojamiento alojamiento) {
+		Gestor gestor = new Gestor();
+		gestor.insertarAlojamiento(alojamiento);
+	}
 	public void comprobarAgencia(Agencias agencia) {
 		Gestor gestor = new Gestor();
 		gestor.insertarAgencia(agencia);

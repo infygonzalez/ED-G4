@@ -28,6 +28,7 @@ import Modelo.Vuelo;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 
@@ -45,11 +46,12 @@ public class ViajesYEventos extends JPanel {
 	 */
 
 	        
-	  public ViajesYEventos(Agencias agencia, JFrame frame) {
+	  public ViajesYEventos(Agencias agencia, Viaje viaje, JFrame frame) {
 	        
 	        setLayout(null);
 
 	        model = new DefaultTableModel();
+	        model.addColumn("ID");
 	        model.addColumn("nombre");
 	        model.addColumn("tipo");
 	        model.addColumn("dias");
@@ -58,6 +60,7 @@ public class ViajesYEventos extends JPanel {
 	        model.addColumn("pais");
 
 	        model1 = new DefaultTableModel();
+	        model1.addColumn("ID");
 	        model1.addColumn("nombre");
 	        model1.addColumn("tipo");
 	        model1.addColumn("fecha");
@@ -66,9 +69,11 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnNuevoViaje = new JButton("Nuevo viaje");
 	        btnNuevoViaje.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	                frame.setContentPane(new NuevoViaje(agencia, frame));
+	        		
+	                frame.setContentPane(new NuevoViaje(agencia, viaje, frame));
 	                frame.repaint();
 	                frame.revalidate();
+	        		
 	        	}
 	        });
 	        btnNuevoViaje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 22));
@@ -79,10 +84,15 @@ public class ViajesYEventos extends JPanel {
 	        JButton btnNuevoEvento = new JButton("Nuevo evento");
 	        btnNuevoEvento.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	                frame.setContentPane(new NuevoEvento(agencia, frame));
+	        		Viaje viajeSeleccionado = viajeSeleccionado(agencia);
+	        		int rowIndex = table.getSelectedRow();
+	        		if (viajeSeleccionado!=null && rowIndex != -1) {
+	                frame.setContentPane(new NuevoEvento(agencia,viajeSeleccionado, frame));
 	                frame.repaint();
 	                frame.revalidate();
-
+	        		}else {
+	        			JOptionPane.showMessageDialog(frame, "Tienes que seleccionar un viaje para añadir un evento", "Error", JOptionPane.WARNING_MESSAGE);
+	        		}
 	        	}
 	        });
 	        btnNuevoEvento.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));

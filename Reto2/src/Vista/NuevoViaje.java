@@ -48,7 +48,7 @@ public class NuevoViaje extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NuevoViaje(Agencias agencia, JFrame frame) {
+	public NuevoViaje(Agencias agencia, Viaje viaje, JFrame frame) {
 		setLayout(null);
 		
 		JLabel lblNombreViaje = new JLabel("Nombre viaje");
@@ -150,7 +150,7 @@ public class NuevoViaje extends JPanel {
 		            
 		        );
 		        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
-		        frame.setContentPane(new ViajesYEventos(agencia, frame));
+		        frame.setContentPane(new ViajesYEventos(agencia, viaje, frame));
                 frame.revalidate();
                 frame.repaint();
 		    }
@@ -163,7 +163,7 @@ public class NuevoViaje extends JPanel {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-                frame.setContentPane(new ViajesYEventos(agencia, frame));
+                frame.setContentPane(new ViajesYEventos(agencia, viaje, frame));
                 frame.revalidate();
                 frame.repaint();
 			}
