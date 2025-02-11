@@ -7,21 +7,23 @@ public class Vuelo {
 	private String horaSal;
 	private String durViaje;
 	private String eventoId;
+	private String CodAeroli;
 	private Viaje viaje;
 	private String nombre;
 	private String precio;
-	private Aeropuerto aeropuertoOrigen;
-	private Aeropuerto aeropuertoDestino;
+	private String aeropuertoOrigen;
+	private String aeropuertoDestino;
 	private Aerolinea aerolinea;
 	private Vuelo vueloVuelta;
 	private String tipo;
+	private int viajeId;
 	
 	public Vuelo() {
 
 	}
 
 	public Vuelo(String codVuelo, String fecSal, String horaSal, String durViaje, String eventoId,
-			Viaje viaje, String nombre, String precio, Aeropuerto aeropuertoOrigen,Aeropuerto aeropuertoDestino, Aerolinea aerolinea, Vuelo vueloVuelta, String tipo) {
+			Viaje viaje, String nombre, String precio, String aeropuertoOrigen,String aeropuertoDestino, Aerolinea aerolinea, Vuelo vueloVuelta, String tipo, int viajeId, String CodAeroli) {
 		this.CodVuelo = codVuelo;
 		this.fecSal = fecSal;
 		this.horaSal = horaSal;
@@ -35,6 +37,8 @@ public class Vuelo {
 		this.aerolinea=aerolinea;
 		this.vueloVuelta=vueloVuelta;
 		this.tipo=tipo;
+		this.viajeId=viajeId;
+		this.CodAeroli=CodAeroli;
 	}
 
 	public String getCodVuelo() {
@@ -109,19 +113,19 @@ public class Vuelo {
 		this.aerolinea = aerolinea;
 	}
 
-	public Aeropuerto getAeropuertoOrigen() {
+	public String getAeropuertoOrigen() {
 		return aeropuertoOrigen;
 	}
 
-	public void setAeropuertoOrigen(Aeropuerto aeropuertoOrigen) {
+	public void setAeropuertoOrigen(String aeropuertoOrigen) {
 		this.aeropuertoOrigen = aeropuertoOrigen;
 	}
 
-	public Aeropuerto getAeropuertoDestino() {
+	public String getAeropuertoDestino() {
 		return aeropuertoDestino;
 	}
 
-	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
+	public void setAeropuertoDestino(String aeropuertoDestino) {
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
@@ -143,13 +147,36 @@ public class Vuelo {
 		this.tipo = tipo;
 	}
 
+	
+	public int getViajeId() {
+		return viajeId;
+	}
+
+	public void setViajeId(int viajeId) {
+		this.viajeId = viajeId;
+	}
+
+	
+	public String getCodAeroli() {
+		return CodAeroli;
+	}
+
+	public void setCodAeroli(String codAeroli) {
+		CodAeroli = codAeroli;
+	}
+
 	@Override
 	public String toString() {
 		return "Vuelo [CodVuelo=" + CodVuelo + ", fecSal=" + fecSal + ", horaSal=" + horaSal + ", durViaje=" + durViaje
-				+ ", eventoId=" + eventoId + ", viaje=" + viaje + ", nombre=" + nombre + ", precio=" + precio
-				+ ", aeropuertoOrigen=" + aeropuertoOrigen + ", aeropuertoDestino=" + aeropuertoDestino + ", aerolinea="
-				+ aerolinea + ", vueloVuelta=" + vueloVuelta + ", tipo=" + tipo + "]";
+				+ ", eventoId=" + eventoId + ", CodAeroli=" + CodAeroli + ", viaje=" + viaje + ", nombre=" + nombre
+				+ ", precio=" + precio + ", aeropuertoOrigen=" + aeropuertoOrigen + ", aeropuertoDestino="
+				+ aeropuertoDestino + ", aerolinea=" + aerolinea + ", vueloVuelta=" + vueloVuelta + ", tipo=" + tipo
+				+ ", viajeId=" + viajeId + "]";
 	}
+
+	
+
+	
 
 	
 	

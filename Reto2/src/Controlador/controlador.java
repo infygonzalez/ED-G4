@@ -19,6 +19,14 @@ public class controlador {
 		Gestor gestor = new Gestor();
 		gestor.insertarAlojamiento(alojamiento);
 	}
+	public static void insertarOtros(Otros otros) {
+		Gestor gestor = new Gestor();
+		gestor.insertarOtros(otros);
+	}
+	public static void insertarVueloIda(Vuelo vuelo) {
+		Gestor gestor = new Gestor();
+		gestor.insertarVueloIda(vuelo);
+	}
 	public void comprobarAgencia(Agencias agencia) {
 		Gestor gestor = new Gestor();
 		gestor.insertarAgencia(agencia);
@@ -34,6 +42,12 @@ public class controlador {
 		Gestor gestor= new Gestor();
 		pais = gestor.buscarTodosPaises();
 		return pais;
+	}
+	public ArrayList <Aerolinea> buscarTodosAerolineas(){
+		ArrayList<Aerolinea> aerolinea = null;
+		Gestor gestor= new Gestor();
+		aerolinea = gestor.buscarTodosAerolineas();
+		return aerolinea;
 	}
 	
 	public ArrayList <Alojamiento> buscarTodosAlojamientos(Viaje viaje){

@@ -171,11 +171,9 @@ public class NuevoViaje extends JPanel {
 		btnCancelar.setBounds(273, 416, 89, 23);
 		add(btnCancelar);
 
+	
 		
-		//llenarComboBoxAeropuertos(lo que sea pero va en eventos);
 		
-		
-		// Agregar PropertyChangeListener a los JDateChooser
         PropertyChangeListener listener = new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -205,18 +203,6 @@ public class NuevoViaje extends JPanel {
 
 	    for (Pais pais : listaPaises) {
 	        comboBox.addItem(pais.getDescripcion()); // Suponiendo que quieres mostrar el nombre del país
-	    }
-	}
-	
-	
-	public void llenarComboBoxAeropuertos(JComboBox<String> comboBox2) {
-	    Gestor gestor = new Gestor();
-	    ArrayList<Aeropuerto> listaAeropuertos = gestor.buscarTodosAeropuertos();
-	    
-	    comboBox2.removeAllItems(); // Limpiar el comboBox antes de llenarlo
-
-	    for (Aeropuerto aeropuerto : listaAeropuertos) {
-	        comboBox2.addItem(aeropuerto.getLugarAero()); // Suponiendo que quieres mostrar el nombre del país
 	    }
 	}
 	

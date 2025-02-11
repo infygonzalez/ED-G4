@@ -155,6 +155,76 @@ public class Gestor {
 			}
 		
 	}
+		public void insertarOtros(Otros otros) {
+			Connection conexion =null;
+			Statement sentencia=null;
+			
+			try{
+				Class.forName(DButils.DRIVER);
+				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+				sentencia=conexion.createStatement();
+				String sql = SQLQuerys.INSERT_OTROS + otros.getViajeId() + SQLQuerys.SEPARATOR + otros.getNombre() + SQLQuerys.SEPARATOR + otros.getDescripcion() + SQLQuerys.SEPARATOR + otros.getFecha() +
+				SQLQuerys.SEPARATOR + otros.getPrecio() + SQLQuerys.END_BLOCK; 
+				
+				sentencia.executeUpdate(sql);
+				
+				
+			}catch(SQLException sqle) {
+				
+				System.out.println("Error con la base de datos "+ sqle.getMessage() );
+			}catch(Exception e) {
+				System.out.println("Error generico"+ e.getMessage());
+			}
+			
+			try {
+				sentencia.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la sentencia");
+			}
+			try {
+				conexion.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la conexion");
+			}
+		
+	}
+		public void insertarVueloIda(Vuelo vuelo) {
+			Connection conexion =null;
+			Statement sentencia=null;
+			
+			try{
+				Class.forName(DButils.DRIVER);
+				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+				sentencia=conexion.createStatement();
+				String sql = SQLQuerys.INSERT_VUELO_IDA + vuelo.getViajeId() + SQLQuerys.SEPARATOR + 
+				vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
+				+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
+				SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
+				SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
+				+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.END_BLOCK; 
+				
+				sentencia.executeUpdate(sql);
+				
+				
+			}catch(SQLException sqle) {
+				
+				System.out.println("Error con la base de datos "+ sqle.getMessage() );
+			}catch(Exception e) {
+				System.out.println("Error generico"+ e.getMessage());
+			}
+			
+			try {
+				sentencia.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la sentencia");
+			}
+			try {
+				conexion.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar la conexion");
+			}
+		
+	}
 		
 		public ArrayList<Aeropuerto> buscarTodosAeropuertos(){
 			Connection conexion =null;
@@ -196,6 +266,48 @@ public class Gestor {
 			}
 			
 			return aeropuertos;
+			
+		}
+		public ArrayList<Aerolinea> buscarTodosAerolineas(){
+			Connection conexion =null;
+			PreparedStatement sentencia=null;
+			ResultSet resultset = null;
+			ArrayList<Aerolinea> aerolineas = null;				
+			try {
+				Class.forName(DButils.DRIVER);
+				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
+				String sql = SQLQuerys.SELECT_TODOS_AEROLINEAS;
+				sentencia=conexion.prepareStatement(sql);
+				resultset = sentencia.executeQuery();
+				aerolineas = new ArrayList<Aerolinea>();
+				while (resultset.next()) {
+					Aerolinea aerolinea =new Aerolinea();
+					aerolinea.setCodAeroli(resultset.getString("CodigoAerolinea"));
+					aerolinea.setLugarAeroli(resultset.getString("NombreAerolinea"));
+					aerolineas.add(aerolinea);
+				}
+				
+				
+			
+			}catch (SQLException sqle) {
+				System.out.println("error con la base de datos " + sqle.getMessage());
+			}catch(Exception e) {
+				System.out.println("Error generico "+ e.getMessage());
+			}try {
+				resultset.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar resulset ");
+			}try {
+				sentencia.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar sentencia ");
+			}try {
+				conexion.close();
+			}catch (SQLException e) {
+				System.out.println("Error al cerrar conexion ");
+			}
+			
+			return aerolineas;
 			
 		}
 		

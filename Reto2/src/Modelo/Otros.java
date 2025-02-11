@@ -9,19 +9,21 @@ public class Otros {
     private Viaje viaje;
     private String precio;
     private String nombre;
+    private int viajeId;
     
     public Otros() {
         
     }
 
     public Otros(String fecha, String descripcion, String eventoId,
-            Viaje viaje, String precio, String nombre) {
+            Viaje viaje, String precio, String nombre, int viajeId) {
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.eventoId = eventoId;
         this.viaje = viaje;
         this.precio = precio;
         this.nombre = nombre;
+        this.viajeId=viajeId;
     }
 
 
@@ -71,12 +73,23 @@ public class Otros {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+
+	public int getViajeId() {
+		return viajeId;
+	}
+
+	public void setViajeId(int viajeId) {
+		this.viajeId = viajeId;
+	}
 
 	@Override
 	public String toString() {
 		return "Otros [fecha=" + fecha + ", descripcion=" + descripcion + ", eventoId=" + eventoId + ", viaje=" + viaje
-				+ ", precio=" + precio + ", nombre=" + nombre + "]";
+				+ ", precio=" + precio + ", nombre=" + nombre + ", viajeId=" + viajeId + "]";
 	}
+
+	
 
    
     
