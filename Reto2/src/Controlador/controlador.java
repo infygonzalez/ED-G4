@@ -27,6 +27,10 @@ public class controlador {
 		Gestor gestor = new Gestor();
 		gestor.insertarVueloIda(vuelo);
 	}
+	public static void insertarVueloIdaVuelta(Vuelo vuelo) {
+		Gestor gestor = new Gestor();
+		gestor.insertarVueloIdaVuelta(vuelo);
+	}
 	public void comprobarAgencia(Agencias agencia) {
 		Gestor gestor = new Gestor();
 		gestor.insertarAgencia(agencia);

@@ -54,6 +54,10 @@ public class NuevoEvento extends JPanel {
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JDateChooser dateChooser_1;
 	private JComboBox comboBox_1;
+	private JComboBox comboAerolinea_1;
+	private JComboBox comboAeroDes_1;
+	private JComboBox comboAero_1;
+	private JComboBox comboVuelo;
 	private JDateChooser dateChooser_4;
 	private JTextField textNMBHotel;
 	private JPanel panelAlojamiento;
@@ -63,7 +67,7 @@ public class NuevoEvento extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NuevoEvento(Agencias agencia, Viaje viaje, JFrame frame) {
+	public NuevoEvento(Agencias agencia, Viaje viaje, JFrame frame) {	
 		setLayout(null);
 		
 		JButton btnNewButton = new JButton("cancelar");
@@ -75,7 +79,7 @@ public class NuevoEvento extends JPanel {
 			}
 		});
 		
-		btnNewButton.setBounds(958, 574, 89, 23);
+		btnNewButton.setBounds(942, 603, 89, 23);
 		add(btnNewButton);
 		
 		panelVuelos = new JPanel();
@@ -83,6 +87,65 @@ public class NuevoEvento extends JPanel {
 		panelVuelos.setBounds(87, 149, 885, 450);
 		add(panelVuelos);
 		panelVuelos.setLayout(null);
+		
+		panelVueloVuelta = new JPanel();
+		panelVueloVuelta.setBackground(new Color(0, 128, 0));
+		panelVueloVuelta.setBounds(435, 178, 391, 228);
+		panelVuelos.add(panelVueloVuelta);
+		panelVueloVuelta.setLayout(null);
+		panelVueloVuelta.setVisible(false);
+		
+		JLabel lblNewLabel_4 = new JLabel("FechaVuelta");
+		lblNewLabel_4.setBounds(10, 11, 66, 14);
+		panelVueloVuelta.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Codigo de vuelo vuelta");
+		lblNewLabel_4_1.setBounds(10, 46, 115, 14);
+		panelVueloVuelta.add(lblNewLabel_4_1);
+		
+		JLabel lblNewLabel_2_1_1_2_1_2 = new JLabel("Aerolinea");
+		lblNewLabel_2_1_1_2_1_2.setBounds(10, 74, 81, 14);
+		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_2);
+		
+		JLabel lblNewLabel_2_1_1_2_1_1_1_1 = new JLabel("Horario de vuelta");
+		lblNewLabel_2_1_1_2_1_1_1_1.setBounds(10, 105, 115, 14);
+		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_1_1_1);
+		
+		textHoraVuelta = new JTextField();
+		textHoraVuelta.setColumns(10);
+		textHoraVuelta.setBounds(131, 105, 130, 20);
+		panelVueloVuelta.add(textHoraVuelta);
+		
+		textDuracionVuelta = new JTextField();
+		textDuracionVuelta.setColumns(10);
+		textDuracionVuelta.setBounds(131, 136, 130, 20);
+		panelVueloVuelta.add(textDuracionVuelta);
+		
+		JLabel lblNewLabel_2_1_1_2_1_1_2_1 = new JLabel("Duracion");
+		lblNewLabel_2_1_1_2_1_1_2_1.setBounds(10, 136, 81, 14);
+		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_1_2_1);
+		
+		JLabel lblNewLabel_2_1_1_2_1_1_3 = new JLabel("Precio total");
+		lblNewLabel_2_1_1_2_1_1_3.setBounds(10, 167, 81, 14);
+		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_1_3);
+		
+		textPrecioTotal = new JTextField();
+		textPrecioTotal.setBounds(131, 167, 130, 20);
+		panelVueloVuelta.add(textPrecioTotal);
+		textPrecioTotal.setColumns(10);
+		
+		textCodigoVuelta = new JTextField();
+		textCodigoVuelta.setColumns(10);
+		textCodigoVuelta.setBounds(131, 43, 130, 20);
+		panelVueloVuelta.add(textCodigoVuelta);
+		
+		JDateChooser dateChooser_3 = new JDateChooser();
+		dateChooser_3.setBounds(131, 11, 70, 20);
+		panelVueloVuelta.add(dateChooser_3);
+		
+		JComboBox comboAerolineaVuelta = new JComboBox();
+		comboAerolineaVuelta.setBounds(131, 70, 130, 22);
+		panelVueloVuelta.add(comboAerolineaVuelta);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre evento");
 		lblNewLabel_2.setBounds(10, 11, 81, 14);
@@ -98,6 +161,23 @@ public class NuevoEvento extends JPanel {
 		textNombreVuelo.setColumns(10);
 		
 		comboVuelo = new JComboBox();
+		comboVuelo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+                String seleccion = (String) comboVuelo.getSelectedItem();
+
+				if ("Ida y vuelta".equals(seleccion)) {
+					panelVueloVuelta.setVisible(true);
+					btnGuardarVueloIda.setVisible(false);
+					btnGuardarVueloIdaVuelta.setVisible(true);
+				}else {
+					panelVueloVuelta.setVisible(false);
+					btnGuardarVueloIdaVuelta.setVisible(false);
+					btnGuardarVueloIda.setVisible(true);
+				}
+			}
+		});
 		comboVuelo.setModel(new DefaultComboBoxModel(new String[] {"Ida", "Ida y vuelta"}));
 		comboVuelo.setBounds(111, 50, 130, 22);
 		panelVuelos.add(comboVuelo);
@@ -148,64 +228,6 @@ public class NuevoEvento extends JPanel {
 		JLabel lblNewLabel_2_1_1_2_1_1_1 = new JLabel("Horario de salida");
 		lblNewLabel_2_1_1_2_1_1_1.setBounds(10, 295, 81, 14);
 		panelVuelos.add(lblNewLabel_2_1_1_2_1_1_1);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(0, 128, 0));
-		panel_3.setBounds(435, 178, 391, 228);
-		panelVuelos.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JLabel lblNewLabel_4 = new JLabel("FechaVuelta");
-		lblNewLabel_4.setBounds(10, 11, 66, 14);
-		panel_3.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_4_1 = new JLabel("Codigo de vuelo vuelta");
-		lblNewLabel_4_1.setBounds(10, 46, 115, 14);
-		panel_3.add(lblNewLabel_4_1);
-		
-		JLabel lblNewLabel_2_1_1_2_1_2 = new JLabel("Aerolinea");
-		lblNewLabel_2_1_1_2_1_2.setBounds(10, 74, 81, 14);
-		panel_3.add(lblNewLabel_2_1_1_2_1_2);
-		
-		JLabel lblNewLabel_2_1_1_2_1_1_1_1 = new JLabel("Horario de vuelta");
-		lblNewLabel_2_1_1_2_1_1_1_1.setBounds(10, 105, 115, 14);
-		panel_3.add(lblNewLabel_2_1_1_2_1_1_1_1);
-		
-		textHoraVuelta = new JTextField();
-		textHoraVuelta.setColumns(10);
-		textHoraVuelta.setBounds(131, 105, 130, 20);
-		panel_3.add(textHoraVuelta);
-		
-		textDuracionVuelta = new JTextField();
-		textDuracionVuelta.setColumns(10);
-		textDuracionVuelta.setBounds(131, 136, 130, 20);
-		panel_3.add(textDuracionVuelta);
-		
-		JLabel lblNewLabel_2_1_1_2_1_1_2_1 = new JLabel("Duracion");
-		lblNewLabel_2_1_1_2_1_1_2_1.setBounds(10, 136, 81, 14);
-		panel_3.add(lblNewLabel_2_1_1_2_1_1_2_1);
-		
-		JLabel lblNewLabel_2_1_1_2_1_1_3 = new JLabel("Precio total");
-		lblNewLabel_2_1_1_2_1_1_3.setBounds(10, 167, 81, 14);
-		panel_3.add(lblNewLabel_2_1_1_2_1_1_3);
-		
-		textPrecioTotal = new JTextField();
-		textPrecioTotal.setBounds(131, 167, 130, 20);
-		panel_3.add(textPrecioTotal);
-		textPrecioTotal.setColumns(10);
-		
-		textCodigoVuelta = new JTextField();
-		textCodigoVuelta.setColumns(10);
-		textCodigoVuelta.setBounds(131, 43, 130, 20);
-		panel_3.add(textCodigoVuelta);
-		
-		JDateChooser dateChooser_3 = new JDateChooser();
-		dateChooser_3.setBounds(131, 11, 70, 20);
-		panel_3.add(dateChooser_3);
-		
-		JComboBox comboAerolineaVuelta = new JComboBox();
-		comboAerolineaVuelta.setBounds(131, 70, 130, 22);
-		panel_3.add(comboAerolineaVuelta);
 		
 		textDuracion = new JTextField();
 		textDuracion.setColumns(10);
@@ -425,7 +447,7 @@ public class NuevoEvento extends JPanel {
 		llenarComboBoxAeropuertosDestino(comboAeroDes_1);
 		llenarComboBoxAerolinea(comboAerolinea_1);
 		
-		JButton btnGuardarVueloIda = new JButton("Guardar Vuelo");
+		btnGuardarVueloIda = new JButton("Guardar Vuelo ?");
 		btnGuardarVueloIda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				java.util.Date fechaSalida = dateChooser_2.getDate();
@@ -448,18 +470,44 @@ public class NuevoEvento extends JPanel {
 		});
 		btnGuardarVueloIda.setBounds(33, 396, 148, 23);
 		panelVuelos.add(btnGuardarVueloIda);
+		
+		btnGuardarVueloIdaVuelta = new JButton("Guardar Vuelo !");
+		btnGuardarVueloIdaVuelta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				java.util.Date fechaSalida = dateChooser_2.getDate();
+				java.util.Date FechaRegreso = dateChooser_3.getDate();
+				
+				String CodAeroli = getCodAerolineaSeleccionado();
+				
+				insertarVueloIda(
+						viaje,
+						textNombre.getText(),
+						String.valueOf(comboAero_1.getSelectedItem()),
+						String.valueOf(comboAeroDes_1.getSelectedItem()),
+						textCodigoVuelo.getText(),
+						CodAeroli,
+						fechaSalida,
+						textHoraSal.getText(),
+						textDuracion.getText(),
+						textPrecioVuelo.getText()
+						);
+			}
+		});
+		btnGuardarVueloIdaVuelta.setBounds(33, 396, 148, 23);
+		panelVuelos.add(btnGuardarVueloIdaVuelta);
 	}
 	
-private ArrayList<Aerolinea> listaAerolineas;
-private JComboBox comboAerolinea_1;
-private JComboBox comboAeroDes_1;
-private JComboBox comboAero_1;
-private JComboBox comboVuelo;
+	
+	private ArrayList<Aerolinea> listaAerolinea;
+	private JPanel panelVueloVuelta;
+	private JButton btnGuardarVueloIdaVuelta;
+	private JButton btnGuardarVueloIda;
+
 	
 	private String getCodAerolineaSeleccionado() {
 	    int selectedIndex = comboAerolinea_1.getSelectedIndex();
-	    if (selectedIndex >= 0 && selectedIndex < listaAerolineas.size()) {
-	        return listaAerolineas.get(selectedIndex).getCodAeroli(); 
+	    if (selectedIndex >= 0 && selectedIndex < listaAerolinea.size()) {
+	        return listaAerolinea.get(selectedIndex).getCodAeroli(); 
 	    }
 	    return null; 
 	}
@@ -492,7 +540,7 @@ private JComboBox comboVuelo;
 	}
 	public void llenarComboBoxAerolinea(JComboBox<String> comboAerolinea) {
 	    Gestor gestor = new Gestor();
-	    ArrayList<Aerolinea> listaAerolinea = gestor.buscarTodosAerolineas();
+	    listaAerolinea = gestor.buscarTodosAerolineas();
 	    
 	    comboAerolinea.removeAllItems(); 
 
@@ -542,5 +590,28 @@ private JComboBox comboVuelo;
 	    vuelo.setDurViaje(DurViaje);
 	    vuelo.setPrecio(precio);
 	    controlador.insertarVueloIda(vuelo);
+	}
+	private void insertarVueloIdaVuelta(Viaje viaje,String nombre, String AeropuertoOrigen, String AeropuertoDestino, String CodVuelo, 
+			String CodAeroli, java.util.Date FecSal, String HoraSal, String DurViaje, String precio, 
+			String FechaRegreso, String HoraRegreso, String DuracionRegreso, String PrecioTotal, String CodigoVueloVuelta) {
+		
+	    String fechaSalidaFormatted = convertirFechaADatabaseFormat(FecSal);
+	    Vuelo vuelo = new Vuelo();
+	    vuelo.setViajeId(Integer.parseInt(viaje.getViajesId()));
+	    vuelo.setNombre(nombre);
+	    vuelo.setAeropuertoOrigen(AeropuertoOrigen);
+	    vuelo.setAeropuertoDestino(AeropuertoDestino);
+	    vuelo.setCodVuelo(CodVuelo);
+	    vuelo.setCodAeroli(CodAeroli);
+	    vuelo.setFecSal(fechaSalidaFormatted);
+	    vuelo.setHoraSal(HoraSal);
+	    vuelo.setDurViaje(DurViaje);
+	    vuelo.setPrecio(precio);
+	    vuelo.setFechaRegreso(FechaRegreso);
+	    vuelo.setHoraRegreso(HoraRegreso);
+	    vuelo.setDuracionRegreso(DuracionRegreso);
+	    vuelo.setPrecioTotal(PrecioTotal);
+	    vuelo.setCodigoVueloVuelta(CodigoVueloVuelta);
+	    controlador.insertarVueloIdaVuelta(vuelo);
 	}
 }

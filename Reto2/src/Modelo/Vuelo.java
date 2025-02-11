@@ -16,6 +16,11 @@ public class Vuelo {
 	private Aerolinea aerolinea;
 	private Vuelo vueloVuelta;
 	private String tipo;
+	private String FechaRegreso;
+	private String HoraRegreso;
+	private String DuracionRegreso;
+	private String PrecioTotal;
+	private String CodigoVueloVuelta;
 	private int viajeId;
 	
 	public Vuelo() {
@@ -23,7 +28,8 @@ public class Vuelo {
 	}
 
 	public Vuelo(String codVuelo, String fecSal, String horaSal, String durViaje, String eventoId,
-			Viaje viaje, String nombre, String precio, String aeropuertoOrigen,String aeropuertoDestino, Aerolinea aerolinea, Vuelo vueloVuelta, String tipo, int viajeId, String CodAeroli) {
+			Viaje viaje, String nombre, String precio, String aeropuertoOrigen,String aeropuertoDestino, Aerolinea aerolinea, Vuelo vueloVuelta, String tipo, int viajeId, 
+			String CodAeroli, String FechaRegreso, String HoraRegreso, String DuracionRegreso, String PrecioTotal, String CodigoVueloVuelta) {
 		this.CodVuelo = codVuelo;
 		this.fecSal = fecSal;
 		this.horaSal = horaSal;
@@ -39,6 +45,11 @@ public class Vuelo {
 		this.tipo=tipo;
 		this.viajeId=viajeId;
 		this.CodAeroli=CodAeroli;
+		this.FechaRegreso=FechaRegreso;
+		this.HoraRegreso=HoraRegreso;
+		this.DuracionRegreso=DuracionRegreso;
+		this.PrecioTotal=PrecioTotal;
+		this.CodigoVueloVuelta=CodigoVueloVuelta;
 	}
 
 	public String getCodVuelo() {
@@ -136,8 +147,6 @@ public class Vuelo {
 	public void setVueloVuelta(Vuelo vueloVuelta) {
 		this.vueloVuelta = vueloVuelta;
 	}
-
-	
 	
 	public String getTipo() {
 		return tipo;
@@ -164,6 +173,46 @@ public class Vuelo {
 	public void setCodAeroli(String codAeroli) {
 		CodAeroli = codAeroli;
 	}
+	
+	public String getFechaRegreso() {
+		return FechaRegreso;
+	}
+
+	public void setFechaRegreso(String fechaRegreso) {
+		FechaRegreso = fechaRegreso;
+	}
+
+	public String getHoraRegreso() {
+		return HoraRegreso;
+	}
+
+	public void setHoraRegreso(String horaRegreso) {
+		HoraRegreso = horaRegreso;
+	}
+
+	public String getDuracionRegreso() {
+		return DuracionRegreso;
+	}
+
+	public void setDuracionRegreso(String duracionRegreso) {
+		DuracionRegreso = duracionRegreso;
+	}
+
+	public String getPrecioTotal() {
+		return PrecioTotal;
+	}
+
+	public void setPrecioTotal(String precioTotal) {
+		PrecioTotal = precioTotal;
+	}
+
+	public String getCodigoVueloVuelta() {
+		return CodigoVueloVuelta;
+	}
+
+	public void setCodigoVueloVuelta(String codigoVueloVuelta) {
+		CodigoVueloVuelta = codigoVueloVuelta;
+	}
 
 	@Override
 	public String toString() {
@@ -171,15 +220,10 @@ public class Vuelo {
 				+ ", eventoId=" + eventoId + ", CodAeroli=" + CodAeroli + ", viaje=" + viaje + ", nombre=" + nombre
 				+ ", precio=" + precio + ", aeropuertoOrigen=" + aeropuertoOrigen + ", aeropuertoDestino="
 				+ aeropuertoDestino + ", aerolinea=" + aerolinea + ", vueloVuelta=" + vueloVuelta + ", tipo=" + tipo
+				+ ", FechaRegreso=" + FechaRegreso + ", HoraRegreso=" + HoraRegreso + ", DuracionRegreso="
+				+ DuracionRegreso + ", PrecioTotal=" + PrecioTotal + ", CodigoVueloVuelta=" + CodigoVueloVuelta
 				+ ", viajeId=" + viajeId + "]";
 	}
-
-	
-
-	
-
-	
-	
 
 
 	
