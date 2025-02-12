@@ -8,6 +8,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 import Modelo.*;
@@ -36,6 +38,7 @@ public class NuevoPerfil extends JPanel {
 	private JButton btnCancelar;
 	private JLabel lblContraseña;
 	private JTextField textContraseña;
+	private JPanel panelcolor;
 
 	/**
 	 * Create the panel.
@@ -45,6 +48,10 @@ public class NuevoPerfil extends JPanel {
 		this.frame=frame;
 		
 		setLayout(null);
+		
+		panelcolor = new JPanel();
+		panelcolor.setBounds(393, 441, 151, 29);
+		add(panelcolor);
 		
 		lblNombre = new JLabel("Nombre agencia");
 		lblNombre.setForeground(Color.BLACK);
@@ -85,6 +92,28 @@ public class NuevoPerfil extends JPanel {
 		textColor.setBounds(339, 385, 258, 45);
 		add(textColor);
 		textColor.setColumns(10);
+
+		textColor.addKeyListener(new KeyAdapter() {
+
+			@Override
+
+			public void keyReleased(KeyEvent e) {
+
+				String color = textColor.getText().trim();
+
+				try {
+
+				if(color.matches("#[0-9-fA-F]{6}")) {
+
+					panelcolor.setBackground(Color.decode(color));
+
+				}
+
+				}catch(Exception ignored) {}
+
+			}
+
+		});
 		
 		comboEmple = new JComboBox();
 		comboEmple.setModel(new DefaultComboBoxModel(new String[] {"2-10", "10-100", "100-1000"}));

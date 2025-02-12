@@ -4,12 +4,12 @@ public class SQLQuerys {
 	
 	
 	//inserts
-	public static final String INSERT__AGENCIA = "insert into agencias(Nombre, LogoURL, ColorMarca, NumEmpleados, TipoAgencia,  Contraseña) values('";
+	public static final String INSERT__AGENCIA = "insert into agencias(Nombre, ColorMarca, LogoURL, NumEmpleados, TipoAgencia,  Contraseña) values('";
 	public static final String INSERT_VIAJE = "insert into viajes(AgenciaID, PaisID, Nombre, Descripcion,  TipoViaje, FechaInicio, FechaFin, ServiciosNoIncluidos) values('";
 	public static final String INSERT_ALOJAMIENTO = "insert into Alojamientos(ViajeID, NombreEvento, NombreHotel, Ciudad,  TipoHabitacion, FechaEntrada, FechaSalida, Precio) values('";
 	public static final String INSERT_OTROS = "insert into Actividades(ViajeID, NombreEvento, Descripcion, Fecha, Precio) values('";
 	public static final String INSERT_VUELO_IDA = "insert into Vuelos(ViajeID, NombreEvento, AeropuertoOrigen, AeropuertoDestino, CodigoVuelo, CodigoAerolinea, FechaSalida, HoraSalida, Duracion, Precio) values('";
-	public static final String INSERT_VUELO_IDAVUELTA = "insert into Vuelos(ViajeID, NombreEvento, AeropuertoOrigen, AeropuertoDestino, CodigoVuelo, CodigoAerolinea, FechaSalida, HoraSalida, Duracion, Precio, FechaRegreso, HoraRegreso, DuracionRegreso, PrecioTotal, CodigoVueloVuelta) values('";
+	public static final String INSERT_VUELO_IDAVUELTA = "insert into Vuelos(ViajeID, NombreEvento, AeropuertoOrigen, AeropuertoDestino, CodigoVuelo, CodigoAerolinea, FechaSalida, HoraSalida, Duracion, Precio, FechaRegreso, HoraRegreso, DuracionRegreso, PrecioTotal, CodigoVueloVuelta, CodigoAerolineaRegreso, AeropuertoOrigenVuelta, AeropuertoDestinoVuelta) values('";
 
 	public static final String SEPARATOR = "', '";
 	public static final String END_BLOCK = "')";

@@ -21,6 +21,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -32,6 +34,12 @@ import com.toedter.calendar.JDateChooser;
 
 import Controlador.controlador;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 
 public class NuevoViaje extends JPanel {
 
@@ -51,12 +59,45 @@ public class NuevoViaje extends JPanel {
 	public NuevoViaje(Agencias agencia, Viaje viaje, JFrame frame) {
 		setLayout(null);
 		
+		JPanel panelLogo = new JPanel();
+		panelLogo.setBounds(10, 11, 193, 116);
+		add(panelLogo);
+        panelLogo.setOpaque(false);
+        panelLogo.setBorder(null);        
+        panelLogo.setLayout(new BorderLayout(0, 0));
+
+        URL imgUrl = null;
+        try {
+            imgUrl = new URL(agencia.getAgenciaLogo());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        ImageIcon image = new ImageIcon(imgUrl);
+        JLabel lblLogo = new JLabel(new ImageIcon(image.getImage().getScaledInstance(168, 109, Image.SCALE_SMOOTH)));
+        panelLogo.add(lblLogo);
+        
+        
+		JPanel panelColor_1 = new JPanel();
+		panelColor_1.setBackground((Color) null);
+		panelColor_1.setBounds(1174, 0, 39, 575);
+		add(panelColor_1);
+		
+		JPanel panelColor = new JPanel();
+		panelColor.setBackground((Color) null);
+		panelColor.setBounds(80, 145, 39, 575);
+		add(panelColor);
+		panelColor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+	    panelColor_1.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+	    
+		
 		JLabel lblNombreViaje = new JLabel("Nombre viaje");
-		lblNombreViaje.setBounds(44, 34, 98, 14);
+		lblNombreViaje.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNombreViaje.setBounds(154, 158, 193, 53);
 		add(lblNombreViaje);
 		
 		JLabel lblTipoViaje = new JLabel("Tipo de viaje");
-		lblTipoViaje.setBounds(44, 75, 86, 14);
+		lblTipoViaje.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblTipoViaje.setBounds(650, 158, 193, 53);
 		add(lblTipoViaje);
 		
 		JCalendar calendar = new JCalendar();
@@ -67,66 +108,72 @@ public class NuevoViaje extends JPanel {
         System.out.print(fecha);
 		
 		JLabel lblNewLabel_2 = new JLabel("Fecha de Inicio");
-		lblNewLabel_2.setBounds(44, 114, 86, 14);
+		lblNewLabel_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_2.setBounds(154, 233, 193, 53);
 		add(lblNewLabel_2);
 		
 		JLabel lblDias = new JLabel("Dias");
-		lblDias.setBounds(44, 188, 46, 14);
+		lblDias.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblDias.setBounds(154, 309, 193, 53);
 		add(lblDias);
 		
 		JLabel lblPais = new JLabel("Pais");
-		lblPais.setBounds(44, 233, 46, 14);
+		lblPais.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblPais.setBounds(650, 309, 193, 53);
 		add(lblPais);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion");
-		lblDescripcion.setBounds(44, 272, 98, 14);
+		lblDescripcion.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblDescripcion.setBounds(154, 376, 193, 53);
 		add(lblDescripcion);
 		
 		JLabel lblServNoIncluidos = new JLabel("Servicios no incluidos");
-		lblServNoIncluidos.setBounds(44, 336, 115, 14);
+		lblServNoIncluidos.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblServNoIncluidos.setBounds(650, 373, 251, 58);
 		add(lblServNoIncluidos);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(169, 31, 86, 20);
+		textNombre.setBounds(357, 169, 241, 36);
 		add(textNombre);
 		textNombre.setColumns(10);
 		
 		comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Novios", "Senior", "Grupos", "Grandes viajes(destinos exoticos)", "Combinado(vuelo+hotel)", "Escapadas", "Familias con niños menores"}));
-		comboBox_2.setBounds(169, 71, 86, 18);
+		comboBox_2.setBounds(911, 166, 228, 36);
 		add(comboBox_2);
 		
 		textDuracion = new JTextField();
-		textDuracion.setBounds(169, 185, 86, 20);
+		textDuracion.setBounds(357, 320, 241, 36);
 		add(textDuracion);
 		textDuracion.setColumns(10);
 		
 		comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(169, 231, 86, 18);
+		comboBox_1.setBounds(911, 320, 228, 36);
 		add(comboBox_1);
 		
 		textDesc = new JTextField();
-		textDesc.setBounds(169, 269, 259, 53);
+		textDesc.setBounds(357, 376, 241, 89);
 		add(textDesc);
 		textDesc.setColumns(10);
 		
 		textServNo = new JTextField();
-		textServNo.setBounds(169, 336, 259, 53);
+		textServNo.setBounds(911, 376, 228, 89);
 		add(textServNo);
 		textServNo.setColumns(10);
 		
 		llenarComboBoxPaises(comboBox_1);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(171, 114, 86, 20);
+		dateChooser.setBounds(357, 240, 241, 36);
 		add(dateChooser);
 		
 		JLabel lblNewLabel = new JLabel("Fecha de fin");
-		lblNewLabel.setBounds(44, 151, 86, 14);
+		lblNewLabel.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel.setBounds(650, 233, 193, 53);
 		add(lblNewLabel);
 		
 		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(169, 145, 86, 20);
+		dateChooser_1.setBounds(911, 240, 228, 36);
 		add(dateChooser_1);
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -156,7 +203,7 @@ public class NuevoViaje extends JPanel {
 		    }
 		    
 		});
-		btnGuardar.setBounds(82, 416, 89, 23);
+		btnGuardar.setBounds(311, 533, 211, 53);
 		add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -168,7 +215,7 @@ public class NuevoViaje extends JPanel {
                 frame.repaint();
 			}
 		});
-		btnCancelar.setBounds(273, 416, 89, 23);
+		btnCancelar.setBounds(766, 533, 211, 53);
 		add(btnCancelar);
 
 	
@@ -183,7 +230,10 @@ public class NuevoViaje extends JPanel {
 
         dateChooser.addPropertyChangeListener("date", listener);
         dateChooser_1.addPropertyChangeListener("date", listener);
-    
+        
+        btnCancelar.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+        btnGuardar.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+        
 	}
 	private ArrayList<Pais> listaPaises;
 	

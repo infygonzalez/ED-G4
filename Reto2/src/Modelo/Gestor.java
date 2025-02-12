@@ -197,14 +197,13 @@ public class Gestor {
 				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 				sentencia=conexion.createStatement();
 				String sql = SQLQuerys.INSERT_VUELO_IDA + vuelo.getViajeId() + SQLQuerys.SEPARATOR + 
-				vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
-				+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
-				SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
-				SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
-				+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + 
-				vuelo.getFechaRegreso() + SQLQuerys.SEPARATOR + vuelo.getHoraRegreso() + SQLQuerys.SEPARATOR + 
-				vuelo.getDuracionRegreso()+ SQLQuerys.SEPARATOR + vuelo.getPrecioTotal() + SQLQuerys.SEPARATOR + 
-				vuelo.getCodigoVueloVuelta() + SQLQuerys.END_BLOCK; 
+						vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
+						+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
+						SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
+						SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
+						+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.END_BLOCK; 
+				
+				
 				
 				sentencia.executeUpdate(sql);
 				
@@ -238,11 +237,25 @@ public class Gestor {
 				conexion = DriverManager.getConnection(DButils.URL,DButils.USER,DButils.CONTRASEÑA);
 				sentencia=conexion.createStatement();
 				String sql = SQLQuerys.INSERT_VUELO_IDAVUELTA + vuelo.getViajeId() + SQLQuerys.SEPARATOR + 
-				vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
-				+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
-				SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
-				SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
-				+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.END_BLOCK; 
+						vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
+						+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
+						SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
+						SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
+						+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.SEPARATOR +
+						vuelo.getFechaRegreso() + SQLQuerys.SEPARATOR + vuelo.getHoraRegreso() + SQLQuerys.SEPARATOR + 
+						vuelo.getDuracionRegreso() + SQLQuerys.SEPARATOR + vuelo.getPrecioTotal() + SQLQuerys.SEPARATOR + vuelo.getCodigoVueloVuelta() + SQLQuerys.SEPARATOR + 
+						vuelo.getCodAeroliRegreso() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigenVuelta() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestinoVuelta() + SQLQuerys.END_BLOCK; 
+				
+				System.out.println(SQLQuerys.INSERT_VUELO_IDAVUELTA + vuelo.getViajeId() + SQLQuerys.SEPARATOR + 
+						vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
+						+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
+						SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
+						SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
+						+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.SEPARATOR + 
+						vuelo.getFechaRegreso() + SQLQuerys.SEPARATOR + vuelo.getHoraRegreso() + SQLQuerys.SEPARATOR + 
+						vuelo.getDuracionRegreso()+ SQLQuerys.SEPARATOR + vuelo.getCodAeroliRegreso() + SQLQuerys.SEPARATOR + vuelo.getPrecioTotal() + SQLQuerys.SEPARATOR + 
+						vuelo.getCodigoVueloVuelta() + SQLQuerys.END_BLOCK);
+						
 				
 				sentencia.executeUpdate(sql);
 				

@@ -10,7 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 
@@ -25,11 +31,16 @@ import Modelo.Alojamiento;
 import Modelo.Evento;
 import Modelo.Otros;
 import Modelo.Vuelo;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 
 
 public class ViajesYEventos extends JPanel {
@@ -76,9 +87,39 @@ public class ViajesYEventos extends JPanel {
 	        		
 	        	}
 	        });
+	        
+	        JPanel panelLogo = new JPanel();
+	        panelLogo.setBounds(15, 15, 168, 109);
+	        add(panelLogo);
+	        panelLogo.setOpaque(false);
+	        panelLogo.setBorder(null);
+	        panelLogo.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+	        
+	        panelLogo.setLayout(new BorderLayout(0, 0));
+
+	        URL imgUrl = null;
+	        try {
+	            imgUrl = new URL(agencia.getAgenciaLogo());
+	        } catch (MalformedURLException e) {
+	            e.printStackTrace();
+	        }
+	        ImageIcon image = new ImageIcon(imgUrl);
+	        JLabel lblLogo = new JLabel(new ImageIcon(image.getImage().getScaledInstance(168, 109, Image.SCALE_SMOOTH)));
+	        panelLogo.add(lblLogo);
+	        
+	        JPanel panelColor_1 = new JPanel();
+	        panelColor_1.setBackground((Color) null);
+	        panelColor_1.setBounds(1137, -11, 79, 557);
+	        add(panelColor_1);
+	        
+	        JPanel panelColor = new JPanel();
+	        panelColor.setBounds(60, 135, 79, 611);
+	        add(panelColor);
+	        panelColor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+	        panelColor_1.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
 	        btnNuevoViaje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 22));
 	        btnNuevoViaje.setBackground(new Color(144, 238, 144));
-	        btnNuevoViaje.setBounds(851, 68, 249, 77);
+	        btnNuevoViaje.setBounds(840, 87, 249, 77);
 	        add(btnNuevoViaje);
 
 	        JButton btnNuevoEvento = new JButton("Nuevo evento");
@@ -97,13 +138,19 @@ public class ViajesYEventos extends JPanel {
 	        });
 	        btnNuevoEvento.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 	        btnNuevoEvento.setBackground(new Color(144, 238, 144));
-	        btnNuevoEvento.setBounds(851, 343, 249, 77);
+	        btnNuevoEvento.setBounds(840, 355, 249, 77);
 	        add(btnNuevoEvento);
 
 	        JButton btnGenerarOferta = new JButton("Generar oferta cliente");
+	        btnGenerarOferta.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		exportarViajesYEventosATexto(agencia);
+
+	        	}
+	        });
 	        btnGenerarOferta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 	        btnGenerarOferta.setBackground(new Color(255, 160, 122));
-	        btnGenerarOferta.setBounds(346, 577, 332, 86);
+	        btnGenerarOferta.setBounds(407, 600, 294, 58);
 	        add(btnGenerarOferta);
 
 	        JButton btnDesconectar = new JButton("Desconectar");
@@ -111,13 +158,14 @@ public class ViajesYEventos extends JPanel {
 	        	public void actionPerformed(ActionEvent e) {
 	        		Ventana ventana = new Ventana();
 					ventana.setVisible(true);
+					frame.dispose();
 					
 	                
 	        	}
 	        });
 	        btnDesconectar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 	        btnDesconectar.setBackground(new Color(255, 160, 122));
-	        btnDesconectar.setBounds(910, 577, 332, 86);
+	        btnDesconectar.setBounds(919, 600, 282, 58);
 	        add(btnDesconectar);
 
 	        JButton btnEliminar1 = new JButton("Eliminar viaje");
@@ -136,7 +184,7 @@ public class ViajesYEventos extends JPanel {
 	                
 	        	}
 	        });
-	        btnEliminar1.setBounds(851, 179, 249, 77);
+	        btnEliminar1.setBounds(840, 196, 249, 77);
 	        add(btnEliminar1);
 
 	        JButton btnEliminar2 = new JButton("Eliminar evento");
@@ -145,6 +193,7 @@ public class ViajesYEventos extends JPanel {
 	        btnEliminar2.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		boolean valido = false;
+	            	Viaje viajeSeleccionado = viajeSeleccionado(agencia);
 	        		if (table_1.getSelectedRow() != -1 ) {
 	        			
 	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),0).toString();
@@ -157,7 +206,7 @@ public class ViajesYEventos extends JPanel {
 	     	                    if (vuelo.get(i).getEventoId().equals(EventoIDSeleccionado)) {
 	     	                    	 valido = Controlador.eliminarVuelo(vuelo.get(i));
 	     	                    }
-	     	                }model1.removeRow(rowIndex);
+	     	                }
 	                       
 	                    } 
 	                    
@@ -167,7 +216,7 @@ public class ViajesYEventos extends JPanel {
 	     	                    if (alojamiento.get(i).getEventoId().equals(EventoIDSeleccionado)) {
 	     	                    	 valido = Controlador.eliminarAlojamiento(alojamiento.get(i));
 	     	                    }
-	     	                }model1.removeRow(rowIndex);
+	     	                }
 	                    } 
 	                    
 	                    else if (TipoEventoSeleccionado.equals("Actividades")) {
@@ -175,22 +224,23 @@ public class ViajesYEventos extends JPanel {
 	     	                for (int i = 0; i < actividades.size(); i++) {
 	     	                    if (actividades.get(i).getEventoId().equals(EventoIDSeleccionado)) {
 	     	                    	 valido = Controlador.eliminarOtros(actividades.get(i));
+	     	                    
 	     	                    }
-	     	                }model1.removeRow(rowIndex);
+	     	                }
 	                    }
 
-	                    
+		                actualizarEventos(viajeSeleccionado);
 	                   
 	        		}else {
 	        			System.out.println("errorrrrr");
 	        		}
 	        	}
 	        });
-	        btnEliminar2.setBounds(851, 444, 249, 77);
+	        btnEliminar2.setBounds(840, 444, 249, 77);
 	        add(btnEliminar2);
 
 	        JScrollPane scrollPane = new JScrollPane();
-	        scrollPane.setBounds(221, 37, 590, 236);
+	        scrollPane.setBounds(230, 66, 590, 236);
 	        add(scrollPane);
 
 	        table = new JTable(model);
@@ -198,7 +248,7 @@ public class ViajesYEventos extends JPanel {
 	        table.setDefaultEditor(Object.class, null);
 
 	        JScrollPane scrollPane_1 = new JScrollPane();
-	        scrollPane_1.setBounds(221, 317, 590, 236);
+	        scrollPane_1.setBounds(230, 338, 590, 236);
 	        add(scrollPane_1);
 
 	        table_1 = new JTable(model1);
@@ -268,7 +318,7 @@ public class ViajesYEventos extends JPanel {
 
 	        ArrayList<Alojamiento> alojamientos = viaje.getAlojamiento();
 	        for (Alojamiento alojamiento : alojamientos) {
-	            model1.addRow(new Object[]{alojamiento.getEventoId(),alojamiento.getNombre(), "Alojamiento", alojamiento.getFecEntrada(), alojamiento.getPrecio()});
+	            model1.addRow(new Object[]{alojamiento.getEventoId(),alojamiento.getNombre(), "Alojamiento", alojamiento.getNMBHotel(), alojamiento.getFecEntrada(), alojamiento.getFecSalida(), alojamiento.getPrecio()});
 	        }
 
 	        ArrayList<Otros> otros = Controlador.buscarTodosOtros(viaje);
@@ -281,6 +331,59 @@ public class ViajesYEventos extends JPanel {
 	            model1.addRow(new Object[]{vuelo.getEventoId(),vuelo.getNombre(), "Vuelo", vuelo.getFecSal(), vuelo.getPrecio()});
 	        }
 	 }
-	 
+	 private void exportarViajesYEventosATexto(Agencias agencia) {
+		    // Verificar si la agencia es nula
+		    if (agencia == null) {
+		        JOptionPane.showMessageDialog(this, "Agencia no disponible. Selecciona una agencia antes de exportar.", "Error", JOptionPane.ERROR_MESSAGE);
+		        return;
+		    }
+
+		    // Obtener los viajes de la agencia seleccionada
+		    List<Viaje> viajes = agencia.getViajes();
+		    if (viajes.isEmpty()) {
+		        JOptionPane.showMessageDialog(this, "No hay viajes disponibles para la agencia seleccionada.", "Información", JOptionPane.INFORMATION_MESSAGE);
+		        return;
+		    }
+
+		    // Crear el archivo de texto
+		    String nombreArchivo = "ViajesYEventos_" + agencia.getAgenciaNombre() + ".txt";
+		    try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
+		        writer.write("Viajes y Eventos de la Agencia: " + agencia.getAgenciaNombre() + "\n\n");
+		        
+		        // Iterar sobre los viajes
+		        for (Viaje viaje : viajes) {
+		            writer.write("Viaje ID: " + viaje.getViajesId() + "\n");
+		            writer.write("Nombre: " + viaje.getViajesNombre() + "\n");
+		            writer.write("Tipo: " + viaje.getViajesTipo() + "\n");
+		            writer.write("Duración: " + viaje.getViajesDuracion() + "\n");
+		            writer.write("Fecha de inicio: " + viaje.getViajesFechaInicio() + "\n");
+		            writer.write("Fecha de fin: " + viaje.getViajesFechaFin() + "\n");
+		            writer.write("Destino: " + viaje.getPais().getDescripcion() + "\n");
+		            writer.write("Eventos:\n");
+
+		            // Escribir los eventos de cada viaje
+		            ArrayList<Alojamiento> alojamientos = viaje.getAlojamiento();
+		            for (Alojamiento alojamiento : alojamientos) {
+		                writer.write("  - " + alojamiento.getNombre() + " (Alojamiento) en " + alojamiento.getNMBHotel() + " desde " + alojamiento.getFecEntrada() + " hasta " + alojamiento.getFecSalida() + " por " + alojamiento.getPrecio() + "\n");
+		            }
+
+		            ArrayList<Otros> otros = viaje.getOtros();
+		            for (Otros otro : otros) {
+		                writer.write("  - " + otro.getNombre() + " (Actividad) el " + otro.getFecha() + " por " + otro.getPrecio() + "\n");
+		            }
+
+		            ArrayList<Vuelo> vuelos = viaje.getVuelo();
+		            for (Vuelo vuelo : vuelos) {
+		                writer.write("  - " + vuelo.getNombre() + " (Vuelo) el " + vuelo.getFecSal() + " por " + vuelo.getPrecio() + "\n");
+		            }
+		            writer.write("\n");
+		        }
+
+		        JOptionPane.showMessageDialog(this, "Archivo exportado correctamente: " + nombreArchivo, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+		    } catch (IOException e) {
+		        JOptionPane.showMessageDialog(this, "Error al exportar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		        e.printStackTrace();
+		    }
+		}
 	
 }
