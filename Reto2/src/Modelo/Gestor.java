@@ -481,7 +481,9 @@ public class Gestor {
 					alojamiento.setEventoId(resultset.getString("AlojamientoID"));
 					alojamiento.setViaje(viaje);
 					alojamiento.setNombre(resultset.getString("NombreEvento"));
+					alojamiento.setNMBHotel(resultset.getString("NombreHotel"));
 					alojamiento.setFecEntrada(resultset.getString("FechaEntrada"));
+					alojamiento.setFecSalida(resultset.getString("FechaSalida"));
 					alojamiento.setPrecio(resultset.getString("Precio"));
 					alojamientos.add(alojamiento);
 				}

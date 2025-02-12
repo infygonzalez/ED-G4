@@ -318,7 +318,7 @@ public class ViajesYEventos extends JPanel {
 
 	        ArrayList<Alojamiento> alojamientos = viaje.getAlojamiento();
 	        for (Alojamiento alojamiento : alojamientos) {
-	            model1.addRow(new Object[]{alojamiento.getEventoId(),alojamiento.getNombre(), "Alojamiento", alojamiento.getNMBHotel(), alojamiento.getFecEntrada(), alojamiento.getFecSalida(), alojamiento.getPrecio()});
+	            model1.addRow(new Object[]{alojamiento.getEventoId(),alojamiento.getNombre(), "Alojamiento", alojamiento.getFecEntrada(), alojamiento.getPrecio()});
 	        }
 
 	        ArrayList<Otros> otros = Controlador.buscarTodosOtros(viaje);

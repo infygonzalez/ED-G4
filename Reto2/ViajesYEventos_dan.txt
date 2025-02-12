@@ -8,7 +8,7 @@ Fecha de inicio: 2025-02-18
 Fecha de fin: 2025-02-21
 Destino: ALEMANIA
 Eventos:
-  - sisisi (Alojamiento) en  desde 2025-02-14 hasta  por 123.00
-  - Pruebon (Alojamiento) en  desde 2025-02-15 hasta  por 555.00
+  - sisisi (Alojamiento) en sfasf desde 2025-02-14 hasta 2025-02-14 por 123.00
+  - Pruebon (Alojamiento) en ya tu chabe desde 2025-02-15 hasta 2025-02-27 por 555.00
   - pruebaTxt (Actividad) el 2025-02-14 por 123.00
 
