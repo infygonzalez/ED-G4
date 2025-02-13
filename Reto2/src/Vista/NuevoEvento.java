@@ -91,8 +91,159 @@ public class NuevoEvento extends JPanel {
 			}
 		});
 		
+		
+		panelAlojamiento = new JPanel();
+		panelAlojamiento.setBackground(new Color(255, 128, 0));
+		panelAlojamiento.setBounds(10, 139, 1076, 502);
+		add(panelAlojamiento);
+		panelAlojamiento.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Nombre evento");
+		lblNewLabel_1.setBounds(10, 48, 91, 14);
+		panelAlojamiento.add(lblNewLabel_1);
+		
+		textNombre = new JTextField();
+		textNombre.setBounds(111, 45, 132, 20);
+		panelAlojamiento.add(textNombre);
+		textNombre.setColumns(10);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Tipo evento");
+		lblNewLabel_1_2.setBounds(10, 90, 91, 14);
+		panelAlojamiento.add(lblNewLabel_1_2);
+		
+		comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Doble", "Individual", "Triple"}));
+		comboBox_1.setBounds(111, 86, 132, 22);
+		panelAlojamiento.add(comboBox_1);
+		
+		JLabel lblNewLabel_1_3 = new JLabel("Ciudad");
+		lblNewLabel_1_3.setBounds(10, 139, 91, 14);
+		panelAlojamiento.add(lblNewLabel_1_3);
+		
+		textCiudad = new JTextField();
+		textCiudad.setColumns(10);
+		textCiudad.setBounds(111, 136, 132, 20);
+		panelAlojamiento.add(textCiudad);
+		
+		textPrecio = new JTextField();
+		textPrecio.setColumns(10);
+		textPrecio.setBounds(111, 182, 132, 20);
+		panelAlojamiento.add(textPrecio);
+		
+		JLabel lblNewLabel_1_3_1 = new JLabel("Precio");
+		lblNewLabel_1_3_1.setBounds(10, 185, 91, 14);
+		panelAlojamiento.add(lblNewLabel_1_3_1);
+		
+		JLabel lblNewLabel_1_3_1_1 = new JLabel("Fecha entrada");
+		lblNewLabel_1_3_1_1.setBounds(10, 238, 91, 14);
+		panelAlojamiento.add(lblNewLabel_1_3_1_1);
+		
+		dateChooser_1 = new JDateChooser();
+		dateChooser_1.setBounds(111, 238, 70, 20);
+		panelAlojamiento.add(dateChooser_1);
+		
+		JLabel lblNewLabel_1_3_1_1_1 = new JLabel("Fecha salida");
+		lblNewLabel_1_3_1_1_1.setBounds(349, 238, 91, 14);
+		panelAlojamiento.add(lblNewLabel_1_3_1_1_1);
+		
+		dateChooser_4 = new JDateChooser();
+		dateChooser_4.setBounds(429, 238, 70, 20);
+		panelAlojamiento.add(dateChooser_4);
+		
+		textNMBHotel = new JTextField();
+		textNMBHotel.setBounds(433, 48, 122, 20);
+		panelAlojamiento.add(textNMBHotel);
+		textNMBHotel.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("Nombre Hotel");
+		lblNewLabel_5.setBounds(323, 48, 100, 14);
+		panelAlojamiento.add(lblNewLabel_5);
+		JButton btnGuardarAlojamiento = new JButton("Guardar Alojamiento");
+		btnGuardarAlojamiento.setBounds(35, 468, 157, 23);
+		panelAlojamiento.add(btnGuardarAlojamiento);
+		btnGuardarAlojamiento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				java.util.Date fechaInicio = dateChooser_1.getDate();
+				java.util.Date fechaFin = dateChooser_4.getDate();
+				
+				insertarAlojamiento(
+						viaje,
+						textCiudad.getText(),
+						textNombre.getText(),
+						String.valueOf(comboBox_1.getSelectedItem()),
+						fechaInicio,
+						fechaFin,
+						textNMBHotel.getText(),
+						textPrecio.getText()
+						);
+			}
+		});
+		panelAlojamiento.setVisible(false);
+		
+		panelOtros = new JPanel();
+		panelOtros.setBackground(new Color(255, 128, 192));
+		panelOtros.setBounds(10, 139, 798, 502);
+		add(panelOtros);
+		panelOtros.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Nombre evento");
+		lblNewLabel.setBounds(10, 41, 85, 21);
+		panelOtros.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Descripción");
+		lblNewLabel_1_1.setBounds(10, 149, 85, 21);
+		panelOtros.add(lblNewLabel_1_1);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("Precio");
+		lblNewLabel_1_1_1.setBounds(10, 234, 85, 21);
+		panelOtros.add(lblNewLabel_1_1_1);
+		
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Fecha");
+		lblNewLabel_1_1_1_1.setBounds(10, 96, 85, 21);
+		panelOtros.add(lblNewLabel_1_1_1_1);
+		
+		textNombreOtros = new JTextField();
+		textNombreOtros.setBounds(105, 41, 130, 20);
+		panelOtros.add(textNombreOtros);
+		textNombreOtros.setColumns(10);
+		
+		textDescripcionOtros = new JTextField();
+		textDescripcionOtros.setColumns(10);
+		textDescripcionOtros.setBounds(105, 149, 204, 65);
+		panelOtros.add(textDescripcionOtros);
+		
+		textPrecioOtros = new JTextField();
+		textPrecioOtros.setColumns(10);
+		textPrecioOtros.setBounds(105, 234, 130, 20);
+		panelOtros.add(textPrecioOtros);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(105, 97, 70, 20);
+		panelOtros.add(dateChooser);
+		
+		JButton btnGuardarOtros = new JButton("Guardar otros");
+		btnGuardarOtros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				java.util.Date fecha = dateChooser.getDate();
+				
+				insertarOtros(
+						viaje,
+						fecha,
+						textDescripcionOtros.getText(),
+						textPrecioOtros.getText(),
+						textNombreOtros.getText()
+						);
+			}
+		});
+		btnGuardarOtros.setBounds(48, 426, 145, 23);
+		panelOtros.add(btnGuardarOtros);
+		
+		panelOtros.setVisible(false);
+		
 		panelVuelos = new JPanel();
-		panelVuelos.setBackground(new Color(128, 255, 0));
+		panelVuelos.setBackground(new Color(240, 240, 240));
 		panelVuelos.setBounds(10, 139, 1076, 502);
 		add(panelVuelos);
 		panelVuelos.setLayout(null);
@@ -296,67 +447,6 @@ public class NuevoEvento extends JPanel {
 				panelAlojamiento.setVisible(true);
 			}
 		});
-		
-		panelOtros = new JPanel();
-		panelOtros.setBackground(new Color(255, 128, 192));
-		panelOtros.setBounds(10, 166, 455, 331);
-		add(panelOtros);
-		panelOtros.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Nombre evento");
-		lblNewLabel.setBounds(10, 41, 85, 21);
-		panelOtros.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Descripción");
-		lblNewLabel_1_1.setBounds(10, 149, 85, 21);
-		panelOtros.add(lblNewLabel_1_1);
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Precio");
-		lblNewLabel_1_1_1.setBounds(10, 234, 85, 21);
-		panelOtros.add(lblNewLabel_1_1_1);
-		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Fecha");
-		lblNewLabel_1_1_1_1.setBounds(10, 96, 85, 21);
-		panelOtros.add(lblNewLabel_1_1_1_1);
-		
-		textNombreOtros = new JTextField();
-		textNombreOtros.setBounds(105, 41, 130, 20);
-		panelOtros.add(textNombreOtros);
-		textNombreOtros.setColumns(10);
-		
-		textDescripcionOtros = new JTextField();
-		textDescripcionOtros.setColumns(10);
-		textDescripcionOtros.setBounds(105, 149, 204, 65);
-		panelOtros.add(textDescripcionOtros);
-		
-		textPrecioOtros = new JTextField();
-		textPrecioOtros.setColumns(10);
-		textPrecioOtros.setBounds(105, 234, 130, 20);
-		panelOtros.add(textPrecioOtros);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(105, 97, 70, 20);
-		panelOtros.add(dateChooser);
-		
-		JButton btnGuardarOtros = new JButton("Guardar otros");
-		btnGuardarOtros.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				java.util.Date fecha = dateChooser.getDate();
-				
-				insertarOtros(
-						viaje,
-						fecha,
-						textDescripcionOtros.getText(),
-						textPrecioOtros.getText(),
-						textNombreOtros.getText()
-						);
-			}
-		});
-		btnGuardarOtros.setBounds(263, 282, 145, 23);
-		panelOtros.add(btnGuardarOtros);
-		
-		panelOtros.setVisible(false);
 		rdbtnNewRadioButton.setBounds(10, 84, 192, 23);
 		add(rdbtnNewRadioButton);
 
@@ -393,96 +483,6 @@ public class NuevoEvento extends JPanel {
 		panelcolor.setBounds(0, 30, 1282, 23);
 		add(panelcolor);
 		panelcolor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
-		
-		
-		panelAlojamiento = new JPanel();
-		panelAlojamiento.setBackground(new Color(255, 128, 0));
-		panelAlojamiento.setBounds(10, 166, 673, 460);
-		add(panelAlojamiento);
-		panelAlojamiento.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Nombre evento");
-		lblNewLabel_1.setBounds(10, 48, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1);
-		
-		textNombre = new JTextField();
-		textNombre.setBounds(111, 45, 132, 20);
-		panelAlojamiento.add(textNombre);
-		textNombre.setColumns(10);
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Tipo evento");
-		lblNewLabel_1_2.setBounds(10, 90, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_2);
-		
-		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Doble", "Individual", "Triple"}));
-		comboBox_1.setBounds(111, 86, 132, 22);
-		panelAlojamiento.add(comboBox_1);
-		
-		JLabel lblNewLabel_1_3 = new JLabel("Ciudad");
-		lblNewLabel_1_3.setBounds(10, 139, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3);
-		
-		textCiudad = new JTextField();
-		textCiudad.setColumns(10);
-		textCiudad.setBounds(111, 136, 132, 20);
-		panelAlojamiento.add(textCiudad);
-		
-		textPrecio = new JTextField();
-		textPrecio.setColumns(10);
-		textPrecio.setBounds(111, 182, 132, 20);
-		panelAlojamiento.add(textPrecio);
-		
-		JLabel lblNewLabel_1_3_1 = new JLabel("Precio");
-		lblNewLabel_1_3_1.setBounds(10, 185, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3_1);
-		
-		JLabel lblNewLabel_1_3_1_1 = new JLabel("Fecha entrada");
-		lblNewLabel_1_3_1_1.setBounds(10, 238, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3_1_1);
-		
-		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(111, 238, 70, 20);
-		panelAlojamiento.add(dateChooser_1);
-		
-		JLabel lblNewLabel_1_3_1_1_1 = new JLabel("Fecha salida");
-		lblNewLabel_1_3_1_1_1.setBounds(349, 238, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3_1_1_1);
-		
-		dateChooser_4 = new JDateChooser();
-		dateChooser_4.setBounds(429, 238, 70, 20);
-		panelAlojamiento.add(dateChooser_4);
-		
-		textNMBHotel = new JTextField();
-		textNMBHotel.setBounds(433, 48, 122, 20);
-		panelAlojamiento.add(textNMBHotel);
-		textNMBHotel.setColumns(10);
-		
-		JLabel lblNewLabel_5 = new JLabel("Nombre Hotel");
-		lblNewLabel_5.setBounds(323, 48, 100, 14);
-		panelAlojamiento.add(lblNewLabel_5);
-		JButton btnGuardarAlojamiento = new JButton("Guardar Alojamiento");
-		btnGuardarAlojamiento.setBounds(24, 322, 157, 23);
-		panelAlojamiento.add(btnGuardarAlojamiento);
-		btnGuardarAlojamiento.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				java.util.Date fechaInicio = dateChooser_1.getDate();
-				java.util.Date fechaFin = dateChooser_4.getDate();
-				
-				insertarAlojamiento(
-						viaje,
-						textCiudad.getText(),
-						textNombre.getText(),
-						String.valueOf(comboBox_1.getSelectedItem()),
-						fechaInicio,
-						fechaFin,
-						textNMBHotel.getText(),
-						textPrecio.getText()
-						);
-			}
-		});
-		panelAlojamiento.setVisible(false);
 		panelVuelos.setVisible(false);
 		llenarComboBoxAeropuertosOrigen(comboAero_1);
 		llenarComboBoxAeropuertosDestino(comboAeroDes_1);
