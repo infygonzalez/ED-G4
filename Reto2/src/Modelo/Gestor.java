@@ -54,7 +54,7 @@ public class Gestor {
 			}		
 		}
 
-		public void insertarAgencia (Agencias agencia) {
+		public boolean insertarAgencia (Agencias agencia) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -88,9 +88,9 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+		return true;
 	}
-		public void insertarViaje (Viaje viaje) {
+		public boolean insertarViaje (Viaje viaje) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -120,9 +120,9 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+		return true;
 	}
-		public void insertarAlojamiento (Alojamiento alojamiento) {
+		public boolean insertarAlojamiento (Alojamiento alojamiento) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -153,9 +153,10 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+			return true;
+
 	}
-		public void insertarOtros(Otros otros) {
+		public boolean insertarOtros(Otros otros) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -186,9 +187,10 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+			return true;
+
 	}
-		public void insertarVueloIda(Vuelo vuelo) {
+		public boolean insertarVueloIda(Vuelo vuelo) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -225,7 +227,8 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+			return true;
+
 	}
 		
 		public void insertarVueloIdaVuelta(Vuelo vuelo) {
