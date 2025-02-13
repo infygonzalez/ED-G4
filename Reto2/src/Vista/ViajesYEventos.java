@@ -249,7 +249,6 @@ public class ViajesYEventos extends JPanel {
 	        scrollPane_1.setViewportView(table_1);
 	        
 	        JLabel lblNewLabel = new JLabel("");
-	        lblNewLabel.setIcon(new ImageIcon("img/fondo blur.jpg"));
 	        lblNewLabel.setBounds(0, 0, 1280, 720);
 	        add(lblNewLabel);
 
