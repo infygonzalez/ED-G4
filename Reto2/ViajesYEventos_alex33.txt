@@ -1,0 +1,14 @@
+Viajes y Eventos de la Agencia: alex33
+
+Viaje ID: 82
+Nombre: tailandia
+Tipo: Novios
+Duración: 8
+Fecha de inicio: 2025-02-12
+Fecha de fin: 2025-02-20
+Destino: ALEMANIA
+Eventos:
+  - hola con el codigo wd (Vuelo) el 2025-02-14 en el aeropuerto México (Acapulco) con salida a 20:50:00 con llegada en México (Acapulco) con una duracion de 04:00:00 por 3223.00
+  - holaq con el codigo 234 (Vuelo) el 2025-02-28 en el aeropuerto México (Acapulco) con salida a 22:10:00 con llegada en Jordania (Ammán) con una duracion de 04:00:00 
+ con el codigo 32 (Vuelo) el 2025-02-20 en el aeropuerto Holanda (Ámsterdam) con salida a 22:10:00 con llegada en México (Acapulco) hasta 2025-02-20 con una duracion de 04:00:00 por 500.00
+
