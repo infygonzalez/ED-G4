@@ -75,19 +75,12 @@ public class NuevoViaje extends JPanel {
         ImageIcon image = new ImageIcon(imgUrl);
         JLabel lblLogo = new JLabel(new ImageIcon(image.getImage().getScaledInstance(168, 109, Image.SCALE_SMOOTH)));
         panelLogo.add(lblLogo);
-        
-        
-		JPanel panelColor_1 = new JPanel();
-		panelColor_1.setBackground((Color) null);
-		panelColor_1.setBounds(1174, 0, 39, 575);
-		add(panelColor_1);
 		
 		JPanel panelColor = new JPanel();
 		panelColor.setBackground((Color) null);
-		panelColor.setBounds(80, 145, 39, 575);
+		panelColor.setBounds(0, 34, 1280, 23);
 		add(panelColor);
 		panelColor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
-	    panelColor_1.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
 	    
 		
 		JLabel lblNombreViaje = new JLabel("Nombre viaje");
@@ -133,30 +126,36 @@ public class NuevoViaje extends JPanel {
 		add(lblServNoIncluidos);
 		
 		textNombre = new JTextField();
+		textNombre.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textNombre.setBounds(357, 169, 241, 36);
 		add(textNombre);
 		textNombre.setColumns(10);
 		
 		comboBox_2 = new JComboBox();
+		comboBox_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Novios", "Senior", "Grupos", "Grandes viajes(destinos exoticos)", "Combinado(vuelo+hotel)", "Escapadas", "Familias con niños menores"}));
 		comboBox_2.setBounds(911, 166, 228, 36);
 		add(comboBox_2);
 		
 		textDuracion = new JTextField();
+		textDuracion.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textDuracion.setBounds(357, 320, 241, 36);
 		add(textDuracion);
 		textDuracion.setColumns(10);
 		
 		comboBox_1 = new JComboBox();
+		comboBox_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		comboBox_1.setBounds(911, 320, 228, 36);
 		add(comboBox_1);
 		
 		textDesc = new JTextField();
+		textDesc.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textDesc.setBounds(357, 376, 241, 89);
 		add(textDesc);
 		textDesc.setColumns(10);
 		
 		textServNo = new JTextField();
+		textServNo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textServNo.setBounds(911, 376, 228, 89);
 		add(textServNo);
 		textServNo.setColumns(10);
@@ -164,6 +163,7 @@ public class NuevoViaje extends JPanel {
 		llenarComboBoxPaises(comboBox_1);
 		
 		dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		dateChooser.setBounds(357, 240, 241, 36);
 		add(dateChooser);
 		
@@ -173,9 +173,11 @@ public class NuevoViaje extends JPanel {
 		add(lblNewLabel);
 		
 		dateChooser_1 = new JDateChooser();
+		dateChooser_1.getCalendarButton().setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		dateChooser_1.setBounds(911, 240, 228, 36);
 		add(dateChooser_1);
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		btnGuardar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        java.util.Date fechaInicio = dateChooser.getDate();
@@ -203,10 +205,11 @@ public class NuevoViaje extends JPanel {
 		    }
 		    
 		});
-		btnGuardar.setBounds(311, 533, 211, 53);
+		btnGuardar.setBounds(317, 531, 211, 53);
 		add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -215,7 +218,7 @@ public class NuevoViaje extends JPanel {
                 frame.repaint();
 			}
 		});
-		btnCancelar.setBounds(766, 533, 211, 53);
+		btnCancelar.setBounds(772, 531, 211, 53);
 		add(btnCancelar);
 
 	
@@ -231,8 +234,7 @@ public class NuevoViaje extends JPanel {
         dateChooser.addPropertyChangeListener("date", listener);
         dateChooser_1.addPropertyChangeListener("date", listener);
         
-        btnCancelar.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
-        btnGuardar.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+
         
 	}
 	private ArrayList<Pais> listaPaises;

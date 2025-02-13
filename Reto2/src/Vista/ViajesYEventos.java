@@ -107,16 +107,10 @@ public class ViajesYEventos extends JPanel {
 	        JLabel lblLogo = new JLabel(new ImageIcon(image.getImage().getScaledInstance(168, 109, Image.SCALE_SMOOTH)));
 	        panelLogo.add(lblLogo);
 	        
-	        JPanel panelColor_1 = new JPanel();
-	        panelColor_1.setBackground((Color) null);
-	        panelColor_1.setBounds(1137, -11, 79, 557);
-	        add(panelColor_1);
-	        
 	        JPanel panelColor = new JPanel();
-	        panelColor.setBounds(60, 135, 79, 611);
+	        panelColor.setBounds(0, 32, 1280, 23);
 	        add(panelColor);
 	        panelColor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
-	        panelColor_1.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
 	        btnNuevoViaje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 22));
 	        btnNuevoViaje.setBackground(new Color(144, 238, 144));
 	        btnNuevoViaje.setBounds(840, 87, 249, 77);
@@ -272,6 +266,7 @@ public class ViajesYEventos extends JPanel {
 	  
 
 	        rellenarTablaViajes(agencia);
+	        
 	    }
 	  
 	  
@@ -374,7 +369,11 @@ public class ViajesYEventos extends JPanel {
 
 		            ArrayList<Vuelo> vuelos = viaje.getVuelo();
 		            for (Vuelo vuelo : vuelos) {
-		                writer.write("  - " + vuelo.getNombre() + " (Vuelo) el " + vuelo.getFecSal() + " por " + vuelo.getPrecio() + "\n");
+		            	if (vuelo.getCodigoVueloVuelta()==null) {
+		                   writer.write("  - " + vuelo.getNombre()+ " con el codigo " + vuelo.getCodVuelo() + " (Vuelo) el " + vuelo.getFecSal() + " en el aeropuerto " + vuelo.getAeropuertoOrigen() + " con salida a " + vuelo.getHoraSal() + " con llegada en " + vuelo.getAeropuertoDestino() + " con una duracion de " + vuelo.getDurViaje() + " por " + vuelo.getPrecio() + "\n");
+		            	}else {
+		            		writer.write("  - " + vuelo.getNombre()+ " con el codigo " + vuelo.getCodVuelo() + " (Vuelo) el " + vuelo.getFecSal() + " en el aeropuerto " + vuelo.getAeropuertoOrigen() + " con salida a " + vuelo.getHoraSal() + " con llegada en " + vuelo.getAeropuertoDestino() + " con una duracion de " + vuelo.getDurViaje()  + " \n con el codigo " + vuelo.getCodigoVueloVuelta() + " (Vuelo) el " + vuelo.getFechaRegreso() + " en el aeropuerto " + vuelo.getAeropuertoOrigenVuelta() + " con salida a " + vuelo.getHoraRegreso() + " con llegada en " + vuelo.getAeropuertoDestinoVuelta() + " hasta " + vuelo.getFechaRegreso() + " con una duracion de " + vuelo.getDuracionRegreso() +" por " + vuelo.getPrecioTotal() + "\n");
+		            	}
 		            }
 		            writer.write("\n");
 		        }

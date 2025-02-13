@@ -203,7 +203,7 @@ public class Gestor {
 						SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
 						+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.END_BLOCK; 
 				
-				
+				System.out.println(vuelo.getPrecio());
 				
 				sentencia.executeUpdate(sql);
 				
@@ -578,7 +578,19 @@ public class Gestor {
 					vuelo.setViaje(viaje);
 					vuelo.setNombre(resultset.getString("NombreEvento"));
 					vuelo.setFecSal(resultset.getString("FechaSalida"));
-					vuelo.setPrecio(resultset.getString("PrecioTotal"));
+					vuelo.setAeropuertoOrigen(resultset.getString("AeropuertoOrigen"));
+					vuelo.setAeropuertoDestino(resultset.getString("AeropuertoDestino"));
+					vuelo.setHoraSal(resultset.getString("HoraSalida"));
+					vuelo.setDurViaje(resultset.getString("Duracion"));
+					vuelo.setCodVuelo(resultset.getString("CodigoVuelo"));
+					vuelo.setFechaRegreso(resultset.getString("FechaRegreso"));
+					vuelo.setHoraRegreso(resultset.getString("HoraRegreso"));
+					vuelo.setDuracionRegreso(resultset.getString("DuracionRegreso"));
+					vuelo.setPrecioTotal(resultset.getString("PrecioTotal"));
+					vuelo.setCodigoVueloVuelta(resultset.getString("CodigoVueloVuelta"));
+					vuelo.setAeropuertoOrigenVuelta(resultset.getString("AeropuertoOrigenVuelta"));
+					vuelo.setAeropuertoDestinoVuelta(resultset.getString("AeropuertoDestinoVuelta"));
+					vuelo.setPrecio(resultset.getString("Precio"));
 					vuelos.add(vuelo);
 				}
 				
