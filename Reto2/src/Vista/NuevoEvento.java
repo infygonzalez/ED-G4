@@ -80,6 +80,9 @@ public class NuevoEvento extends JPanel {
 		setLayout(null);
 		
 		JButton btnNewButton = new JButton("cancelar");
+		btnNewButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		btnNewButton.setBounds(837, 614, 237, 48);
+		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 frame.setContentPane(new ViajesYEventos(agencia, viaje, frame));
@@ -88,101 +91,92 @@ public class NuevoEvento extends JPanel {
 			}
 		});
 		
-		btnNewButton.setBounds(942, 603, 89, 23);
-		add(btnNewButton);
-		
 		panelVuelos = new JPanel();
 		panelVuelos.setBackground(new Color(128, 255, 0));
-		panelVuelos.setBounds(10, 139, 1076, 460);
+		panelVuelos.setBounds(10, 139, 1076, 502);
 		add(panelVuelos);
 		panelVuelos.setLayout(null);
 		
 		panelVueloVuelta = new JPanel();
-		panelVueloVuelta.setBackground(new Color(0, 128, 0));
-		panelVueloVuelta.setBounds(0, 228, 1066, 196);
+		panelVueloVuelta.setBackground(new Color(0, 0, 0, 0));
+		panelVueloVuelta.setBounds(0, 243, 1076, 211);
 		panelVuelos.add(panelVueloVuelta);
 		panelVueloVuelta.setLayout(null);
 		panelVueloVuelta.setVisible(false);
 		
 		JLabel lblNewLabel_4 = new JLabel("FechaVuelta");
 		lblNewLabel_4.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_4.setBounds(559, 46, 66, 14);
+		lblNewLabel_4.setBounds(559, 11, 264, 49);
 		panelVueloVuelta.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Codigo de vuelo vuelta");
 		lblNewLabel_4_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_4_1.setBounds(10, 31, 115, 14);
+		lblNewLabel_4_1.setBounds(10, 11, 264, 49);
 		panelVueloVuelta.add(lblNewLabel_4_1);
 		
 		JLabel lblNewLabel_2_1_1_2_1_2 = new JLabel("Aerolinea");
 		lblNewLabel_2_1_1_2_1_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1_2.setBounds(10, 128, 81, 14);
+		lblNewLabel_2_1_1_2_1_2.setBounds(10, 107, 264, 49);
 		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_2);
 		
 		JLabel lblNewLabel_2_1_1_2_1_1_1_1 = new JLabel("Horario de vuelta");
 		lblNewLabel_2_1_1_2_1_1_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1_1_1_1.setBounds(10, 153, 115, 14);
+		lblNewLabel_2_1_1_2_1_1_1_1.setBounds(559, 107, 264, 49);
 		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_1_1_1);
 		
 		textHoraVuelta = new JTextField();
 		textHoraVuelta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textHoraVuelta.setColumns(10);
-		textHoraVuelta.setBounds(131, 150, 130, 20);
+		textHoraVuelta.setBounds(851, 113, 196, 36);
 		panelVueloVuelta.add(textHoraVuelta);
 		
 		textDuracionVuelta = new JTextField();
 		textDuracionVuelta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textDuracionVuelta.setColumns(10);
-		textDuracionVuelta.setBounds(131, 175, 130, 20);
+		textDuracionVuelta.setBounds(336, 164, 196, 36);
 		panelVueloVuelta.add(textDuracionVuelta);
 		
 		JLabel lblNewLabel_2_1_1_2_1_1_2_1 = new JLabel("Duracion");
 		lblNewLabel_2_1_1_2_1_1_2_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1_1_2_1.setBounds(10, 178, 81, 14);
+		lblNewLabel_2_1_1_2_1_1_2_1.setBounds(10, 156, 264, 49);
 		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_1_2_1);
 		
 		JLabel lblNewLabel_2_1_1_2_1_1_3 = new JLabel("Precio total");
 		lblNewLabel_2_1_1_2_1_1_3.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1_1_3.setBounds(10, 203, 81, 14);
+		lblNewLabel_2_1_1_2_1_1_3.setBounds(559, 156, 264, 49);
 		panelVueloVuelta.add(lblNewLabel_2_1_1_2_1_1_3);
 		
 		textPrecioTotal = new JTextField();
 		textPrecioTotal.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		textPrecioTotal.setBounds(131, 200, 130, 20);
+		textPrecioTotal.setBounds(851, 163, 196, 34);
 		panelVueloVuelta.add(textPrecioTotal);
 		textPrecioTotal.setColumns(10);
 		
 		textCodigoVuelta = new JTextField();
 		textCodigoVuelta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textCodigoVuelta.setColumns(10);
-		textCodigoVuelta.setBounds(230, 28, 130, 20);
+		textCodigoVuelta.setBounds(336, 17, 196, 36);
 		panelVueloVuelta.add(textCodigoVuelta);
 		
 		JDateChooser dateChooser_3 = new JDateChooser();
 		dateChooser_3.getCalendarButton().setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		dateChooser_3.setBounds(684, 46, 70, 20);
+		dateChooser_3.setBounds(851, 11, 196, 45);
 		panelVueloVuelta.add(dateChooser_3);
 		
 		comboAerolineaVuelta_1 = new JComboBox();
 		comboAerolineaVuelta_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		comboAerolineaVuelta_1.setBounds(131, 124, 130, 22);
+		comboAerolineaVuelta_1.setBounds(336, 113, 196, 36);
 		panelVueloVuelta.add(comboAerolineaVuelta_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre evento");
 		lblNewLabel_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2.setBounds(10, 11, 81, 14);
+		lblNewLabel_2.setBounds(10, 11, 187, 32);
 		panelVuelos.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Tipo de vuelo");
 		lblNewLabel_2_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1.setBounds(487, 11, 81, 14);
+		lblNewLabel_2_1.setBounds(569, 11, 187, 32);
 		panelVuelos.add(lblNewLabel_2_1);
-		
-		textNombreVuelo = new JTextField();
-		textNombreVuelo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		textNombreVuelo.setBounds(111, 11, 130, 20);
-		panelVuelos.add(textNombreVuelo);
-		textNombreVuelo.setColumns(10);
 		
 		comboVuelo = new JComboBox();
 		comboVuelo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
@@ -204,91 +198,91 @@ public class NuevoEvento extends JPanel {
 			}
 		});
 		comboVuelo.setModel(new DefaultComboBoxModel(new String[] {"Ida", "Ida y vuelta"}));
-		comboVuelo.setBounds(701, 7, 130, 22);
+		comboVuelo.setBounds(859, 11, 196, 32);
 		panelVuelos.add(comboVuelo);
 		
 		JLabel lblNewLabel_2_1_1_1 = new JLabel("Aeropuerto origen");
 		lblNewLabel_2_1_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_1.setBounds(10, 66, 99, 14);
+		lblNewLabel_2_1_1_1.setBounds(10, 64, 203, 32);
 		panelVuelos.add(lblNewLabel_2_1_1_1);
 		
 		comboAero_1 = new JComboBox();
 		comboAero_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		comboAero_1.setBounds(149, 62, 130, 22);
+		comboAero_1.setBounds(335, 62, 196, 36);
 		panelVuelos.add(comboAero_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha ida");
 		lblNewLabel_3.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_3.setBounds(10, 115, 55, 14);
+		lblNewLabel_3.setBounds(10, 115, 187, 14);
 		panelVuelos.add(lblNewLabel_3);
 		
 		JDateChooser dateChooser_2 = new JDateChooser();
 		dateChooser_2.getCalendarButton().setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		dateChooser_2.setBounds(171, 109, 70, 20);
+		dateChooser_2.setBounds(335, 109, 196, 36);
 		panelVuelos.add(dateChooser_2);
 		
 		JLabel lblNewLabel_2_1_1_2 = new JLabel("Codigo vuelo");
 		lblNewLabel_2_1_1_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2.setBounds(471, 115, 81, 14);
+		lblNewLabel_2_1_1_2.setBounds(569, 106, 232, 33);
 		panelVuelos.add(lblNewLabel_2_1_1_2);
 		
 		textCodigoVuelo = new JTextField();
 		textCodigoVuelo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textCodigoVuelo.setColumns(10);
-		textCodigoVuelo.setBounds(701, 112, 130, 20);
+		textCodigoVuelo.setBounds(859, 104, 196, 37);
 		panelVuelos.add(textCodigoVuelo);
 		
 		JLabel lblNewLabel_2_1_1_2_1 = new JLabel("Aerolinea");
 		lblNewLabel_2_1_1_2_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1.setBounds(10, 171, 81, 14);
+		lblNewLabel_2_1_1_2_1.setBounds(10, 171, 187, 14);
 		panelVuelos.add(lblNewLabel_2_1_1_2_1);
 		
 		JLabel lblNewLabel_2_1_1_2_1_1 = new JLabel("Precio");
 		lblNewLabel_2_1_1_2_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1_1.setBounds(487, 171, 81, 14);
+		lblNewLabel_2_1_1_2_1_1.setBounds(569, 160, 148, 37);
 		panelVuelos.add(lblNewLabel_2_1_1_2_1_1);
 		
 		textPrecioVuelo = new JTextField();
 		textPrecioVuelo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textPrecioVuelo.setColumns(10);
-		textPrecioVuelo.setBounds(701, 168, 130, 20);
+		textPrecioVuelo.setBounds(859, 153, 196, 37);
 		panelVuelos.add(textPrecioVuelo);
 		
 		textHoraSal = new JTextField();
 		textHoraSal.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textHoraSal.setColumns(10);
-		textHoraSal.setBounds(171, 222, 130, 20);
+		textHoraSal.setBounds(335, 219, 196, 36);
 		panelVuelos.add(textHoraSal);
 		
 		JLabel lblNewLabel_2_1_1_2_1_1_1 = new JLabel("Horario de salida");
 		lblNewLabel_2_1_1_2_1_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1_1_1.setBounds(10, 222, 81, 14);
+		lblNewLabel_2_1_1_2_1_1_1.setBounds(10, 222, 203, 14);
 		panelVuelos.add(lblNewLabel_2_1_1_2_1_1_1);
 		
 		textDuracion = new JTextField();
 		textDuracion.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		textDuracion.setColumns(10);
-		textDuracion.setBounds(711, 199, 130, 20);
+		textDuracion.setBounds(859, 203, 196, 36);
 		panelVuelos.add(textDuracion);
 		
 		JLabel lblNewLabel_2_1_1_2_1_1_2 = new JLabel("Duracion");
 		lblNewLabel_2_1_1_2_1_1_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_2_1_1_2_1_1_2.setBounds(497, 206, 81, 14);
+		lblNewLabel_2_1_1_2_1_1_2.setBounds(569, 219, 208, 24);
 		panelVuelos.add(lblNewLabel_2_1_1_2_1_1_2);
 		
 		JLabel lblNewLabel_a = new JLabel("Aeropuerto destino");
 		lblNewLabel_a.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblNewLabel_a.setBounds(469, 66, 99, 14);
+		lblNewLabel_a.setBounds(569, 54, 246, 26);
 		panelVuelos.add(lblNewLabel_a);
 		
 		comboAeroDes_1 = new JComboBox();
 		comboAeroDes_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		comboAeroDes_1.setBounds(701, 62, 130, 22);
+		comboAeroDes_1.setBounds(859, 64, 196, 32);
 		panelVuelos.add(comboAeroDes_1);
 		
 		comboAerolinea_1 = new JComboBox();
 		comboAerolinea_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		comboAerolinea_1.setBounds(171, 167, 130, 22);
+		comboAerolinea_1.setBounds(335, 167, 196, 36);
 		panelVuelos.add(comboAerolinea_1);
 		
 		ButtonGroup group = new ButtonGroup();
@@ -363,7 +357,7 @@ public class NuevoEvento extends JPanel {
 		panelOtros.add(btnGuardarOtros);
 		
 		panelOtros.setVisible(false);
-		rdbtnNewRadioButton.setBounds(10, 84, 109, 23);
+		rdbtnNewRadioButton.setBounds(10, 84, 192, 23);
 		add(rdbtnNewRadioButton);
 
 		rdbtnNewRadioButton_1 = new JRadioButton("Vuelos");
@@ -396,7 +390,7 @@ public class NuevoEvento extends JPanel {
 		group.add(rdbtnNewRadioButton_2);
 		
 		panelcolor = new JPanel();
-		panelcolor.setBounds(0, 30, 1096, 23);
+		panelcolor.setBounds(0, 30, 1282, 23);
 		add(panelcolor);
 		panelcolor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
 		
@@ -497,27 +491,28 @@ public class NuevoEvento extends JPanel {
 		
 		JLabel lblAeropuertoOrigenVuelta = new JLabel("Aeropuerto origen");
 		lblAeropuertoOrigenVuelta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblAeropuertoOrigenVuelta.setBounds(10, 75, 115, 14);
+		lblAeropuertoOrigenVuelta.setBounds(10, 58, 264, 49);
 		panelVueloVuelta.add(lblAeropuertoOrigenVuelta);
 		
 		JLabel lblAeropuertoDestino = new JLabel("Aeropuerto destino");
 		lblAeropuertoDestino.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		lblAeropuertoDestino.setBounds(560, 99, 115, 14);
+		lblAeropuertoDestino.setBounds(559, 58, 264, 49);
 		panelVueloVuelta.add(lblAeropuertoDestino);
 		
 		comboAeroOrigenV = new JComboBox();
 		comboAeroOrigenV.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		comboAeroOrigenV.setBounds(131, 74, 130, 22);
+		comboAeroOrigenV.setBounds(336, 67, 196, 34);
 		panelVueloVuelta.add(comboAeroOrigenV);
 		llenarComboBoxAeropuertosOrigenV(comboAeroOrigenV);
 
 		comboAeroDestinoV = new JComboBox<String>();
 		comboAeroDestinoV.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		comboAeroDestinoV.setBounds(743, 95, 130, 22);
+		comboAeroDestinoV.setBounds(851, 71, 196, 34);
 		panelVueloVuelta.add(comboAeroDestinoV);
 		llenarComboBoxAeropuertosDestinoV(comboAeroDestinoV);
 
 		btnGuardarVueloIda = new JButton("Guardar Vuelo ?");
+		btnGuardarVueloIda.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		btnGuardarVueloIda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				java.util.Date fechaSalida = dateChooser_2.getDate();
@@ -539,10 +534,11 @@ public class NuevoEvento extends JPanel {
 				System.out.println(textPrecioVuelo.getText());
 			}
 		});
-		btnGuardarVueloIda.setBounds(10, 416, 148, 23);
+		btnGuardarVueloIda.setBounds(10, 454, 237, 48);
 		panelVuelos.add(btnGuardarVueloIda);
 		
 		btnGuardarVueloIdaVuelta = new JButton("Guardar Vuelo !");
+		btnGuardarVueloIdaVuelta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		btnGuardarVueloIdaVuelta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				java.util.Date fechaSalida = dateChooser_2.getDate();
@@ -573,8 +569,14 @@ public class NuevoEvento extends JPanel {
 						);
 			}
 		});
-		btnGuardarVueloIdaVuelta.setBounds(10, 416, 148, 23);
+		btnGuardarVueloIdaVuelta.setBounds(10, 454, 237, 48);
 		panelVuelos.add(btnGuardarVueloIdaVuelta);
+		
+		textNombreVuelo = new JTextField();
+		textNombreVuelo.setBounds(335, 11, 196, 36);
+		panelVuelos.add(textNombreVuelo);
+		textNombreVuelo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		textNombreVuelo.setColumns(10);
 	}
 	
 	
