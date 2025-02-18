@@ -191,7 +191,8 @@ public class ViajesYEventos extends JPanel {
 	            	Viaje viajeSeleccionado = viajeSeleccionado(agencia);
 	        		if (table_1.getSelectedRow() != -1 ) {
 	        			
-	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),0).toString();
+	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),0).
+	                    		toString();
 	                    String TipoEventoSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),2).toString();
 	                    int rowIndex = table.getSelectedRow();		           
 	                    

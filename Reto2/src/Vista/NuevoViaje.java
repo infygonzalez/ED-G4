@@ -198,10 +198,16 @@ public class NuevoViaje extends JPanel {
 		            textServNo.getText()
 		            
 		        );
+		        if (textNombre.getText().equals("")|| textDesc.getText().equals("")) {
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else if(fechaInicio == null || fechaFin == null){
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else {
 		        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
 		        frame.setContentPane(new ViajesYEventos(agencia, viaje, frame));
                 frame.revalidate();
                 frame.repaint();
+		        }
 		    }
 		    
 		});

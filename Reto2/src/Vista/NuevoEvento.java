@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
@@ -386,6 +387,13 @@ public class NuevoEvento extends JPanel {
 										textPrecioVuelo.getText()
 										);
 								System.out.println(textPrecioVuelo.getText());
+								if (textNombreVuelo.getText().equals("")|| textCodigoVuelo.getText().equals("")) {
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else if(fechaSalida == null){
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else {
+						        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+						        }
 							}
 						});
 						btnGuardarVueloIda.setBounds(10, 454, 237, 48);
@@ -421,8 +429,16 @@ public class NuevoEvento extends JPanel {
 										String.valueOf(comboAeroOrigenV.getSelectedItem()),
 										String.valueOf(comboAeroDestinoV.getSelectedItem())
 										);
+								if (textNombreVuelo.getText().equals("")|| textCodigoVuelo.getText().equals("")) {
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else if(fechaSalida == null || FechaRegreso == null){
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else {
+						        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+						        }
 							}
 						});
+						
 						btnGuardarVueloIdaVuelta.setBounds(10, 454, 237, 48);
 						panelVuelos.add(btnGuardarVueloIdaVuelta);
 						
@@ -491,6 +507,13 @@ public class NuevoEvento extends JPanel {
 						textPrecioOtros.getText(),
 						textNombreOtros.getText()
 						);
+				if (textNombreOtros.getText().equals("")|| textDescripcionOtros.getText().equals("")) {
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else if(fecha == null ){
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else {
+		        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+		        }
 			}
 		});
 		btnGuardarOtros.setBounds(48, 397, 249, 52);
@@ -592,6 +615,14 @@ public class NuevoEvento extends JPanel {
 						textNMBHotel.getText(),
 						textPrecio.getText()
 						);
+				if (textNMBHotel.getText().equals("")|| textNombre.getText().equals("")) {
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else if(fechaInicio == null || fechaFin == null ){
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else {
+		        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+		        }
+				
 			}
 		});
 		panelAlojamiento.setVisible(false);
