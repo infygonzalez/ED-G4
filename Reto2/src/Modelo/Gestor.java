@@ -249,16 +249,6 @@ public class Gestor {
 						vuelo.getDuracionRegreso() + SQLQuerys.SEPARATOR + vuelo.getPrecioTotal() + SQLQuerys.SEPARATOR + vuelo.getCodigoVueloVuelta() + SQLQuerys.SEPARATOR + 
 						vuelo.getCodAeroliRegreso() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigenVuelta() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestinoVuelta() + SQLQuerys.END_BLOCK; 
 				
-				System.out.println(SQLQuerys.INSERT_VUELO_IDAVUELTA + vuelo.getViajeId() + SQLQuerys.SEPARATOR + 
-						vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
-						+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
-						SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
-						SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
-						+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.SEPARATOR + 
-						vuelo.getFechaRegreso() + SQLQuerys.SEPARATOR + vuelo.getHoraRegreso() + SQLQuerys.SEPARATOR + 
-						vuelo.getDuracionRegreso()+ SQLQuerys.SEPARATOR + vuelo.getCodAeroliRegreso() + SQLQuerys.SEPARATOR + vuelo.getPrecioTotal() + SQLQuerys.SEPARATOR + 
-						vuelo.getCodigoVueloVuelta() + SQLQuerys.END_BLOCK);
-						
 				
 				sentencia.executeUpdate(sql);
 				
