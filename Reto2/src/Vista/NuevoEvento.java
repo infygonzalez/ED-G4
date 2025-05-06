@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
@@ -79,20 +80,71 @@ public class NuevoEvento extends JPanel {
 	public NuevoEvento(Agencias agencia, Viaje viaje, JFrame frame) {	
 		setLayout(null);
 		
-		JButton btnNewButton = new JButton("cancelar");
-		btnNewButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		btnNewButton.setBounds(837, 614, 237, 48);
-		add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+				rdbtnNewRadioButton = new JRadioButton("Alojamiento");
+				rdbtnNewRadioButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+				rdbtnNewRadioButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						panelVuelos.setVisible(false);
+						panelOtros.setVisible(false);
+						panelAlojamiento.setVisible(true);
+					}
+				});
+				
+						rdbtnNewRadioButton_1 = new JRadioButton("Vuelos");
+						rdbtnNewRadioButton_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+						rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								panelVuelos.setVisible(true);
+								panelOtros.setVisible(false);
+								panelAlojamiento.setVisible(false);
+							}
+						});
+						
+								rdbtnNewRadioButton_2 = new JRadioButton("Otros");
+								rdbtnNewRadioButton_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+								rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										panelVuelos.setVisible(false);
+										panelOtros.setVisible(true);
+										panelAlojamiento.setVisible(false);
+									}
+								});
+								
+								JLabel lblNewLabel_6 = new JLabel("Elija el tipo de evento");
+								lblNewLabel_6.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+								lblNewLabel_6.setBounds(10, 53, 548, 36);
+								add(lblNewLabel_6);
+								
+								JButton btnNewButton = new JButton("cancelar");
+								btnNewButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+								btnNewButton.setBounds(837, 614, 237, 48);
+								add(btnNewButton);
+								btnNewButton.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
                 frame.setContentPane(new ViajesYEventos(agencia, viaje, frame));
                 frame.revalidate();
                 frame.repaint();
-			}
-		});
+									}
+								});
+								ButtonGroup group = new ButtonGroup();
+								panelcolor = new JPanel();
+								panelcolor.setBounds(0, 30, 1282, 23);
+								add(panelcolor);
+								panelcolor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
+								
+								rdbtnNewRadioButton_2.setBounds(449, 109, 109, 23);
+								add(rdbtnNewRadioButton_2);
+								group.add(rdbtnNewRadioButton_2);
+						rdbtnNewRadioButton_1.setBounds(227, 109, 109, 23);
+						add(rdbtnNewRadioButton_1);
+						group.add(rdbtnNewRadioButton_1);
+				rdbtnNewRadioButton.setBounds(10, 109, 192, 23);
+				add(rdbtnNewRadioButton);
+				
+						group.add(rdbtnNewRadioButton);
 		
 		panelVuelos = new JPanel();
-		panelVuelos.setBackground(new Color(128, 255, 0));
+		panelVuelos.setBackground(new Color(240, 240, 240));
 		panelVuelos.setBounds(10, 139, 1076, 502);
 		add(panelVuelos);
 		panelVuelos.setLayout(null);
@@ -285,204 +337,7 @@ public class NuevoEvento extends JPanel {
 		comboAerolinea_1.setBounds(335, 167, 196, 36);
 		panelVuelos.add(comboAerolinea_1);
 		
-		ButtonGroup group = new ButtonGroup();
-
-		rdbtnNewRadioButton = new JRadioButton("Alojamiento");
-		rdbtnNewRadioButton.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		rdbtnNewRadioButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelVuelos.setVisible(false);
-				panelOtros.setVisible(false);
-				panelAlojamiento.setVisible(true);
-			}
-		});
-		
-		panelOtros = new JPanel();
-		panelOtros.setBackground(new Color(255, 128, 192));
-		panelOtros.setBounds(10, 166, 455, 331);
-		add(panelOtros);
-		panelOtros.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Nombre evento");
-		lblNewLabel.setBounds(10, 41, 85, 21);
-		panelOtros.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Descripción");
-		lblNewLabel_1_1.setBounds(10, 149, 85, 21);
-		panelOtros.add(lblNewLabel_1_1);
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Precio");
-		lblNewLabel_1_1_1.setBounds(10, 234, 85, 21);
-		panelOtros.add(lblNewLabel_1_1_1);
-		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Fecha");
-		lblNewLabel_1_1_1_1.setBounds(10, 96, 85, 21);
-		panelOtros.add(lblNewLabel_1_1_1_1);
-		
-		textNombreOtros = new JTextField();
-		textNombreOtros.setBounds(105, 41, 130, 20);
-		panelOtros.add(textNombreOtros);
-		textNombreOtros.setColumns(10);
-		
-		textDescripcionOtros = new JTextField();
-		textDescripcionOtros.setColumns(10);
-		textDescripcionOtros.setBounds(105, 149, 204, 65);
-		panelOtros.add(textDescripcionOtros);
-		
-		textPrecioOtros = new JTextField();
-		textPrecioOtros.setColumns(10);
-		textPrecioOtros.setBounds(105, 234, 130, 20);
-		panelOtros.add(textPrecioOtros);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(105, 97, 70, 20);
-		panelOtros.add(dateChooser);
-		
-		JButton btnGuardarOtros = new JButton("Guardar otros");
-		btnGuardarOtros.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				java.util.Date fecha = dateChooser.getDate();
-				
-				insertarOtros(
-						viaje,
-						fecha,
-						textDescripcionOtros.getText(),
-						textPrecioOtros.getText(),
-						textNombreOtros.getText()
-						);
-			}
-		});
-		btnGuardarOtros.setBounds(263, 282, 145, 23);
-		panelOtros.add(btnGuardarOtros);
-		
-		panelOtros.setVisible(false);
-		rdbtnNewRadioButton.setBounds(10, 84, 192, 23);
-		add(rdbtnNewRadioButton);
-
-		rdbtnNewRadioButton_1 = new JRadioButton("Vuelos");
-		rdbtnNewRadioButton_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelVuelos.setVisible(true);
-				panelOtros.setVisible(false);
-				panelAlojamiento.setVisible(false);
-			}
-		});
-		rdbtnNewRadioButton_1.setBounds(227, 84, 109, 23);
-		add(rdbtnNewRadioButton_1);
-
-		rdbtnNewRadioButton_2 = new JRadioButton("Otros");
-		rdbtnNewRadioButton_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelVuelos.setVisible(false);
-				panelOtros.setVisible(true);
-				panelAlojamiento.setVisible(false);
-			}
-		});
-		
-		rdbtnNewRadioButton_2.setBounds(449, 84, 109, 23);
-		add(rdbtnNewRadioButton_2);
-
-		group.add(rdbtnNewRadioButton);
-		group.add(rdbtnNewRadioButton_1);
-		group.add(rdbtnNewRadioButton_2);
-		
-		panelcolor = new JPanel();
-		panelcolor.setBounds(0, 30, 1282, 23);
-		add(panelcolor);
-		panelcolor.setBackground(Color.decode(agencia.getAgenciaColorMarca()));
-		
-		
-		panelAlojamiento = new JPanel();
-		panelAlojamiento.setBackground(new Color(255, 128, 0));
-		panelAlojamiento.setBounds(10, 166, 673, 460);
-		add(panelAlojamiento);
-		panelAlojamiento.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Nombre evento");
-		lblNewLabel_1.setBounds(10, 48, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1);
-		
-		textNombre = new JTextField();
-		textNombre.setBounds(111, 45, 132, 20);
-		panelAlojamiento.add(textNombre);
-		textNombre.setColumns(10);
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Tipo evento");
-		lblNewLabel_1_2.setBounds(10, 90, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_2);
-		
-		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Doble", "Individual", "Triple"}));
-		comboBox_1.setBounds(111, 86, 132, 22);
-		panelAlojamiento.add(comboBox_1);
-		
-		JLabel lblNewLabel_1_3 = new JLabel("Ciudad");
-		lblNewLabel_1_3.setBounds(10, 139, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3);
-		
-		textCiudad = new JTextField();
-		textCiudad.setColumns(10);
-		textCiudad.setBounds(111, 136, 132, 20);
-		panelAlojamiento.add(textCiudad);
-		
-		textPrecio = new JTextField();
-		textPrecio.setColumns(10);
-		textPrecio.setBounds(111, 182, 132, 20);
-		panelAlojamiento.add(textPrecio);
-		
-		JLabel lblNewLabel_1_3_1 = new JLabel("Precio");
-		lblNewLabel_1_3_1.setBounds(10, 185, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3_1);
-		
-		JLabel lblNewLabel_1_3_1_1 = new JLabel("Fecha entrada");
-		lblNewLabel_1_3_1_1.setBounds(10, 238, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3_1_1);
-		
-		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(111, 238, 70, 20);
-		panelAlojamiento.add(dateChooser_1);
-		
-		JLabel lblNewLabel_1_3_1_1_1 = new JLabel("Fecha salida");
-		lblNewLabel_1_3_1_1_1.setBounds(349, 238, 91, 14);
-		panelAlojamiento.add(lblNewLabel_1_3_1_1_1);
-		
-		dateChooser_4 = new JDateChooser();
-		dateChooser_4.setBounds(429, 238, 70, 20);
-		panelAlojamiento.add(dateChooser_4);
-		
-		textNMBHotel = new JTextField();
-		textNMBHotel.setBounds(433, 48, 122, 20);
-		panelAlojamiento.add(textNMBHotel);
-		textNMBHotel.setColumns(10);
-		
-		JLabel lblNewLabel_5 = new JLabel("Nombre Hotel");
-		lblNewLabel_5.setBounds(323, 48, 100, 14);
-		panelAlojamiento.add(lblNewLabel_5);
-		JButton btnGuardarAlojamiento = new JButton("Guardar Alojamiento");
-		btnGuardarAlojamiento.setBounds(24, 322, 157, 23);
-		panelAlojamiento.add(btnGuardarAlojamiento);
-		btnGuardarAlojamiento.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				java.util.Date fechaInicio = dateChooser_1.getDate();
-				java.util.Date fechaFin = dateChooser_4.getDate();
-				
-				insertarAlojamiento(
-						viaje,
-						textCiudad.getText(),
-						textNombre.getText(),
-						String.valueOf(comboBox_1.getSelectedItem()),
-						fechaInicio,
-						fechaFin,
-						textNMBHotel.getText(),
-						textPrecio.getText()
-						);
-			}
-		});
-		panelAlojamiento.setVisible(false);
+	
 		panelVuelos.setVisible(false);
 		llenarComboBoxAeropuertosOrigen(comboAero_1);
 		llenarComboBoxAeropuertosDestino(comboAeroDes_1);
@@ -504,79 +359,273 @@ public class NuevoEvento extends JPanel {
 		comboAeroOrigenV.setBounds(336, 67, 196, 34);
 		panelVueloVuelta.add(comboAeroOrigenV);
 		llenarComboBoxAeropuertosOrigenV(comboAeroOrigenV);
-
-		comboAeroDestinoV = new JComboBox<String>();
-		comboAeroDestinoV.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		comboAeroDestinoV.setBounds(851, 71, 196, 34);
-		panelVueloVuelta.add(comboAeroDestinoV);
-		llenarComboBoxAeropuertosDestinoV(comboAeroDestinoV);
-
-		btnGuardarVueloIda = new JButton("Guardar Vuelo ?");
-		btnGuardarVueloIda.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		btnGuardarVueloIda.addActionListener(new ActionListener() {
+		
+				comboAeroDestinoV = new JComboBox<String>();
+				comboAeroDestinoV.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+				comboAeroDestinoV.setBounds(851, 71, 196, 34);
+				panelVueloVuelta.add(comboAeroDestinoV);
+				llenarComboBoxAeropuertosDestinoV(comboAeroDestinoV);
+				
+						btnGuardarVueloIda = new JButton("Guardar Vuelo ");
+						btnGuardarVueloIda.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+						btnGuardarVueloIda.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								java.util.Date fechaSalida = dateChooser_2.getDate();
+								
+								String CodAeroli = getCodAerolineaSeleccionado();
+								
+								insertarVueloIda(
+										viaje,
+										textNombreVuelo.getText(),
+										String.valueOf(comboAero_1.getSelectedItem()),
+										String.valueOf(comboAeroDes_1.getSelectedItem()),
+										textCodigoVuelo.getText(),
+										CodAeroli,
+										fechaSalida,
+										textHoraSal.getText(),
+										textDuracion.getText(),
+										textPrecioVuelo.getText()
+										);
+								System.out.println(textPrecioVuelo.getText());
+								if (textNombreVuelo.getText().equals("")|| textCodigoVuelo.getText().equals("")) {
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else if(fechaSalida == null){
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else {
+						        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+						        }
+							}
+						});
+						btnGuardarVueloIda.setBounds(10, 454, 237, 48);
+						panelVuelos.add(btnGuardarVueloIda);
+						
+						btnGuardarVueloIdaVuelta = new JButton("Guardar Vuelo ");
+						btnGuardarVueloIdaVuelta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+						btnGuardarVueloIdaVuelta.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								java.util.Date fechaSalida = dateChooser_2.getDate();
+								java.util.Date FechaRegreso = dateChooser_3.getDate();
+								
+								String CodAeroli = getCodAerolineaSeleccionado();
+								String CodAeroliVuelta = getCodAerolineaVueltaSeleccionado();
+								
+								insertarVueloIdaVuelta(
+										viaje,
+										textNombreVuelo.getText(),
+										String.valueOf(comboAero_1.getSelectedItem()),
+										String.valueOf(comboAeroDes_1.getSelectedItem()),
+										textCodigoVuelo.getText(),
+										CodAeroli,
+										fechaSalida,
+										textHoraSal.getText(),
+										textDuracion.getText(),
+										textPrecioVuelo.getText(),
+										FechaRegreso,
+										textHoraVuelta.getText(),
+										textDuracionVuelta.getText(),
+										textPrecioTotal.getText(),
+										textCodigoVuelta.getText(),
+										CodAeroliVuelta,
+										String.valueOf(comboAeroOrigenV.getSelectedItem()),
+										String.valueOf(comboAeroDestinoV.getSelectedItem())
+										);
+								if (textNombreVuelo.getText().equals("")|| textCodigoVuelo.getText().equals("")) {
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else if(fechaSalida == null || FechaRegreso == null){
+						        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+						        }else {
+						        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+						        }
+							}
+						});
+						
+						btnGuardarVueloIdaVuelta.setBounds(10, 454, 237, 48);
+						panelVuelos.add(btnGuardarVueloIdaVuelta);
+						
+						textNombreVuelo = new JTextField();
+						textNombreVuelo.setBounds(335, 11, 196, 36);
+						panelVuelos.add(textNombreVuelo);
+						textNombreVuelo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+						textNombreVuelo.setColumns(10);
+		
+		panelOtros = new JPanel();
+		panelOtros.setBackground(new Color(240, 240, 240));
+		panelOtros.setBounds(10, 139, 798, 502);
+		add(panelOtros);
+		panelOtros.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Nombre evento");
+		lblNewLabel.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel.setBounds(10, 47, 183, 21);
+		panelOtros.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Descripción");
+		lblNewLabel_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_1.setBounds(10, 157, 168, 21);
+		panelOtros.add(lblNewLabel_1_1);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("Precio");
+		lblNewLabel_1_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_1_1.setBounds(10, 240, 85, 21);
+		panelOtros.add(lblNewLabel_1_1_1);
+		
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Fecha");
+		lblNewLabel_1_1_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_1_1_1.setBounds(10, 96, 85, 21);
+		panelOtros.add(lblNewLabel_1_1_1_1);
+		
+		textNombreOtros = new JTextField();
+		textNombreOtros.setBounds(243, 44, 204, 33);
+		panelOtros.add(textNombreOtros);
+		textNombreOtros.setColumns(10);
+		
+		textDescripcionOtros = new JTextField();
+		textDescripcionOtros.setColumns(10);
+		textDescripcionOtros.setBounds(243, 149, 204, 65);
+		panelOtros.add(textDescripcionOtros);
+		
+		textPrecioOtros = new JTextField();
+		textPrecioOtros.setColumns(10);
+		textPrecioOtros.setBounds(243, 237, 204, 33);
+		panelOtros.add(textPrecioOtros);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(243, 97, 204, 33);
+		panelOtros.add(dateChooser);
+		
+		JButton btnGuardarOtros = new JButton("Guardar otros");
+		btnGuardarOtros.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		btnGuardarOtros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				java.util.Date fechaSalida = dateChooser_2.getDate();
 				
-				String CodAeroli = getCodAerolineaSeleccionado();
+				java.util.Date fecha = dateChooser.getDate();
 				
-				insertarVueloIda(
+				insertarOtros(
 						viaje,
-						textNombreVuelo.getText(),
-						String.valueOf(comboAero_1.getSelectedItem()),
-						String.valueOf(comboAeroDes_1.getSelectedItem()),
-						textCodigoVuelo.getText(),
-						CodAeroli,
-						fechaSalida,
-						textHoraSal.getText(),
-						textDuracion.getText(),
-						textPrecioVuelo.getText()
+						fecha,
+						textDescripcionOtros.getText(),
+						textPrecioOtros.getText(),
+						textNombreOtros.getText()
 						);
-				System.out.println(textPrecioVuelo.getText());
+				if (textNombreOtros.getText().equals("")|| textDescripcionOtros.getText().equals("")) {
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else if(fecha == null ){
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else {
+		        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+		        }
 			}
 		});
-		btnGuardarVueloIda.setBounds(10, 454, 237, 48);
-		panelVuelos.add(btnGuardarVueloIda);
+		btnGuardarOtros.setBounds(48, 397, 249, 52);
+		panelOtros.add(btnGuardarOtros);
 		
-		btnGuardarVueloIdaVuelta = new JButton("Guardar Vuelo !");
-		btnGuardarVueloIdaVuelta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		btnGuardarVueloIdaVuelta.addActionListener(new ActionListener() {
+		panelOtros.setVisible(false);
+		
+		
+		panelAlojamiento = new JPanel();
+		panelAlojamiento.setBackground(new Color(240, 240, 240));
+		panelAlojamiento.setBounds(10, 139, 1076, 502);
+		add(panelAlojamiento);
+		panelAlojamiento.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Nombre evento");
+		lblNewLabel_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1.setBounds(10, 31, 182, 31);
+		panelAlojamiento.add(lblNewLabel_1);
+		
+		textNombre = new JTextField();
+		textNombre.setBounds(348, 31, 203, 37);
+		panelAlojamiento.add(textNombre);
+		textNombre.setColumns(10);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Tipo evento");
+		lblNewLabel_1_2.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_2.setBounds(10, 89, 203, 31);
+		panelAlojamiento.add(lblNewLabel_1_2);
+		
+		comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Doble", "Individual", "Triple"}));
+		comboBox_1.setBounds(348, 89, 203, 37);
+		panelAlojamiento.add(comboBox_1);
+		
+		JLabel lblNewLabel_1_3 = new JLabel("Ciudad");
+		lblNewLabel_1_3.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_3.setBounds(613, 93, 162, 23);
+		panelAlojamiento.add(lblNewLabel_1_3);
+		
+		textCiudad = new JTextField();
+		textCiudad.setColumns(10);
+		textCiudad.setBounds(805, 89, 203, 37);
+		panelAlojamiento.add(textCiudad);
+		
+		textPrecio = new JTextField();
+		textPrecio.setColumns(10);
+		textPrecio.setBounds(348, 206, 203, 36);
+		panelAlojamiento.add(textPrecio);
+		
+		JLabel lblNewLabel_1_3_1 = new JLabel("Precio");
+		lblNewLabel_1_3_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_3_1.setBounds(10, 220, 91, 22);
+		panelAlojamiento.add(lblNewLabel_1_3_1);
+		
+		JLabel lblNewLabel_1_3_1_1 = new JLabel("Fecha entrada");
+		lblNewLabel_1_3_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_3_1_1.setBounds(10, 153, 182, 26);
+		panelAlojamiento.add(lblNewLabel_1_3_1_1);
+		
+		dateChooser_1 = new JDateChooser();
+		dateChooser_1.setBounds(348, 142, 203, 37);
+		panelAlojamiento.add(dateChooser_1);
+		
+		JLabel lblNewLabel_1_3_1_1_1 = new JLabel("Fecha salida");
+		lblNewLabel_1_3_1_1_1.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_1_3_1_1_1.setBounds(613, 153, 182, 26);
+		panelAlojamiento.add(lblNewLabel_1_3_1_1_1);
+		
+		dateChooser_4 = new JDateChooser();
+		dateChooser_4.setBounds(805, 148, 203, 31);
+		panelAlojamiento.add(dateChooser_4);
+		
+		textNMBHotel = new JTextField();
+		textNMBHotel.setBounds(805, 31, 203, 37);
+		panelAlojamiento.add(textNMBHotel);
+		textNMBHotel.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("Nombre Hotel");
+		lblNewLabel_5.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		lblNewLabel_5.setBounds(613, 35, 157, 22);
+		panelAlojamiento.add(lblNewLabel_5);
+		JButton btnGuardarAlojamiento = new JButton("Guardar Alojamiento");
+		btnGuardarAlojamiento.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
+		btnGuardarAlojamiento.setBounds(35, 441, 307, 50);
+		panelAlojamiento.add(btnGuardarAlojamiento);
+		btnGuardarAlojamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				java.util.Date fechaSalida = dateChooser_2.getDate();
-				java.util.Date FechaRegreso = dateChooser_3.getDate();
 				
-				String CodAeroli = getCodAerolineaSeleccionado();
-				String CodAeroliVuelta = getCodAerolineaVueltaSeleccionado();
+				java.util.Date fechaInicio = dateChooser_1.getDate();
+				java.util.Date fechaFin = dateChooser_4.getDate();
 				
-				insertarVueloIdaVuelta(
+				insertarAlojamiento(
 						viaje,
-						textNombreVuelo.getText(),
-						String.valueOf(comboAero_1.getSelectedItem()),
-						String.valueOf(comboAeroDes_1.getSelectedItem()),
-						textCodigoVuelo.getText(),
-						CodAeroli,
-						fechaSalida,
-						textHoraSal.getText(),
-						textDuracion.getText(),
-						textPrecioVuelo.getText(),
-						FechaRegreso,
-						textHoraVuelta.getText(),
-						textDuracionVuelta.getText(),
-						textPrecioTotal.getText(),
-						textCodigoVuelta.getText(),
-						CodAeroliVuelta,
-						String.valueOf(comboAeroOrigenV.getSelectedItem()),
-						String.valueOf(comboAeroDestinoV.getSelectedItem())
+						textCiudad.getText(),
+						textNombre.getText(),
+						String.valueOf(comboBox_1.getSelectedItem()),
+						fechaInicio,
+						fechaFin,
+						textNMBHotel.getText(),
+						textPrecio.getText()
 						);
+				if (textNMBHotel.getText().equals("")|| textNombre.getText().equals("")) {
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else if(fechaInicio == null || fechaFin == null ){
+		        	JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
+		        }else {
+		        JOptionPane.showMessageDialog(null, "Operación realizada con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+		        }
+				
 			}
 		});
-		btnGuardarVueloIdaVuelta.setBounds(10, 454, 237, 48);
-		panelVuelos.add(btnGuardarVueloIdaVuelta);
-		
-		textNombreVuelo = new JTextField();
-		textNombreVuelo.setBounds(335, 11, 196, 36);
-		panelVuelos.add(textNombreVuelo);
-		textNombreVuelo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-		textNombreVuelo.setColumns(10);
+		panelAlojamiento.setVisible(false);
 	}
 	
 	

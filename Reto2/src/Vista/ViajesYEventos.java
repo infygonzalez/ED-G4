@@ -61,6 +61,7 @@ public class ViajesYEventos extends JPanel {
 	        
 	        setLayout(null);
 
+	        //encabezado de la tabla
 	        model = new DefaultTableModel();
 	        model.addColumn("ID");
 	        model.addColumn("nombre");
@@ -143,7 +144,7 @@ public class ViajesYEventos extends JPanel {
 	        	}
 	        });
 	        btnGenerarOferta.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-	        btnGenerarOferta.setBackground(new Color(255, 160, 122));
+	        btnGenerarOferta.setBackground(new Color(100, 149, 237));
 	        btnGenerarOferta.setBounds(407, 600, 294, 58);
 	        add(btnGenerarOferta);
 
@@ -158,7 +159,7 @@ public class ViajesYEventos extends JPanel {
 	        	}
 	        });
 	        btnDesconectar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
-	        btnDesconectar.setBackground(new Color(255, 160, 122));
+	        btnDesconectar.setBackground(new Color(100, 149, 237));
 	        btnDesconectar.setBounds(919, 600, 282, 58);
 	        add(btnDesconectar);
 
@@ -190,7 +191,8 @@ public class ViajesYEventos extends JPanel {
 	            	Viaje viajeSeleccionado = viajeSeleccionado(agencia);
 	        		if (table_1.getSelectedRow() != -1 ) {
 	        			
-	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),0).toString();
+	                    String EventoIDSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),0).
+	                    		toString();
 	                    String TipoEventoSeleccionado = table_1.getValueAt(table_1.getSelectedRow(),2).toString();
 	                    int rowIndex = table.getSelectedRow();		           
 	                    
@@ -249,7 +251,6 @@ public class ViajesYEventos extends JPanel {
 	        scrollPane_1.setViewportView(table_1);
 	        
 	        JLabel lblNewLabel = new JLabel("");
-	        lblNewLabel.setIcon(new ImageIcon("img/fondo blur.jpg"));
 	        lblNewLabel.setBounds(0, 0, 1280, 720);
 	        add(lblNewLabel);
 
@@ -290,7 +291,7 @@ public class ViajesYEventos extends JPanel {
 	        ArrayList<Pais> pais = Controlador.buscarTodosPaises();
 	        ArrayList<Viaje> viajes = Controlador.buscarTodosViajes(pais, agencia);
 	        
-	        
+	        //rellena la tabla de viajes
 	        agencia.setViajes(viajes);
 	        for (Viaje viaje:viajes) {
 	            String[] fila = new String[100];
@@ -310,6 +311,8 @@ public class ViajesYEventos extends JPanel {
 	 
 	 private void actualizarEventos(Viaje viaje) {
 	        model1.setRowCount(0);
+	        
+	        //rellena la tabla de eventos
 
 	        ArrayList<Alojamiento> alojamientos = viaje.getAlojamiento();
 	        for (Alojamiento alojamiento : alojamientos) {

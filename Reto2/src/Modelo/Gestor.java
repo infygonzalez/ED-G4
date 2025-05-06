@@ -54,7 +54,7 @@ public class Gestor {
 			}		
 		}
 
-		public void insertarAgencia (Agencias agencia) {
+		public boolean insertarAgencia (Agencias agencia) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -88,9 +88,9 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+		return true;
 	}
-		public void insertarViaje (Viaje viaje) {
+		public boolean insertarViaje (Viaje viaje) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -120,9 +120,9 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+		return true;
 	}
-		public void insertarAlojamiento (Alojamiento alojamiento) {
+		public boolean insertarAlojamiento (Alojamiento alojamiento) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -153,9 +153,10 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+			return true;
+
 	}
-		public void insertarOtros(Otros otros) {
+		public boolean insertarOtros(Otros otros) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -186,9 +187,10 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+			return true;
+
 	}
-		public void insertarVueloIda(Vuelo vuelo) {
+		public boolean insertarVueloIda(Vuelo vuelo) {
 			Connection conexion =null;
 			Statement sentencia=null;
 			
@@ -225,7 +227,8 @@ public class Gestor {
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar la conexion");
 			}
-		
+			return true;
+
 	}
 		
 		public void insertarVueloIdaVuelta(Vuelo vuelo) {
@@ -246,16 +249,6 @@ public class Gestor {
 						vuelo.getDuracionRegreso() + SQLQuerys.SEPARATOR + vuelo.getPrecioTotal() + SQLQuerys.SEPARATOR + vuelo.getCodigoVueloVuelta() + SQLQuerys.SEPARATOR + 
 						vuelo.getCodAeroliRegreso() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigenVuelta() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestinoVuelta() + SQLQuerys.END_BLOCK; 
 				
-				System.out.println(SQLQuerys.INSERT_VUELO_IDAVUELTA + vuelo.getViajeId() + SQLQuerys.SEPARATOR + 
-						vuelo.getNombre() + SQLQuerys.SEPARATOR + vuelo.getAeropuertoOrigen()
-						+ SQLQuerys.SEPARATOR + vuelo.getAeropuertoDestino() +
-						SQLQuerys.SEPARATOR + vuelo.getCodVuelo() + SQLQuerys.SEPARATOR + vuelo.getCodAeroli() + 
-						SQLQuerys.SEPARATOR + vuelo.getFecSal() + SQLQuerys.SEPARATOR + vuelo.getHoraSal()  
-						+ SQLQuerys.SEPARATOR + vuelo.getDurViaje() + SQLQuerys.SEPARATOR + vuelo.getPrecio() + SQLQuerys.SEPARATOR + 
-						vuelo.getFechaRegreso() + SQLQuerys.SEPARATOR + vuelo.getHoraRegreso() + SQLQuerys.SEPARATOR + 
-						vuelo.getDuracionRegreso()+ SQLQuerys.SEPARATOR + vuelo.getCodAeroliRegreso() + SQLQuerys.SEPARATOR + vuelo.getPrecioTotal() + SQLQuerys.SEPARATOR + 
-						vuelo.getCodigoVueloVuelta() + SQLQuerys.END_BLOCK);
-						
 				
 				sentencia.executeUpdate(sql);
 				

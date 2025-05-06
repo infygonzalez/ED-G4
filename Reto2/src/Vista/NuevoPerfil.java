@@ -137,7 +137,7 @@ public class NuevoPerfil extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (textNombre.getText().equals("") && textContraseña.getText().equals("")) {
 					
-				JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(frame, "Campos vacios", "Error", JOptionPane.WARNING_MESSAGE);
 				
 				
 				}else {
