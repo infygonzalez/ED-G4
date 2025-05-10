@@ -1,0 +1,11 @@
+Listado de Viajes y Eventos Asociados
+
+Viaje:
+ID: 81
+nombre: pruebatxt
+tipo: Novios
+dias: 3
+fecha inicio: 2025-02-18
+fecha fin: 2025-02-21
+pais: ALEMANIA
+

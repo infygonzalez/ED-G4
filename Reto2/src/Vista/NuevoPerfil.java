@@ -2,17 +2,23 @@ package Vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 import Modelo.*;
 import Controlador.*;
 import javax.swing.JPasswordField;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class NuevoPerfil extends JPanel {
 
@@ -32,6 +38,7 @@ public class NuevoPerfil extends JPanel {
 	private JButton btnCancelar;
 	private JLabel lblContraseña;
 	private JTextField textContraseña;
+	private JPanel panelcolor;
 
 	/**
 	 * Create the panel.
@@ -42,66 +49,120 @@ public class NuevoPerfil extends JPanel {
 		
 		setLayout(null);
 		
+		panelcolor = new JPanel();
+		panelcolor.setBounds(393, 441, 151, 29);
+		add(panelcolor);
+		
 		lblNombre = new JLabel("Nombre agencia");
-		lblNombre.setBounds(476, 190, 104, 14);
+		lblNombre.setForeground(Color.BLACK);
+		lblNombre.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
+		lblNombre.setBounds(62, 94, 267, 71);
 		add(lblNombre);
 		
 		lblColor = new JLabel("Color marca");
-		lblColor.setBounds(476, 229, 104, 14);
+		lblColor.setForeground(Color.BLACK);
+		lblColor.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
+		lblColor.setBounds(62, 368, 267, 71);
 		add(lblColor);
 		
 		lblNumeroEmpleados = new JLabel("Numero de empleados");
-		lblNumeroEmpleados.setBounds(476, 267, 117, 14);
+		lblNumeroEmpleados.setForeground(Color.BLACK);
+		lblNumeroEmpleados.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
+		lblNumeroEmpleados.setBounds(681, 94, 292, 71);
 		add(lblNumeroEmpleados);
 		
 		lblTipoAgencia = new JLabel("Tipo de agencia");
-		lblTipoAgencia.setBounds(476, 305, 104, 14);
+		lblTipoAgencia.setForeground(Color.BLACK);
+		lblTipoAgencia.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
+		lblTipoAgencia.setBounds(681, 220, 267, 71);
 		add(lblTipoAgencia);
 		
 		lblLogo = new JLabel("Logo");
-		lblLogo.setBounds(476, 349, 46, 14);
+		lblLogo.setForeground(Color.BLACK);
+		lblLogo.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
+		lblLogo.setBounds(681, 368, 267, 71);
 		add(lblLogo);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(603, 187, 86, 20);
+		textNombre.setBounds(339, 111, 258, 45);
 		add(textNombre);
 		textNombre.setColumns(10);
 		
 		textColor = new JTextField();
-		textColor.setBounds(603, 226, 86, 20);
+		textColor.setBounds(339, 385, 258, 45);
 		add(textColor);
 		textColor.setColumns(10);
+
+		textColor.addKeyListener(new KeyAdapter() {
+
+			@Override
+
+			public void keyReleased(KeyEvent e) {
+
+				String color = textColor.getText().trim();
+
+				try {
+
+				if(color.matches("#[0-9-fA-F]{6}")) {
+
+					panelcolor.setBackground(Color.decode(color));
+
+				}
+
+				}catch(Exception ignored) {}
+
+			}
+
+		});
 		
 		comboEmple = new JComboBox();
 		comboEmple.setModel(new DefaultComboBoxModel(new String[] {"2-10", "10-100", "100-1000"}));
-		comboEmple.setBounds(603, 263, 86, 22);
+		comboEmple.setBounds(958, 102, 259, 62);
 		add(comboEmple);
 		
 		comboTipo = new JComboBox();
 		comboTipo.setModel(new DefaultComboBoxModel(new String[] {"minorista", "mayorista", "mayorista-minorista"}));
-		comboTipo.setBounds(603, 301, 86, 22);
+		comboTipo.setBounds(958, 228, 258, 62);
 		add(comboTipo);
 		
 		textLogo = new JTextField();
-		textLogo.setBounds(603, 346, 200, 20);
+		textLogo.setBounds(958, 385, 258, 45);
 		add(textLogo);
 		textLogo.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBackground(new Color(255, 160, 122));
+		btnGuardar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 22));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertarAgencia(textNombre.getText(), textColor.getText(), String.valueOf(comboEmple.getSelectedItem()), String.valueOf(comboTipo.getSelectedItem()), textLogo.getText(), textContraseña.getText());
-
+				if (textNombre.getText().equals("") && textContraseña.getText().equals("")) {
+					
+				JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
+				
+				
+				}else {
+					insertarAgencia(textNombre.getText(), textColor.getText(), String.valueOf(comboEmple.getSelectedItem()), 
+						String.valueOf(comboTipo.getSelectedItem()), textLogo.getText(), textContraseña.getText());
+					
+					login login = new login(frame);
+					frame.setContentPane(login);
+	                frame.revalidate(); 
+	                repaint();
+				}
+				
+				
 			}
 		});
 		
 		
 		
 		
-		btnGuardar.setBounds(504, 423, 89, 23);
+		btnGuardar.setBounds(225, 533, 292, 120);
 		add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBackground(new Color(255, 160, 122));
+		btnCancelar.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				login login = new login(frame);
@@ -110,17 +171,24 @@ public class NuevoPerfil extends JPanel {
                 repaint();
 			}
 		});
-		btnCancelar.setBounds(684, 423, 89, 23);
+		btnCancelar.setBounds(732, 533, 292, 120);
 		add(btnCancelar);
 		
 		lblContraseña = new JLabel("Contraseña");
-		lblContraseña.setBounds(476, 383, 104, 14);
+		lblContraseña.setForeground(Color.BLACK);
+		lblContraseña.setFont(new Font("Eras Demi ITC", Font.PLAIN, 24));
+		lblContraseña.setBounds(62, 220, 272, 71);
 		add(lblContraseña);
 		
 		textContraseña = new JTextField();
-		textContraseña.setBounds(603, 377, 86, 20);
+		textContraseña.setBounds(339, 237, 258, 45);
 		add(textContraseña);
 		textContraseña.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("img/fondo blur.jpg"));
+		lblNewLabel.setBounds(0, 0, 1280, 720);
+		add(lblNewLabel);
 
 	}
 	private void insertarAgencia(String nombre, String color, String comboEmple, String comboTipo, String logo, String contraseña) {
